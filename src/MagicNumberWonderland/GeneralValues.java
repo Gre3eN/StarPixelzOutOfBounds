@@ -5,7 +5,7 @@ import java.awt.GraphicsEnvironment;
 
 public class GeneralValues {
 	static GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-
+	//jo
 	public static int FRAME_WIDTH = gd.getDisplayMode().getWidth();
 	public static int FRAME_HEIGHT = gd.getDisplayMode().getHeight();
 	public static int TIMER_DELAY = 50;

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 
 import MagicNumberWonderland.StarValues;
-
+//jo
 public class GamePanel extends JPanel {
 
 	private ArrayList<Pipe> pipes = new ArrayList<Pipe>();

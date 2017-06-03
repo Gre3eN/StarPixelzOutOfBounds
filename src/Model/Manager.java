@@ -7,7 +7,7 @@ public interface Manager {
 	void update();
 
 	void spawn();
-
+	//jo
 	void delete();
 
 	void reset();

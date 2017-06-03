@@ -9,7 +9,7 @@ public class StarValues extends Values {
 	public static int MAX_COUNT = 10;
 	public static int INITIAL_COUNT = 10;
 	public static int INITIAL_SPAWN_TOLERANCE_X=50;
-	
+	//jo
 	public static int SPEED = 5; //put in relation to pipeMovement?
 	
 	public static int WIDTH = 10;

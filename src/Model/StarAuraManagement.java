@@ -12,7 +12,7 @@ public class StarAuraManagement {
 	private ArrayList<Rectangle> auras0;
 	private ArrayList<Rectangle> auras1;
 	private ArrayList<Rectangle> auras2;
-
+	//jo
 	public StarAuraManagement(ArrayList<Star> stars) {
 		this.stars = stars;
 		auras0=new ArrayList<>();
