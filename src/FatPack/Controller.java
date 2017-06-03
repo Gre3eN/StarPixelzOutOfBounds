@@ -29,7 +29,7 @@ public class Controller {
 		timer = new Timer(Values.TIMER_DELAY, listener -> timerAction());
 		timer2 = new Timer(Values.TIMER_DELAY / 10, listener -> timer2Action());
 		timer.start();
-		Sound.playClip("Resources/background3.wav");
+		//Sound.playClip("Resources/background3.wav");
 	}
 
 	public void timerAction() {
