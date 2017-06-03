@@ -37,8 +37,7 @@ public class StarAuraManagement {
 	}
 
 	public void spawn(Star newStar) {
-		// TODO Auto-generated method stub
-		stars.add(newStar);
+
 		calcAura0(newStar);
 		calcAura1(newStar);
 		calcAura2(newStar);

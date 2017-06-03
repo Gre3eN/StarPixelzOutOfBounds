@@ -43,21 +43,21 @@ public class GamePanel extends JPanel {
 			g.setColor(o.getOvalColor());
 			g.fillOval(o.getOval()[0], o.getOval()[1], o.getOval()[2], o.getOval()[3]);
 		}
-		// aura0
-		g.setColor(StarValues.AURA_COLOR0);
-		for (Rectangle a : auras0) {
-			g.fillOval(a.x, a.y, a.width, a.height);
-		}
-		// aura1
-		g.setColor(StarValues.AURA_COLOR1);
-		for (Rectangle a : auras1) {
-			g.fillOval(a.x, a.y, a.width, a.height);
-		}
-		// aura2
-		g.setColor(StarValues.AURA_COLOR2);
-		for (Rectangle a : auras2) {
-			g.fillOval(a.x, a.y, a.width, a.height);
-		}
+			// aura0
+			g.setColor(StarValues.AURA_COLOR0);
+			for (Rectangle a : auras0) {
+				g.fillOval(a.x, a.y, a.width, a.height);
+			}
+			// aura1
+			g.setColor(StarValues.AURA_COLOR1);
+			for (Rectangle a : auras1) {
+				g.fillOval(a.x, a.y, a.width, a.height);
+			}
+			// aura2
+			g.setColor(StarValues.AURA_COLOR2);
+			for (Rectangle a : auras2) {
+				g.fillOval(a.x, a.y, a.width, a.height);
+			}
 		// stars
 		g2.setColor(StarValues.STAR_COLOR);
 		for (Shape s : stars) {
