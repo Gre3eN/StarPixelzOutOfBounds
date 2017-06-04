@@ -27,7 +27,7 @@ public class Values {
 	public static int FLAPPY_WIDTH = 50;
 	public static int FLAPPY_HEIGHT = 50;
 	
-	protected static int FLAPPY_JUMP_HEIGHT = 50;
+	protected static int FLAPPY_JUMP_HEIGHT = 40;
 	protected static int FLAPPY_JUMP_DOWN_HEIGHT = 20;
 	protected static int FLAPPY_FALL_HEIGHT = FRAME_HEIGHT/110;
 	protected static int FLAPPY_CHARGE_SPEED = 80;
