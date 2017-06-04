@@ -1,5 +1,7 @@
 package FatPack;
 
+import java.util.ArrayList;
+
 import javax.swing.Timer;
 
 public class Controller {
@@ -9,9 +11,10 @@ public class Controller {
 	private PipeManagement pipeManagement;
 	private OvalManagement ovalManagement;
 	private Flappy flappy;
-	private FlappyChargeAnimation flappyChargeAni;
+	private FlappyAnimationManager flappyAniManager;
 	private ColorManager colorManager;
 	private Timer timer, timer2;
+	private boolean gameOver = false;
 
 	public Controller() {
 		gamePanel = new GamePanel();
@@ -19,7 +22,7 @@ public class Controller {
 		pipeManagement = new PipeManagement();
 		ovalManagement = new OvalManagement();
 		flappy = new Flappy();
-		flappyChargeAni = new FlappyChargeAnimation();
+		flappyAniManager = new FlappyAnimationManager();
 		colorManager = new ColorManager();
 		
 		timer = new Timer(Values.TIMER_DELAY, listener -> timerAction());
@@ -29,11 +32,13 @@ public class Controller {
 	}
 
 	public void timerAction() {
-		gamePanel.updatePipes(pipeManagement.update());
+		pipeManagement.update();
+		gamePanel.updatePipes(pipeManagement.getPipes());
 		gamePanel.updateFlappy(flappy.getY(), colorManager.getColor());
-		flappyChargeAni.updateTransparency();
-		gamePanel.updateFlappyAnimation(flappyChargeAni.getAnimation(), flappyChargeAni.getTransparency(), colorManager.getRGB());
-		gamePanel.updatePanel();
+		flappyAniManager.update();
+		gamePanel.updateFlappyAnimation(flappyAniManager.getCharge(), colorManager.getRGB());
+		collision();
+		gamePanel.repaintPanel();
 		flappy.fall();
 		gameFrame.setScore(pipeManagement.getScore());
 		
@@ -44,18 +49,18 @@ public class Controller {
 			colorManager.changeColor();
 			flappy.jump();
 			ovalManagement.setRGB(colorManager.getRGB());
-			ovalManagement.spawnOval(Values.FLAPPY_X, flappy.getY());
+			ovalManagement.spawnOval(flappy.getY());
 			gameFrame.setSpaceTyped(false);
 		}
 		
 		if (gameFrame.isEnterTyped()){
 			pipeManagement.flappyCharge();
 			ovalManagement.flappyCharge();
-			flappyChargeAni.setAnimation();
+			flappyAniManager.spawnCharge();;
 			gameFrame.setEnterTyped(false);
 		}
 		
-		if (gamePanel.gameOver()) {
+		if (gameOver) {
 			timer.stop();
 			Sound.playClip("Resources/gameOverSound.wav");
 			timer2.start();
@@ -71,9 +76,29 @@ public class Controller {
 			gamePanel.reset();
 			gameFrame.reset();
 			flappy.reset();
-			flappyChargeAni.reset();
+			flappyAniManager.reset();
+			gameOver = false;
 			timer.start();
 			timer2.stop();
+		}
+	}
+	
+	public void collision(){
+		ArrayList<Pipe> pipes = new ArrayList<Pipe>(pipeManagement.getPipes());
+		
+		for (Pipe p : pipes){
+			if(p.isCollisionPossible())
+				if(flappy.getY() <= p.getGapUpperY() || flappy.getY() + Values.FLAPPY_HEIGHT >= p.getGapLowerY()){
+					gamePanel.setGameOver();
+					gameFrame.setGameOver();
+					gameOver = true;
+				}
+		}
+		
+		if (flappy.frameCollision()){
+			gamePanel.setGameOver();
+			gameFrame.setGameOver();
+			gameOver = true;
 		}
 	}
 }

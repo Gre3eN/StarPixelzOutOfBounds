@@ -22,18 +22,19 @@ public class Values {
 	
 	public static int TIMER_DELAY = 50;
 	
-	public static int FLAPPY_X = 230;
-	public static int FLAPPY_Y = 50;
 	public static int FLAPPY_WIDTH = 50;
-	public static int FLAPPY_HEIGHT = 50;
-	
+	public static int FLAPPY_HEIGHT = 50;	
+	public static int FLAPPY_X = 230;
+	public static int FLAPPY_X_2 = FLAPPY_X + FLAPPY_WIDTH;
+	public static int FLAPPY_Y = 50;
+
 	protected static int FLAPPY_JUMP_HEIGHT = 50;
 	protected static int FLAPPY_FALL_HEIGHT = FRAME_HEIGHT/110;
 	protected static int FLAPPY_CHARGE_SPEED = 80;
 	
 	protected static int FLAPPY_ANIMATION_COUNT = 3;
 	protected static int FLAPPY_ANIMATION_RANGE_RATE = FLAPPY_CHARGE_SPEED / FLAPPY_ANIMATION_COUNT - FLAPPY_CHARGE_SPEED / 20;
-	protected static int FLAPPY_ANIMATION_TIME = 5; 	//5 timer actions
+	protected static int FLAPPY_ANIMATION_TIME = 5; 	//timer actions
 	protected static int FLAPPY_ANIMATION_START_TRANSPARENCY = 100;
 	protected static int FLAPPY_ANIMATION_TRANSPARENCY_LOSS = FLAPPY_ANIMATION_START_TRANSPARENCY / FLAPPY_ANIMATION_TIME;
 	

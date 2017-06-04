@@ -1,4 +1,4 @@
-package FatPack;
+ package FatPack;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -11,8 +11,7 @@ public class GamePanel extends JPanel {
 
 	private ArrayList<Pipe> pipes = new ArrayList<Pipe>();
 	private ArrayList<Oval> ovals = new ArrayList<Oval>();
-	private ArrayList<Integer> flappyChAni = new ArrayList<Integer>();
-	private ArrayList<Integer> flappyAniTrans = new ArrayList<Integer>();
+	private ArrayList<FlappyChargeAnimation> charge = new ArrayList<>();
 	private int flappyY;
 	private int[] flappyAniColor;
 	private Color flappyColor;
@@ -36,11 +35,9 @@ public class GamePanel extends JPanel {
 			g.fillRect(p.getX(), p.getY2(), p.getWidth(), p.getHeigth2());
 		}
 		//Flappy Charge Animation
-		for (int t : flappyAniTrans){
-			g.setColor(new Color(flappyAniColor[0], flappyAniColor[1], flappyAniColor[2], t));
-		}
-		for (int a : flappyChAni){
-			g.fillRect(a, flappyY, Values.FLAPPY_WIDTH, Values.FLAPPY_HEIGHT);
+		for (FlappyChargeAnimation c : charge){
+			g.setColor(new Color(flappyAniColor[0], flappyAniColor[1], flappyAniColor[2], c.getTransparency()));
+			g.fillRect(c.getX(), flappyY, Values.FLAPPY_WIDTH, Values.FLAPPY_HEIGHT);
 		}
 		// Flappy
 		g.setColor(flappyColor);
@@ -60,22 +57,12 @@ public class GamePanel extends JPanel {
 		}
 	}
 	
-	public void updatePanel(){
+	public void repaintPanel(){
 		repaint();
 	}
 	
-	public boolean gameOver() {
-		if (flappyY + Values.FLAPPY_HEIGHT + Values.FLOOR_HEIGHT >= Values.FRAME_HEIGHT || flappyY <= 0) {
-			gameOver = true;
-		}
-		if (Values.FLAPPY_X + Values.FLAPPY_WIDTH >= pipes.get(0).getX()
-				&& Values.FLAPPY_X <= pipes.get(0).getX() + pipes.get(0).getWidth()) {
-			if (flappyY <= pipes.get(0).getHeigth1()
-					|| flappyY + Values.FLAPPY_HEIGHT >= pipes.get(0).getHeigth1() + Values.PIPE_GAP) {
-				gameOver = true;
-			}
-		}
-		return gameOver;
+	public void setGameOver() {
+		gameOver = true;
 	}
 
 	public void updatePipes(ArrayList<Pipe> newPipes) {
@@ -86,9 +73,8 @@ public class GamePanel extends JPanel {
 		this.ovals = newOvals;
 	}
 	
-	public void updateFlappyAnimation(ArrayList<Integer> animation, ArrayList<Integer> transparency, int[] rgb){
-		flappyChAni = animation;
-		flappyAniTrans = transparency;
+	public void updateFlappyAnimation(ArrayList<FlappyChargeAnimation> charge, int[] rgb){
+		this.charge = charge;
 		flappyAniColor = rgb;	
 	}
 	

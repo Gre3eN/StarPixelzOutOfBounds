@@ -11,13 +11,13 @@ public class PipeManagement {
 		pipes.add(new Pipe());
 	}
 
-	public ArrayList<Pipe> update() {
-		for (int i = 0; i < pipes.size(); i++) {
-			pipes.get(i).moveLeft();
+	public void update() {
+		for (Pipe p : pipes) {
+			p.moveLeft();
+			p.collisionPossible();
 		}
 		spawnPipe();
 		deletePipe();
-		return pipes;
 	}
 	
 	public void flappyCharge() {
@@ -48,5 +48,9 @@ public class PipeManagement {
 	
 	public int getScore() {
 		return pipeScore;
+	}
+	
+	public ArrayList<Pipe> getPipes(){
+		return pipes;
 	}
 }

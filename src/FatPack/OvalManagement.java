@@ -24,9 +24,9 @@ public class OvalManagement {
 		return ovals;
 	}
 
-	public void spawnOval(int flappyX, int flappyY) {
+	public void spawnOval(int flappyY) {
 		for(int i=1; i<=Values.OVAL_COUNT; i++)
-			ovals.add(new Oval(flappyX, flappyY, i, rgb[0], rgb[1], rgb[2]));
+			ovals.add(new Oval(flappyY, i, rgb[0], rgb[1], rgb[2]));
 	}
 
 	private void deleteOval() {

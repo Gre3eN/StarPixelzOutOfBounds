@@ -9,8 +9,8 @@ public class Oval {
 	private int transperency = 0;
 	private boolean isInnerOval, isOuterOval;
 	
-	public Oval(int x, int y, int oval, int r, int g, int b) {
-		this.x = x;
+	public Oval(int y, int oval, int r, int g, int b) {
+		this.x = Values.FLAPPY_X;
 		this.y = y;
 		this.oval = oval;
 		this.r = r;

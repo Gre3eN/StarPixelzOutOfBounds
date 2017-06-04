@@ -20,6 +20,7 @@ public class GameFrame extends JFrame {
 	private boolean restartNow = false;
 	private boolean isSpaceTyped = false;
 	private boolean isEnterTyped = false;
+	private boolean gameOver = false;
 
 	public GameFrame(GamePanel gamePanel) {
 		this.gamePanel = gamePanel;
@@ -51,7 +52,7 @@ public class GameFrame extends JFrame {
 			public void keyReleased(KeyEvent e) {
 
 				if (e.getKeyCode() == KeyEvent.VK_R) {
-					if (gamePanel.gameOver()) {
+					if (gameOver) {
 						restartNow = true;
 					}
 				}
@@ -81,9 +82,14 @@ public class GameFrame extends JFrame {
 	public boolean getRestartNow() {
 		return restartNow;
 	}
+	
+	public void setGameOver(){
+		gameOver = true;
+	}
 
 	public void reset() {
 		restartNow = false;
+		gameOver = false;
 		jumps = 0;
 		jumpLabel.setText("Jumps: " + jumps);
 		score = 0;
