@@ -29,7 +29,9 @@ public class Controller {
 		timer = new Timer(Values.TIMER_DELAY, listener -> timerAction());
 		timer2 = new Timer(Values.TIMER_DELAY / 10, listener -> timer2Action());
 		timer.start();
-		//Sound.playClip("Resources/background3.wav");
+
+		Sound.playClip("Resources/through_space.wav");
+
 	}
 
 	public void timerAction() {
@@ -48,7 +50,21 @@ public class Controller {
 		if (ovalManagement.getOvals().size() > 0)
 			gamePanel.updateOvals(ovalManagement.update());
 
-		getInputKeys();
+		
+		if (gameFrame.isSpaceTyped()){
+			colorManager.changeColor();
+			flappy.jump();
+			ovalManagement.setRGB(colorManager.getRGB());
+			ovalManagement.spawnOval(Values.FLAPPY_X, flappy.getY());
+			//gameFrame.setSpaceTyped(false);
+		}
+		
+		if (gameFrame.isEnterTyped()){
+			pipeManagement.flappyCharge();
+			ovalManagement.flappyCharge();
+			flappyChargeAni.setAnimation();
+			gameFrame.setEnterTyped(false);
+		}
 
 		if (gamePanel.gameOver()) {
 			timer.stop();
