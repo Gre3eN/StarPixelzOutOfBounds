@@ -8,6 +8,7 @@ public class Controller {
 	private GameFrame gameFrame;
 	private PipeManagement pipeManagement;
 	private OvalManagement ovalManagement;
+	private BackGroundStarManagement backGroundStarManagement;
 	private Flappy flappy;
 	private FlappyChargeAnimation flappyChargeAni;
 	private ColorManager colorManager;
@@ -18,6 +19,7 @@ public class Controller {
 		gameFrame = new GameFrame(gamePanel);
 		pipeManagement = new PipeManagement();
 		ovalManagement = new OvalManagement();
+		backGroundStarManagement = new BackGroundStarManagement();
 		flappy = new Flappy();
 		flappyChargeAni = new FlappyChargeAnimation();
 		colorManager = new ColorManager();
@@ -33,6 +35,8 @@ public class Controller {
 	public void timerAction() {
 		if(gamePanel.getPlay()) {
 			gamePanel.updatePipes(pipeManagement.update());
+			gamePanel.updateBackGroundStars(backGroundStarManagement.getBackGroundStars());
+			backGroundStarManagement.update();
 			gamePanel.updateFlappy(flappy.getY(), colorManager.getColor());
 			flappyChargeAni.updateTransparency();
 			gamePanel.updateFlappyAnimation(flappyChargeAni.getAnimation(), flappyChargeAni.getTransparency(), colorManager.getRGB());
@@ -53,6 +57,7 @@ public class Controller {
 			if (gameFrame.isEnterTyped()){
 				pipeManagement.flappyCharge();
 				ovalManagement.flappyCharge();
+				backGroundStarManagement.charge();
 				flappyChargeAni.setAnimation();
 				gameFrame.setEnterTyped(false);
 			}
@@ -76,6 +81,7 @@ public class Controller {
 		if (gameFrame.getRestartNow()) {
 			pipeManagement.reset();
 			ovalManagement.reset();
+			backGroundStarManagement.reset();
 			gamePanel.reset();
 			gameFrame.reset();
 			flappy.reset();
