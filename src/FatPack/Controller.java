@@ -25,43 +25,51 @@ public class Controller {
 		timer = new Timer(Values.TIMER_DELAY, listener -> timerAction());
 		timer2 = new Timer(Values.TIMER_DELAY / 10, listener -> timer2Action());
 		timer.start();
+		gamePanel.updatePanel();
 		Sound.playClip("Resources/through_space.wav");
 	}
+	
 
 	public void timerAction() {
-		gamePanel.updatePipes(pipeManagement.update());
-		gamePanel.updateFlappy(flappy.getY(), colorManager.getColor());
-		flappyChargeAni.updateTransparency();
-		gamePanel.updateFlappyAnimation(flappyChargeAni.getAnimation(), flappyChargeAni.getTransparency(), colorManager.getRGB());
-		gamePanel.updatePanel();
-		flappy.fall();
-		gameFrame.setScore(pipeManagement.getScore());
-		
-		if(ovalManagement.getOvals().size() > 0) 
-			gamePanel.updateOvals(ovalManagement.update());
-		
-		if (gameFrame.isSpaceTyped()){
-			colorManager.changeColor();
-			flappy.jump();
-			ovalManagement.setRGB(colorManager.getRGB());
-			ovalManagement.spawnOval(Values.FLAPPY_X, flappy.getY());
-			//gameFrame.setSpaceTyped(false);
+		if(gamePanel.getPlay()) {
+			gamePanel.updatePipes(pipeManagement.update());
+			gamePanel.updateFlappy(flappy.getY(), colorManager.getColor());
+			flappyChargeAni.updateTransparency();
+			gamePanel.updateFlappyAnimation(flappyChargeAni.getAnimation(), flappyChargeAni.getTransparency(), colorManager.getRGB());
+			gamePanel.updatePanel();
+			flappy.fall();
+			gameFrame.setScore(pipeManagement.getScore());
+			
+			if(ovalManagement.getOvals().size() > 0) 
+				gamePanel.updateOvals(ovalManagement.update());
+			
+			if (gameFrame.isSpaceTyped()){
+				colorManager.changeColor();
+				flappy.jump();
+				ovalManagement.setRGB(colorManager.getRGB());
+				ovalManagement.spawnOval(Values.FLAPPY_X, flappy.getY());
+			}
+			
+			if (gameFrame.isEnterTyped()){
+				pipeManagement.flappyCharge();
+				ovalManagement.flappyCharge();
+				flappyChargeAni.setAnimation();
+				gameFrame.setEnterTyped(false);
+			}
+			
+			if (gameFrame.isDownTyped()) {
+				colorManager.changeColor();
+				flappy.jumpDown();
+				ovalManagement.setRGB(colorManager.getRGB());
+				ovalManagement.spawnOval(Values.FLAPPY_X, flappy.getY());
+			}
+			
+			if (gamePanel.gameOver()) {
+				timer.stop();
+				Sound.playClip("Resources/gameOverSound.wav");
+				timer2.start();
+			}
 		}
-		
-		if (gameFrame.isEnterTyped()){
-			pipeManagement.flappyCharge();
-			ovalManagement.flappyCharge();
-			flappyChargeAni.setAnimation();
-			gameFrame.setEnterTyped(false);
-		}
-		
-		if (gamePanel.gameOver()) {
-			timer.stop();
-			Sound.playClip("Resources/gameOverSound.wav");
-			timer2.start();
-		}
-		
-		
 	}
 
 	public void timer2Action() {

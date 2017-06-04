@@ -17,6 +17,7 @@ public class GamePanel extends JPanel {
 	private int[] flappyAniColor;
 	private Color flappyColor;
 	private boolean gameOver = false;
+	private boolean play = false;
 	
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -57,6 +58,12 @@ public class GamePanel extends JPanel {
 	
 			g.setFont(new Font("Harrington", Font.PLAIN, 50));
 			g.drawString("press R", Values.FLAPPY_X + 230, Values.FRAME_HEIGHT / 2 + 100);
+		}
+		
+		if (!play) {
+			g.setColor(Values.FAIL_COLOR);
+			g.setFont(new Font("Harrington", Font.BOLD, 150));
+			g.drawString("Press 'S' to start", Values.FLAPPY_X + 160, Values.FRAME_HEIGHT / 2);
 		}
 	}
 	
@@ -104,5 +111,13 @@ public class GamePanel extends JPanel {
 
 	public boolean getGameOver() {
 		return gameOver;
+	}
+	
+	public void setPlay(boolean play) {
+		this.play = play;
+	}
+	
+	public boolean getPlay() {
+		return play;
 	}
 }

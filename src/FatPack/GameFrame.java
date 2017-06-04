@@ -20,6 +20,7 @@ public class GameFrame extends JFrame {
 	private boolean restartNow = false;
 	private boolean isSpaceTyped = false;
 	private boolean isEnterTyped = false;
+	private boolean isDownTyped = false;
 
 	public GameFrame(GamePanel gamePanel) {
 		this.gamePanel = gamePanel;
@@ -50,7 +51,8 @@ public class GameFrame extends JFrame {
 			@Override
 			public void keyReleased(KeyEvent e) {
 				
-				if (e.getKeyCode() == KeyEvent.VK_SPACE) isSpaceTyped = false;
+				if (e.getKeyCode() == KeyEvent.VK_UP) isSpaceTyped = false;
+				if (e.getKeyCode() == KeyEvent.VK_DOWN) isDownTyped = false;
 
 				if (e.getKeyCode() == KeyEvent.VK_R) {
 					if (gamePanel.gameOver()) {
@@ -62,7 +64,7 @@ public class GameFrame extends JFrame {
 
 			@Override
 			public void keyPressed(KeyEvent e) {
-				if (e.getKeyCode() == KeyEvent.VK_SPACE){
+				if (e.getKeyCode() == KeyEvent.VK_UP){
 					if (!gamePanel.getGameOver()) {
 						isSpaceTyped = true;
 						jumps++;
@@ -70,10 +72,18 @@ public class GameFrame extends JFrame {
 						Sound.playClip("Resources/jump22.wav");
 					}
 				}
-				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+				if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 					isEnterTyped = true;
 					Sound.playClip("Resources/jump42.wav");
-				}	
+				}
+				
+				if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+					isDownTyped = true;
+				}
+				
+				if (e.getKeyCode() == KeyEvent.VK_S) {
+					gamePanel.setPlay(true);
+				}
 			}
 		});
 	}
@@ -99,16 +109,15 @@ public class GameFrame extends JFrame {
 		return isSpaceTyped;
 	}
 
-	public void setSpaceTyped(boolean isKeyTyped) {
-		this.isSpaceTyped = isKeyTyped;
-	}
-	
 	public boolean isEnterTyped() {
 		return isEnterTyped;
+	}
+	
+	public boolean isDownTyped() {
+		return isDownTyped;
 	}
 
 	public void setEnterTyped(boolean isKeyTyped) {
 		this.isEnterTyped = isKeyTyped;
 	}
-
 }
