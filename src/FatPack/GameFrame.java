@@ -49,6 +49,8 @@ public class GameFrame extends JFrame {
 
 			@Override
 			public void keyReleased(KeyEvent e) {
+				
+				if (e.getKeyCode() == KeyEvent.VK_SPACE) isSpaceTyped = false;
 
 				if (e.getKeyCode() == KeyEvent.VK_R) {
 					if (gamePanel.gameOver()) {
@@ -65,15 +67,13 @@ public class GameFrame extends JFrame {
 						isSpaceTyped = true;
 						jumps++;
 						jumpLabel.setText("Jumps: " + jumps);
-						if(entpreller > 0) {
-							entpreller = 0;
-							Sound.playClip("Resources/flap5.wav");	
-						}
-						else entpreller++;
+						Sound.playClip("Resources/jump22.wav");
 					}
 				}
-				if (e.getKeyCode() == KeyEvent.VK_ENTER)
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 					isEnterTyped = true;
+					Sound.playClip("Resources/jump42.wav");
+				}	
 			}
 		});
 	}

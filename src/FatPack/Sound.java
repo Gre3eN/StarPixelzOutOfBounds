@@ -25,7 +25,7 @@ public class Sound {
 			clip.open(stream);
 			FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);  // Lautstärkeanpassung
 		
-			if (fileName.equals("Resources/background3.wav")) {
+			if (fileName.equals("Resources/through_space.wav")) {
 				clip.loop(Clip.LOOP_CONTINUOUSLY);
 				gainControl.setValue(-10.f);	
 			}
