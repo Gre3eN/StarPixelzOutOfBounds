@@ -23,7 +23,6 @@ public class Flappy {
 	public void jump() {
 		
 		y-=Values.FLAPPY_JUMP_HEIGHT;
-		fallMultiplyer = 0;
 	}
 	
 	public boolean frameCollision(){
