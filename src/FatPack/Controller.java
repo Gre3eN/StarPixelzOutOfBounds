@@ -56,7 +56,7 @@ public class Controller {
 			flappy.jump();
 			ovalManagement.setRGB(colorManager.getRGB());
 			ovalManagement.spawnOval(Values.FLAPPY_X, flappy.getY());
-			gameFrame.setSpaceTyped(false);
+			//gameFrame.setSpaceTyped(false);
 		}
 		
 		if (gameFrame.isEnterTyped()){

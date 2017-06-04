@@ -36,7 +36,7 @@ public class PipeManagement {
 		if (pipes.get(0).getX() < -pipes.get(0).getWidth()) {
 			pipes.remove(0);
 			pipeScore++;
-			Sound.playClip("Resources/score.wav");
+			
 		}
 	}
 
