@@ -11,7 +11,7 @@ public class StarManagement implements Manager {
 	private StarAuraManagement auraManagement;
 	private ArrayList<Star> stars;
 	private ArrayList<Shape> starShapes;
-	//jo
+	
 	private int starScore;
 
 	public StarManagement() {

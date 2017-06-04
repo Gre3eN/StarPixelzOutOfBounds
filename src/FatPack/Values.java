@@ -10,7 +10,7 @@ public class Values {
 	
 	protected static int FRAME_WIDTH = gd.getDisplayMode().getWidth();
 	protected static int FRAME_HEIGHT = gd.getDisplayMode().getHeight() ;
-	//jo
+	
 	protected static int FLOOR_HEIGHT = FRAME_HEIGHT/10;
 	protected static int MIN_PIPE_HEIGHT = 75;
 
