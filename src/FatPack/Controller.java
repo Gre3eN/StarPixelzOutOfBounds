@@ -56,7 +56,7 @@ public class Controller {
 		if (gameFrame.isEnterTyped()){
 			pipeManagement.flappyCharge();
 			ovalManagement.flappyCharge();
-			flappyAniManager.spawnCharge();;
+			flappyAniManager.spawnCharge();
 			gameFrame.setEnterTyped(false);
 		}
 		
