@@ -30,7 +30,7 @@ public class Controller {
 		timer2 = new Timer(Values.TIMER_DELAY / 10, listener -> timer2Action());
 		timer.start();
 
-		Sound.playClip("Resources/through_space.wav");
+
 
 	}
 
@@ -50,13 +50,13 @@ public class Controller {
 		if (ovalManagement.getOvals().size() > 0)
 			gamePanel.updateOvals(ovalManagement.update());
 
-		
+	
 		if (gameFrame.isSpaceTyped()){
 			colorManager.changeColor();
 			flappy.jump();
 			ovalManagement.setRGB(colorManager.getRGB());
 			ovalManagement.spawnOval(Values.FLAPPY_X, flappy.getY());
-			//gameFrame.setSpaceTyped(false);
+			gameFrame.setSpaceTyped(false);
 		}
 		
 		if (gameFrame.isEnterTyped()){
@@ -85,24 +85,6 @@ public class Controller {
 			flappyChargeAni.reset();
 			timer.start();
 			timer2.stop();
-		}
-	}
-
-	private void getInputKeys() {
-		if (gameFrame.isSpaceTyped()) {
-			colorManager.changeColor();
-			flappy.jump();
-			ovalManagement.setRGB(colorManager.getRGB());
-			ovalManagement.spawnOval(Values.FLAPPY_X, flappy.getY());
-			gameFrame.setSpaceTyped(false);
-		}
-
-		if (gameFrame.isEnterTyped()) {
-			pipeManagement.flappyCharge();
-			ovalManagement.flappyCharge();
-			starManagement.flappyCharge();
-			flappyChargeAni.setAnimation();
-			gameFrame.setEnterTyped(false);
 		}
 	}
 
