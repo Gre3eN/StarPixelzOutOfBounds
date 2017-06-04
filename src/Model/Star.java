@@ -20,7 +20,7 @@ public class Star {
 	private Shape star_shape;
 	private Shape star_holder;
 
-	// to translate canter to 0,0
+	// to translate center to 0,0
 	private int star_anchorX;
 	private int star_anchorY;
 
