@@ -67,7 +67,7 @@ public class BackGroundStar {
 		backgroundStar.add(new int[] { xa, ya, wa, ha, transparencyIndex });
 	}
 
-	public ArrayList<int[]> getCompleteBackGroundStar() {
+	public ArrayList<int[]> getBackGroundStar() {
 		for(int[] i : backgroundStar) {
 			for(int j : i) {
 				System.out.print(" "+j +" ");

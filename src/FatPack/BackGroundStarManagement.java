@@ -17,7 +17,7 @@ public class BackGroundStarManagement {
 
 		for (int i = 0; i < StarValues.INITIAL_COUNT; i++) {
 			random = randy.nextInt(6) + 2;
-			backGroundStars.addAll(new BackGroundStar("somewhere", random).getCompleteBackGroundStar());
+			backGroundStars.addAll(new BackGroundStar("somewhere", random).getBackGroundStar());
 		}
 	}
 
@@ -25,7 +25,7 @@ public class BackGroundStarManagement {
 		for (int i = 0; i < backGroundStars.size(); i++) {
 			xywht = backGroundStars.get(i);
 			if(xywht[4]==0) massAccelerator=(xywht[3]*2)/3;
-			xywht[0] -= (StarValues.SPEED + massAccelerator);// + xywht[3]/4); //bei allen zusammengehörenden gemeinsam!!!
+			xywht[0] -= (StarValues.SPEED + massAccelerator);
 			backGroundStars.set(i, xywht); 
 		}
 		delete();
@@ -43,7 +43,7 @@ public class BackGroundStarManagement {
 	private void spawn() {
 		if (backGroundStars.size() < StarValues.MAX_COUNT) {
 			random = randy.nextInt(6) + 2;
-			backGroundStars.addAll(new BackGroundStar("east", random).getCompleteBackGroundStar());
+			backGroundStars.addAll(new BackGroundStar("east", random).getBackGroundStar());
 		}
 	}
 
@@ -52,13 +52,17 @@ public class BackGroundStarManagement {
 
 		for (int i = 0; i < StarValues.INITIAL_COUNT; i++) {
 			random = randy.nextInt(7) + 1;
-			backGroundStars.addAll(new BackGroundStar("somewhere", random).getCompleteBackGroundStar());
+			backGroundStars.addAll(new BackGroundStar("somewhere", random).getBackGroundStar());
 		}
 	}
 
 	public void charge() {
 		for (int i = 0; i < backGroundStars.size(); i++) {
-			backGroundStars.get(i)[0] -= Values.FLAPPY_CHARGE_SPEED / 2; 
+			//backGroundStars.get(i)[0] -= Values.FLAPPY_CHARGE_SPEED / 2; 
+			xywht = backGroundStars.get(i);
+			if(xywht[4]==0) massAccelerator=(xywht[3]*2)/3;
+			xywht[0] -= (Values.FLAPPY_CHARGE_SPEED/2 + massAccelerator);
+			backGroundStars.set(i, xywht);
 		}
 	}
 

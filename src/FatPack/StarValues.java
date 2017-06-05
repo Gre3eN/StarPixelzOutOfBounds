@@ -19,7 +19,7 @@ public class StarValues {
 	public static Color STAR_COLOR = new Color(255, 255, 255, 255);
 	
 	
-	public static int[] BACKGROUND_STAR_TRANSPARENCYS = {255,100,75,25};
+	public static int[] BACKGROUND_STAR_TRANSPARENCYS = {255,150,75,50};
 		//{255, 150, 75, 50};
 		
 	
