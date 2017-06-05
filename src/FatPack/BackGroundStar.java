@@ -13,30 +13,32 @@ public class BackGroundStar {
 
 	private ArrayList<int[]> backgroundStar = new ArrayList<>();
 
-	public BackGroundStar(String where, int size) {
-		this.size = size;
-		if (where.equals("somewhere")) {
+	public BackGroundStar(int where, int size) {
+		//this.size = size;
+		if (where==0) {
 			x = randy.nextInt(Values.FRAME_WIDTH);
 			y = randy.nextInt(Values.FRAME_HEIGHT);
-			width = size;
-			height = size;
+//			width = size;
+//			height = size;
 			transparencyIndex = 0;
-			backgroundStar.add(new int[] { x, y, width, height, transparencyIndex });
+			//backgroundStar.add(new int[] { x, y, width, height, transparencyIndex });
+			backgroundStar.add(new int[] { x, y, size, size, transparencyIndex });
 
-			addAura1();
-			addAura2();
-			addAura3();
-		} else if (where.equals("east")) {
+//			addAura1();
+//			addAura2();
+//			addAura3();
+		} else if (where==1) {
 			x = Values.FRAME_WIDTH;
 			y = randy.nextInt(Values.FRAME_HEIGHT);
-			width = size;
-			height = size;
+//			width = size;
+//			height = size;
 			transparencyIndex = 0;
-			backgroundStar.add(new int[] { x, y, width, height, transparencyIndex });
+			//backgroundStar.add(new int[] { x, y, width, height, transparencyIndex });
+			backgroundStar.add(new int[] { x, y, size, size, transparencyIndex });
 
-			addAura1();
-			addAura2();
-			addAura3();
+//			addAura1();
+//			addAura2();
+//			addAura3();
 		}
 	}
 
@@ -68,26 +70,6 @@ public class BackGroundStar {
 	}
 
 	public ArrayList<int[]> getBackGroundStar() {
-		for(int[] i : backgroundStar) {
-			for(int j : i) {
-				System.out.print(" "+j +" ");
-			}
-			System.out.print("   next: ");
-		}
 		return backgroundStar;
-	}
-
-	@Deprecated
-	public void charge() {
-		for (int i = 0; i < backgroundStar.size(); i++) {
-			backgroundStar.get(i)[0] -= ((Values.FLAPPY_CHARGE_SPEED / 2) + size);
-		}
-	}
-
-	@Deprecated
-	public void moveLeft() {
-		for (int i = 0; i < backgroundStar.size(); i++) {
-			backgroundStar.get(i)[0] -= (StarValues.SPEED + size);
-		}
 	}
 }

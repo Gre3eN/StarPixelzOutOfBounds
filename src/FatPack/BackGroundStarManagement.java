@@ -6,27 +6,27 @@ import java.util.Random;
 
 public class BackGroundStarManagement {
 
-	private ArrayList<int[]> backGroundStars;
-	private Random randy;
+	private ArrayList<int[]> backGroundStars= new ArrayList<>();;
+	private Random randy = new Random();;
 	private int random, massAccelerator;
 	int[] xywht;
 
 	public BackGroundStarManagement() {
-		backGroundStars = new ArrayList<>();
-		randy = new Random();
 
 		for (int i = 0; i < StarValues.INITIAL_COUNT; i++) {
 			random = randy.nextInt(6) + 2;
-			backGroundStars.addAll(new BackGroundStar("somewhere", random).getBackGroundStar());
+			backGroundStars.addAll(new BackGroundStar(0, random).getBackGroundStar());
 		}
 	}
 
 	public void update() {
 		for (int i = 0; i < backGroundStars.size(); i++) {
 			xywht = backGroundStars.get(i);
-			if(xywht[4]==0) massAccelerator=(xywht[3]*2)/3;
+			// if(xywht[4]==0)
+			massAccelerator = (xywht[3] * 2) / 3;
 			xywht[0] -= (StarValues.SPEED + massAccelerator);
-			backGroundStars.set(i, xywht); 
+			backGroundStars.set(i, xywht);
+
 		}
 		delete();
 	}
@@ -35,15 +35,25 @@ public class BackGroundStarManagement {
 		for (int i = 0; i < backGroundStars.size(); i++) {
 			if (backGroundStars.get(i)[0] <= 0) {
 				backGroundStars.remove(i);
+				spawn();
 			}
-			spawn();
 		}
 	}
 
 	private void spawn() {
 		if (backGroundStars.size() < StarValues.MAX_COUNT) {
 			random = randy.nextInt(6) + 2;
-			backGroundStars.addAll(new BackGroundStar("east", random).getBackGroundStar());
+			backGroundStars.addAll(new BackGroundStar(1, random).getBackGroundStar());
+		}
+	}
+
+	public void charge() {
+		for (int i = 0; i < backGroundStars.size(); i++) {
+			xywht = backGroundStars.get(i);
+			// if(xywht[4]==0)
+			massAccelerator = (xywht[3] * 2) / 3;
+			xywht[0] -= (Values.FLAPPY_CHARGE_SPEED / 2 + massAccelerator);
+			backGroundStars.set(i, xywht);
 		}
 	}
 
@@ -52,17 +62,7 @@ public class BackGroundStarManagement {
 
 		for (int i = 0; i < StarValues.INITIAL_COUNT; i++) {
 			random = randy.nextInt(7) + 1;
-			backGroundStars.addAll(new BackGroundStar("somewhere", random).getBackGroundStar());
-		}
-	}
-
-	public void charge() {
-		for (int i = 0; i < backGroundStars.size(); i++) {
-			//backGroundStars.get(i)[0] -= Values.FLAPPY_CHARGE_SPEED / 2; 
-			xywht = backGroundStars.get(i);
-			if(xywht[4]==0) massAccelerator=(xywht[3]*2)/3;
-			xywht[0] -= (Values.FLAPPY_CHARGE_SPEED/2 + massAccelerator);
-			backGroundStars.set(i, xywht);
+			backGroundStars.addAll(new BackGroundStar(0, random).getBackGroundStar());
 		}
 	}
 

@@ -62,7 +62,7 @@ public class Values {
 	protected static int OUTER_OVAL_TRANSPERENCY_LOSS = 5;
 	protected static int INNER_OVAL_TRANSPERENCY_LOSS = 2 * OUTER_OVAL_TRANSPERENCY_LOSS;
 	
-	protected static int OVALS_CAP = 20;
+	protected static int OVALS_CAP = 15;
 	
 	protected static Color BACKGROUND_COLOR = new Color(0, 0, 0);
 	protected static Color FLOOR_COLOR = new Color(40, 40, 40);
