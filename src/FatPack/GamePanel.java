@@ -137,9 +137,10 @@ public class GamePanel extends JPanel {
 				y = backGroundStars.get(i)[1];
 				w = backGroundStars.get(i)[2];
 				h = backGroundStars.get(i)[3];
-				t = StarValues.BACKGROUND_STAR_TRANSPARENCYS[backGroundStars.get(i)[4]];
+				//t = StarValues.BACKGROUND_STAR_TRANSPARENCYS[backGroundStars.get(i)[4]];
 	
-				g.setColor(new Color(255, 255, 255, t));
+				//g.setColor(new Color(255, 255, 255, t));
+				g.setColor(Color.WHITE);
 				g.fillOval(x, y, w, h);
 			}
 	

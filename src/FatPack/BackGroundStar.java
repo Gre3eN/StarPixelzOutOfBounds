@@ -7,7 +7,7 @@ public class BackGroundStar {
 
 	private Random randy = new Random();
 
-	private int size;
+	//private int size;
 	private int x, y, width, height, transparencyIndex;
 	private int xa, ya, wa, ha, ta;
 
