@@ -35,8 +35,8 @@ public class Controller {
 	public void timerAction() {
 		if(gamePanel.getPlay()) {
 			gamePanel.updatePipes(pipeManagement.update());
-			gamePanel.updateBackGroundStars(backGroundStarManagement.getBackGroundStars());
 			backGroundStarManagement.update();
+			gamePanel.updateBackGroundStars(backGroundStarManagement.getBackGroundStars());
 			gamePanel.updateFlappy(flappy.getY(), colorManager.getColor());
 			flappyChargeAni.updateTransparency();
 			gamePanel.updateFlappyAnimation(flappyChargeAni.getAnimation(), flappyChargeAni.getTransparency(), colorManager.getRGB());
