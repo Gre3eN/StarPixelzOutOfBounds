@@ -12,6 +12,7 @@ public class GamePanel extends JPanel {
 	private ArrayList<Pipe> pipes = new ArrayList<Pipe>();
 	private ArrayList<Oval> ovals = new ArrayList<Oval>();
 	private ArrayList<FlappyChargeAnimation> charge = new ArrayList<>();
+	private ArrayList<BackgroundStar[]> stars = new ArrayList<>();
 	private int flappyY;
 	private int[] flappyAniColor;
 	private Color flappyColor;
@@ -28,6 +29,13 @@ public class GamePanel extends JPanel {
 			g.setColor(o.getOvalColor());
 			g.fillOval(o.getOval()[0], o.getOval()[1], o.getOval()[2], o.getOval()[3]);
 		}
+		// background stars
+				for (BackgroundStar[] star : stars){
+					for (int i = star.length -1; i >= 0; i--){
+						g.setColor(new Color(255, 255, 255, star[i].getTransparency()));
+						g.fillOval(star[i].getX(), star[i].getY(), star[i].getSize(), star[i].getSize());
+					}
+				}
 		// pipes
 		for (Pipe p : pipes) {
 			g.setColor(Values.PIPE_COLOR);
@@ -81,6 +89,10 @@ public class GamePanel extends JPanel {
 	public void updateFlappy(int flappyY, Color flappyColor){
 		this.flappyY = flappyY;
 		this.flappyColor = flappyColor;
+	}
+	
+	public void updateBackGroundStars(ArrayList<BackgroundStar[]> stars){
+		this.stars = stars;
 	}
 
 	public void reset() {

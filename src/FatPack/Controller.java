@@ -13,6 +13,7 @@ public class Controller {
 	private Flappy flappy;
 	private FlappyAnimationManager flappyAniManager;
 	private ColorManager colorManager;
+	private BackgroundStarManager backgroundStarManager;
 	private Timer timer, timer2;
 	private boolean gameOver = false;
 
@@ -24,6 +25,7 @@ public class Controller {
 		flappy = new Flappy();
 		flappyAniManager = new FlappyAnimationManager();
 		colorManager = new ColorManager();
+		backgroundStarManager = new BackgroundStarManager(); 
 		
 		timer = new Timer(Values.TIMER_DELAY, listener -> timerAction());
 		timer2 = new Timer(Values.TIMER_DELAY / 10, listener -> timer2Action());
@@ -32,6 +34,8 @@ public class Controller {
 	}
 
 	public void timerAction() {
+		backgroundStarManager.update();
+		gamePanel.updateBackGroundStars(backgroundStarManager.getStars());
 		pipeManagement.update();
 		gamePanel.updatePipes(pipeManagement.getPipes());
 		gamePanel.updateFlappy(flappy.getY(), colorManager.getColor());

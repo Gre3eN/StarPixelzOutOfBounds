@@ -26,7 +26,7 @@ public class Flappy {
 	}
 	
 	public boolean frameCollision(){
-		if(y < 0 || y > Values.FRAME_HEIGHT)
+		if(y < 0 || y + Values.FLAPPY_HEIGHT > Values.FRAME_HEIGHT)
 			return true;
 		else return false;
 	}

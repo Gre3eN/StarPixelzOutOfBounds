@@ -64,6 +64,22 @@ public class Values {
 	
 	protected static int OVALS_CAP = 20;
 	
+	protected static int BACKGROUND_STAR_INTERVALL = 2;
+	protected static int BACKGROUND_STAR_LAYER_INTERVALL = 1;
+	protected static int BACKGROUND_STAR_SIZE_INTERVALL = BACKGROUND_STAR_LAYER_INTERVALL * 2;
+	protected static int BACKGROUND_STAR_TRANSPARENCY_INTERVALL = 60;
+	
+	protected static int BACKGROUND_STAR_LAYERS = 4;
+	protected static int BACKGROUND_STAR_SPEED = 5;
+	protected static int BACKGROUND_STAR_SIZE_SPEED_MODIFICATION = 2; //high number: small speed difference between small and big stars
+	
+	protected static int BACKGROUND_STAR_START_SPAWN = 20;
+	protected static int BACKGROUND_STAR_SPAWN = 2;
+	
+	
+	protected static int BACKGROUND_STAR_UPPER_RANDOM_SIZE = 5;
+	protected static int BACKGROUND_STAR_LOWER_RANDOM_SIZE = 1;
+	
 	protected static Color BACKGROUND_COLOR = new Color(0, 0, 0);
 	protected static Color FLOOR_COLOR = new Color(40, 40, 40);
 	protected static Color PIPE_COLOR = new Color(0, 0, 0);
