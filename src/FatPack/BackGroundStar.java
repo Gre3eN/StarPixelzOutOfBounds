@@ -46,7 +46,7 @@ public class BackGroundStar {
 		wa = width * 2;
 		ha = height * 2;
 		transparencyIndex = 1;
-		backgroundStar.add(new int[] { xa, ya, wa, ha, ta });
+		backgroundStar.add(new int[] { xa, ya, wa, ha, transparencyIndex });
 	}
 
 	private void addAura2() {
@@ -55,7 +55,7 @@ public class BackGroundStar {
 		wa = width * 3;
 		ha = height * 3;
 		transparencyIndex = 2;
-		backgroundStar.add(new int[] { xa, ya, wa, ha, ta });
+		backgroundStar.add(new int[] { xa, ya, wa, ha, transparencyIndex });
 	}
 
 	private void addAura3() {
@@ -64,10 +64,16 @@ public class BackGroundStar {
 		wa = width * 5;
 		ha = height * 5;
 		transparencyIndex = 3;
-		backgroundStar.add(new int[] { xa, ya, wa, ha, ta });
+		backgroundStar.add(new int[] { xa, ya, wa, ha, transparencyIndex });
 	}
 
 	public ArrayList<int[]> getCompleteBackGroundStar() {
+		for(int[] i : backgroundStar) {
+			for(int j : i) {
+				System.out.print(" "+j +" ");
+			}
+			System.out.print("   next: ");
+		}
 		return backgroundStar;
 	}
 

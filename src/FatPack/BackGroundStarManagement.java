@@ -24,8 +24,8 @@ public class BackGroundStarManagement {
 	public void update() {
 		for (int i = 0; i < backGroundStars.size(); i++) {
 			xywht = backGroundStars.get(i);
-			xywht[0] -= StarValues.SPEED;
-			backGroundStars.set(i, xywht);
+			xywht[0] -= (StarValues.SPEED);// + xywht[3]/4); //bei allen zusammengehörenden gemeinsam!!!
+			backGroundStars.set(i, xywht); 
 		}
 		delete();
 	}
@@ -34,7 +34,6 @@ public class BackGroundStarManagement {
 		for (int i = 0; i < backGroundStars.size(); i++) {
 			if (backGroundStars.get(i)[0] <= 0) {
 				backGroundStars.remove(i);
-				System.out.println("removed a star in sm");
 			}
 			spawn();
 		}
@@ -44,7 +43,6 @@ public class BackGroundStarManagement {
 		if (backGroundStars.size() < StarValues.MAX_COUNT) {
 			random = randy.nextInt(6) + 2;
 			backGroundStars.addAll(new BackGroundStar("east", random).getCompleteBackGroundStar());
-			System.out.println("spawned a star in sm");
 		}
 	}
 
@@ -59,10 +57,7 @@ public class BackGroundStarManagement {
 
 	public void charge() {
 		for (int i = 0; i < backGroundStars.size(); i++) {
-			backGroundStars.get(i)[0] -= Values.FLAPPY_CHARGE_SPEED / 2; // siehe
-																			// kommentar
-																			// bei
-																			// update
+			backGroundStars.get(i)[0] -= Values.FLAPPY_CHARGE_SPEED / 2; 
 		}
 	}
 
