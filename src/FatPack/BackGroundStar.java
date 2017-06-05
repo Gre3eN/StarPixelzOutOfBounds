@@ -9,7 +9,7 @@ public class BackGroundStar {
 
 	//private int size;
 	private int x, y, width, height, transparencyIndex;
-	private int xa, ya, wa, ha, ta;
+	private int xa, ya, wa, ha;
 
 	private ArrayList<int[]> backgroundStar = new ArrayList<>();
 
