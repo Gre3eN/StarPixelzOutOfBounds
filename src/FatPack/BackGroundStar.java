@@ -7,38 +7,40 @@ public class BackGroundStar {
 
 	private Random randy = new Random();
 
-	//private int size;
+	// private int size;
 	private int x, y, width, height, transparencyIndex;
 	private int xa, ya, wa, ha;
 
 	private ArrayList<int[]> backgroundStar = new ArrayList<>();
 
 	public BackGroundStar(int where, int size) {
-		//this.size = size;
-		if (where==0) {
+		// this.size = size;
+		if (where == 0) {
 			x = randy.nextInt(Values.FRAME_WIDTH);
 			y = randy.nextInt(Values.FRAME_HEIGHT);
-//			width = size;
-//			height = size;
+			// width = size;
+			// height = size;
 			transparencyIndex = 0;
-			//backgroundStar.add(new int[] { x, y, width, height, transparencyIndex });
+			// backgroundStar.add(new int[] { x, y, width, height,
+			// transparencyIndex });
 			backgroundStar.add(new int[] { x, y, size, size, transparencyIndex });
 
-//			addAura1();
-//			addAura2();
-//			addAura3();
-		} else if (where==1) {
+			// addAura1();
+			// addAura2();
+			// addAura3();
+		} else if (where == 1) {
 			x = Values.FRAME_WIDTH;
 			y = randy.nextInt(Values.FRAME_HEIGHT);
-//			width = size;
-//			height = size;
+			// width = size;
+			// height = size;
 			transparencyIndex = 0;
-			//backgroundStar.add(new int[] { x, y, width, height, transparencyIndex });
+			// backgroundStar.add(new int[] { x, y, width, height,
+			// transparencyIndex });
 			backgroundStar.add(new int[] { x, y, size, size, transparencyIndex });
 
-//			addAura1();
-//			addAura2();
-//			addAura3();
+			// addAura1();
+			// addAura2();
+			// addAura3();
 		}
 	}
 

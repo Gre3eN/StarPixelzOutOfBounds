@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class BackGroundStarManagement {
 
-	private ArrayList<int[]> backGroundStars= new ArrayList<>();;
+	private ArrayList<int[]> backGroundStars = new ArrayList<>();;
 	private Random randy = new Random();;
 	private int random, massAccelerator;
 	int[] xywht;

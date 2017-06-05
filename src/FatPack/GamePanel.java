@@ -14,7 +14,7 @@ public class GamePanel extends JPanel {
 	private ArrayList<Pipe> pipes = new ArrayList<Pipe>();
 	private ArrayList<Oval> ovals = new ArrayList<Oval>();
 	private ArrayList<int[]> backGroundStars = new ArrayList<>();
-	private int x, y, w, h, t;
+	private int[] xywht;
 	private ArrayList<Integer> flappyChAni = new ArrayList<Integer>();
 	private ArrayList<Integer> flappyAniTrans = new ArrayList<Integer>();
 	private int flappyY;
@@ -68,7 +68,7 @@ public class GamePanel extends JPanel {
 		if (!play) {
 			g.setColor(Values.FAIL_COLOR);
 			g.setFont(new Font("Harrington", Font.BOLD, 150));
-			g.drawString("Press 'S' to start", Values.FLAPPY_X + 160, Values.FRAME_HEIGHT / 2);
+			g.drawString("Press 'S' to start", Values.FRAME_WIDTH/11, Values.FRAME_HEIGHT / 2);
 		}
 	}
 
@@ -131,18 +131,14 @@ public class GamePanel extends JPanel {
 	}
 
 	private void drawBackGroundStars(Graphics g) {
-	
-			for (int i = 0; i < backGroundStars.size(); i++) {
-				x = backGroundStars.get(i)[0];
-				y = backGroundStars.get(i)[1];
-				w = backGroundStars.get(i)[2];
-				h = backGroundStars.get(i)[3];
-				//t = StarValues.BACKGROUND_STAR_TRANSPARENCYS[backGroundStars.get(i)[4]];
-	
-				//g.setColor(new Color(255, 255, 255, t));
-				g.setColor(Color.WHITE);
-				g.fillOval(x, y, w, h);
-			}
-	
+		for (int i = 0; i < backGroundStars.size(); i++) {
+			xywht = backGroundStars.get(i);
+			// t =
+			// StarValues.BACKGROUND_STAR_TRANSPARENCYS[backGroundStars.get(i)[4]];
+			// g.setColor(new Color(255, 255, 255, t));
+
+			g.setColor(Color.WHITE);
+			g.fillOval(xywht[0], xywht[1], xywht[2], xywht[3]);
+		}
 	}
 }
