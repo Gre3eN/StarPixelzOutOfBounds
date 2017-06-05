@@ -132,7 +132,7 @@ public class GamePanel extends JPanel {
 
 	private void drawBackGroundStars(Graphics g) {
 	
-			for (int i = backGroundStars.size()-1; i >=0; i--) {
+			for (int i = 0; i < backGroundStars.size(); i++) {
 				x = backGroundStars.get(i)[0];
 				y = backGroundStars.get(i)[1];
 				w = backGroundStars.get(i)[2];

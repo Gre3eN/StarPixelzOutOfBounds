@@ -8,7 +8,7 @@ public class BackGroundStarManagement {
 
 	private ArrayList<int[]> backGroundStars;
 	private Random randy;
-	private int random;
+	private int random, massAccelerator;
 	int[] xywht;
 
 	public BackGroundStarManagement() {
@@ -24,7 +24,8 @@ public class BackGroundStarManagement {
 	public void update() {
 		for (int i = 0; i < backGroundStars.size(); i++) {
 			xywht = backGroundStars.get(i);
-			xywht[0] -= (StarValues.SPEED);// + xywht[3]/4); //bei allen zusammengehörenden gemeinsam!!!
+			if(xywht[4]==0) massAccelerator=(xywht[3]*2)/3;
+			xywht[0] -= (StarValues.SPEED + massAccelerator);// + xywht[3]/4); //bei allen zusammengehörenden gemeinsam!!!
 			backGroundStars.set(i, xywht); 
 		}
 		delete();
