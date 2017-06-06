@@ -16,12 +16,11 @@ public class OvalManagement {
 		return ovals;
 	}
 
-	public ArrayList<Oval> update() {
+	public void update() {
 		for (int i=0; i<ovals.size(); i++) {
 			ovals.get(i).expand();
 		}
 		deleteOval();
-		return ovals;
 	}
 
 	public void spawnOval(int flappyY) {

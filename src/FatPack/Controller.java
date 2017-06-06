@@ -29,6 +29,7 @@ public class Controller {
 		
 		timer = new Timer(Values.TIMER_DELAY, listener -> timerAction());
 		timer2 = new Timer(Values.TIMER_DELAY / 10, listener -> timer2Action());
+		backgroundStarManager.startSpawn();
 		timer.start();
 		Sound.playClip("Resources/background3.wav");
 	}
@@ -38,17 +39,34 @@ public class Controller {
 		gamePanel.updateBackGroundStars(backgroundStarManager.getStars());
 		pipeManagement.update();
 		gamePanel.updatePipes(pipeManagement.getPipes());
+		flappy.fall();
 		gamePanel.updateFlappy(flappy.getY(), colorManager.getColor());
 		flappyAniManager.update();
 		gamePanel.updateFlappyAnimation(flappyAniManager.getCharge(), colorManager.getRGB());
+		
+		if(ovalManagement.getOvals().size() > 0){
+			ovalManagement.update();
+			gamePanel.updateOvals(ovalManagement.getOvals());
+		}
+		
 		collision();
+		
 		gamePanel.repaintPanel();
-		flappy.fall();
+
 		gameFrame.setScore(pipeManagement.getScore());
 		
-		if(ovalManagement.getOvals().size() > 0) 
-			gamePanel.updateOvals(ovalManagement.update());
+		keyCommands();
 		
+		if (gameOver) {
+			timer.stop();
+			Sound.playClip("Resources/gameOverSound.wav");
+			timer2.start();
+		}
+		
+		
+	}
+	
+	private void keyCommands(){
 		if (gameFrame.isSpaceTyped()){
 			colorManager.changeColor();
 			flappy.jump();
@@ -61,16 +79,9 @@ public class Controller {
 			pipeManagement.flappyCharge();
 			ovalManagement.flappyCharge();
 			flappyAniManager.spawnCharge();
+			backgroundStarManager.flappyCharge();
 			gameFrame.setEnterTyped(false);
 		}
-		
-		if (gameOver) {
-			timer.stop();
-			Sound.playClip("Resources/gameOverSound.wav");
-			timer2.start();
-		}
-		
-		
 	}
 
 	public void timer2Action() {

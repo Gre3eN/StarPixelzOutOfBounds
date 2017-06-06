@@ -65,15 +65,15 @@ public class Values {
 	protected static int OVALS_CAP = 20;
 	
 	protected static int BACKGROUND_STAR_INTERVALL = 2;
-	protected static int BACKGROUND_STAR_LAYER_INTERVALL = 1;
-	protected static int BACKGROUND_STAR_SIZE_INTERVALL = BACKGROUND_STAR_LAYER_INTERVALL * 2;
-	protected static int BACKGROUND_STAR_TRANSPARENCY_INTERVALL = 60;
+	protected static int BACKGROUND_STAR_SIZE_INTERVALL = 2;
+	protected static int BACKGROUND_STAR_LAYER_INTERVALL = BACKGROUND_STAR_SIZE_INTERVALL * 2;
+	protected static int BACKGROUND_STAR_FIRST_LAYER_INTERVALL = BACKGROUND_STAR_SIZE_INTERVALL;
 	
 	protected static int BACKGROUND_STAR_LAYERS = 4;
 	protected static int BACKGROUND_STAR_SPEED = 5;
-	protected static int BACKGROUND_STAR_SIZE_SPEED_MODIFICATION = 2; //high number: small speed difference between small and big stars
+	protected static int BACKGROUND_STAR_SIZE_SPEED_MODIFICATION = 4; //high number: small speed difference between small and big stars
 	
-	protected static int BACKGROUND_STAR_START_SPAWN = 20;
+	protected static int BACKGROUND_STAR_START_SPAWN = 200;
 	protected static int BACKGROUND_STAR_SPAWN = 2;
 	
 	

@@ -9,7 +9,7 @@ public class BackgroundStarManager {
 	private BackgroundStar[] star;
 	private Random randy = new Random();
 	
-	public BackgroundStarManager(){
+	public void startSpawn(){
 		int x, y, size;
 		int upperRandomSize = Values.BACKGROUND_STAR_UPPER_RANDOM_SIZE;
 		int lowerRandomSize = Values.BACKGROUND_STAR_LOWER_RANDOM_SIZE;
@@ -20,11 +20,13 @@ public class BackgroundStarManager {
 			y = randy.nextInt(Values.FRAME_HEIGHT);
 			size = randy.nextInt(upperRandomSize - lowerRandomSize) + lowerRandomSize;
 			
-			for(int j = 0; j < Values.BACKGROUND_STAR_LAYERS; j++){
-				star[j] = new BackgroundStar(x, y, j, size);
+			for(int j = 1; j <= Values.BACKGROUND_STAR_LAYERS; j++){
+				star[j - 1] = new BackgroundStar(x, y, j, size);
 			}
+			//System.out.println("x" +x+ "y" +y);
 			stars.add(star);
 		}
+		System.out.println("konstruktor stars" + stars.size());
 	}
 	
 	private void spawn(){
@@ -38,19 +40,21 @@ public class BackgroundStarManager {
 			y = randy.nextInt(Values.FRAME_HEIGHT);
 			size = randy.nextInt(upperRandomSize - lowerRandomSize) + lowerRandomSize;
 			
-			for(int j = 0; j < Values.BACKGROUND_STAR_LAYERS; j++){
-				star[j] = new BackgroundStar(x, y, j, size);
+			for(int j = 1; j <= Values.BACKGROUND_STAR_LAYERS; j++){
+				star[j - 1] = new BackgroundStar(x, y, j, size);
 			}
 			stars.add(star);
 		}
+		System.out.println("spawn stars" + stars.size());
 	}
 	
 	private void delete(){
 		for(int i = 0; i < stars.size(); i++){
-			if (stars.get(0)[Values.BACKGROUND_STAR_LAYERS - 1].getX() 
-					< -stars.get(0)[Values.BACKGROUND_STAR_LAYERS - 1].getSize())
+			if (stars.get(i)[Values.BACKGROUND_STAR_LAYERS - 1].getX() 
+					< -stars.get(i)[Values.BACKGROUND_STAR_LAYERS - 1].getSize())
 				stars.remove(i);
 		}
+		System.out.println("delete stars" + stars.size());
 	}
 	
 	public void update(){

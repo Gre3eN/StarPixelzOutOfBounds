@@ -31,9 +31,9 @@ public class GamePanel extends JPanel {
 		}
 		// background stars
 				for (BackgroundStar[] star : stars){
-					for (int i = star.length -1; i >= 0; i--){
-						g.setColor(new Color(255, 255, 255, star[i].getTransparency()));
-						g.fillOval(star[i].getX(), star[i].getY(), star[i].getSize(), star[i].getSize());
+					for (BackgroundStar layer : star){
+						g.setColor(new Color(255, 255, 255, layer.getTransparency()));
+						g.fillOval(layer.getX(), layer.getY(), layer.getSize(), layer.getSize());
 					}
 				}
 		// pipes
