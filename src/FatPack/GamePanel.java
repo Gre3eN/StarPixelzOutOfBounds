@@ -4,9 +4,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.util.ArrayList;
-import java.util.Collections;
-
-//import java.util.Random;
 import javax.swing.JPanel;
 
 public class GamePanel extends JPanel {
@@ -68,7 +65,7 @@ public class GamePanel extends JPanel {
 		if (!play) {
 			g.setColor(Values.FAIL_COLOR);
 			g.setFont(new Font("Harrington", Font.BOLD, 150));
-			g.drawString("Press 'S' to start", Values.FRAME_WIDTH/11, Values.FRAME_HEIGHT / 2);
+			g.drawString("Press 'S' to start", Values.FRAME_WIDTH / 11, Values.FRAME_HEIGHT / 2);
 		}
 	}
 
@@ -133,10 +130,6 @@ public class GamePanel extends JPanel {
 	private void drawBackGroundStars(Graphics g) {
 		for (int i = 0; i < backGroundStars.size(); i++) {
 			xywht = backGroundStars.get(i);
-			// t =
-			// StarValues.BACKGROUND_STAR_TRANSPARENCYS[backGroundStars.get(i)[4]];
-			// g.setColor(new Color(255, 255, 255, t));
-
 			g.setColor(Color.WHITE);
 			g.fillOval(xywht[0], xywht[1], xywht[2], xywht[3]);
 		}

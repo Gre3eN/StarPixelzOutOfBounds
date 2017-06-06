@@ -22,7 +22,6 @@ public class BackGroundStarManagement {
 	public void update() {
 		for (int i = 0; i < backGroundStars.size(); i++) {
 			xywht = backGroundStars.get(i);
-			// if(xywht[4]==0)
 			massAccelerator = (xywht[3] * 2) / 3;
 			xywht[0] -= (StarValues.SPEED + massAccelerator);
 			backGroundStars.set(i, xywht);
@@ -50,7 +49,6 @@ public class BackGroundStarManagement {
 	public void charge() {
 		for (int i = 0; i < backGroundStars.size(); i++) {
 			xywht = backGroundStars.get(i);
-			// if(xywht[4]==0)
 			massAccelerator = (xywht[3] * 2) / 3;
 			xywht[0] -= (Values.FLAPPY_CHARGE_SPEED / 2 + massAccelerator);
 			backGroundStars.set(i, xywht);
