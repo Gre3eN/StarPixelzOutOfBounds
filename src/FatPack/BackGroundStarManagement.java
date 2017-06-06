@@ -6,15 +6,14 @@ import java.util.Random;
 
 public class BackGroundStarManagement {
 
-	private ArrayList<int[]> backGroundStars = new ArrayList<>();;
 	private Random randy = new Random();;
-	private int random;
+	private int random;	
+	private ArrayList<int[]> backGroundStars = new ArrayList<>();;
 	int[] xywhA;
 
 	public BackGroundStarManagement() {
-
 		for (int i = 0; i < StarValues.INITIAL_COUNT; i++) {
-			random = randy.nextInt(8) + 2;
+			random = randy.nextInt(6) + 2;
 			backGroundStars.addAll(new BackGroundStar(0, random).getBackGroundStar());
 		}
 	}
@@ -39,7 +38,7 @@ public class BackGroundStarManagement {
 
 	private void spawn() {
 		if (backGroundStars.size() < StarValues.MAX_COUNT) {
-			random = randy.nextInt(8) + 2;
+			random = randy.nextInt(6) + 2;
 			backGroundStars.addAll(new BackGroundStar(1, random).getBackGroundStar());
 		}
 	}

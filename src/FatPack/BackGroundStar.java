@@ -10,18 +10,18 @@ public class BackGroundStar {
 	private ArrayList<int[]> backgroundStar = new ArrayList<>();
 
 	public BackGroundStar(int where, int size) {
-		
+
 		if (where == 0) {
 			x = randy.nextInt(Values.FRAME_WIDTH);
 			y = randy.nextInt(Values.FRAME_HEIGHT);
-			massAccelerator=(size*2)/3;
-			backgroundStar.add(new int[] { x, y, size, size, massAccelerator});
+			massAccelerator = (size * 2) / 3;
+			backgroundStar.add(new int[] { x, y, size, size, massAccelerator });
 
 		} else if (where == 1) {
 			x = Values.FRAME_WIDTH;
 			y = randy.nextInt(Values.FRAME_HEIGHT);
-			massAccelerator=(size*2)/3;
-			backgroundStar.add(new int[] { x, y, size, size, massAccelerator});
+			massAccelerator = (size * 2) / 3;
+			backgroundStar.add(new int[] { x, y, size, size, massAccelerator });
 		}
 	}
 
