@@ -8,8 +8,8 @@ public class BackGroundStarManagement {
 
 	private ArrayList<int[]> backGroundStars = new ArrayList<>();;
 	private Random randy = new Random();;
-	private int random, massAccelerator;
-	int[] xywht;
+	private int random;
+	int[] xywhA;
 
 	public BackGroundStarManagement() {
 
@@ -21,11 +21,9 @@ public class BackGroundStarManagement {
 
 	public void update() {
 		for (int i = 0; i < backGroundStars.size(); i++) {
-			xywht = backGroundStars.get(i);
-			massAccelerator = (xywht[3] * 2) / 3;
-			xywht[0] -= (StarValues.SPEED + massAccelerator);
-			backGroundStars.set(i, xywht);
-
+			xywhA = backGroundStars.get(i);
+			xywhA[0] -= (StarValues.SPEED +xywhA[4]);
+			backGroundStars.set(i, xywhA);
 		}
 		delete();
 	}
@@ -48,16 +46,14 @@ public class BackGroundStarManagement {
 
 	public void charge() {
 		for (int i = 0; i < backGroundStars.size(); i++) {
-			xywht = backGroundStars.get(i);
-			massAccelerator = (xywht[3] * 2) / 3;
-			xywht[0] -= (Values.FLAPPY_CHARGE_SPEED / 2 + massAccelerator);
-			backGroundStars.set(i, xywht);
+			xywhA = backGroundStars.get(i);
+			xywhA[0] -= (Values.FLAPPY_CHARGE_SPEED / 2 + xywhA[4]);
+			backGroundStars.set(i, xywhA);
 		}
 	}
 
 	public void reset() {
 		backGroundStars.clear();
-
 		for (int i = 0; i < StarValues.INITIAL_COUNT; i++) {
 			random = randy.nextInt(7) + 1;
 			backGroundStars.addAll(new BackGroundStar(0, random).getBackGroundStar());
