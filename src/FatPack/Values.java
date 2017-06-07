@@ -27,7 +27,8 @@ public class Values {
 	public static int FLAPPY_WIDTH = 50;
 	public static int FLAPPY_HEIGHT = 50;
 	
-	protected static int FLAPPY_JUMP_HEIGHT = 50;
+	protected static int FLAPPY_JUMP_HEIGHT = 40;
+	protected static int FLAPPY_JUMP_DOWN_HEIGHT = 20;
 	protected static int FLAPPY_FALL_HEIGHT = FRAME_HEIGHT/110;
 	protected static int FLAPPY_CHARGE_SPEED = 80;
 	
@@ -61,7 +62,7 @@ public class Values {
 	protected static int OUTER_OVAL_TRANSPERENCY_LOSS = 5;
 	protected static int INNER_OVAL_TRANSPERENCY_LOSS = 2 * OUTER_OVAL_TRANSPERENCY_LOSS;
 	
-	protected static int OVALS_CAP = 20;
+	protected static int OVALS_CAP = 15;
 	
 	protected static Color BACKGROUND_COLOR = new Color(0, 0, 0);
 	protected static Color FLOOR_COLOR = new Color(40, 40, 40);

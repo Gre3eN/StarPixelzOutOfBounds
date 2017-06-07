@@ -24,6 +24,10 @@ public class Flappy {
 		y-=Values.FLAPPY_JUMP_HEIGHT;
 	}
 	
+	public void jumpDown() {
+		y+=Values.FLAPPY_JUMP_DOWN_HEIGHT;
+	}
+	
 	public int getY() {
 		return y;
 	}
