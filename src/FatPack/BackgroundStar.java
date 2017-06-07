@@ -2,7 +2,7 @@ package FatPack;
 
 public class BackgroundStar {
 	
-	private int x, y, size, originalSize;
+	private int x, y, size, originalSize, layer;
 	private int transparency = 255;
 	
 	public BackgroundStar(int x, int y, int layer, int size){
@@ -10,12 +10,13 @@ public class BackgroundStar {
 		this.size = size * layer;
 		this.x = x - this.size / 2;
 		this.y = y - this.size / 2;
+		this.layer = layer;
 		
 		if(layer > 1){
 			transparency /= layer * 5;
-		}
+		}	
 		
-		//System.out.println("layer" +layer+ "x" +this.x+ "y" +this.y+ "size" +this.size+ "t" +transparency);
+		System.out.println("layer" +layer+ "x" +this.x+ "y" +this.y+ "size" +this.size+ "t" +transparency);
 	}
 	
 	public void moveLeft(){
@@ -24,6 +25,12 @@ public class BackgroundStar {
 	
 	public void flappyCharge(){
 		x -= Values.FLAPPY_CHARGE_SPEED * originalSize / 45;
+	}
+	
+	public boolean isDeadStar(){
+		if(x < 0)
+			return true;
+		else return false;
 	}
 	
 	public int getX(){

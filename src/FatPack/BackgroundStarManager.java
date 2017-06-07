@@ -8,6 +8,7 @@ public class BackgroundStarManager {
 	private ArrayList<BackgroundStar[]> stars = new ArrayList<>();
 	private BackgroundStar[] star;
 	private Random randy = new Random();
+	private int deleteCount = 0;
 	
 	public void startSpawn(){
 		int x, y, size;
@@ -23,7 +24,7 @@ public class BackgroundStarManager {
 			for(int j = 1; j <= Values.BACKGROUND_STAR_LAYERS; j++){
 				star[j - 1] = new BackgroundStar(x, y, j, size);
 			}
-			//System.out.println("x" +x+ "y" +y);
+			System.out.println("x" +x+ "y" +y);
 			stars.add(star);
 		}
 		System.out.println("konstruktor stars" + stars.size());
@@ -50,9 +51,11 @@ public class BackgroundStarManager {
 	
 	private void delete(){
 		for(int i = 0; i < stars.size(); i++){
-			if (stars.get(i)[Values.BACKGROUND_STAR_LAYERS - 1].getX() 
-					< -stars.get(i)[Values.BACKGROUND_STAR_LAYERS - 1].getSize())
+			if (stars.get(i)[0].isDeadStar()){
 				stars.remove(i);
+				deleteCount ++;
+				System.out.println("removed star" +stars.get(i)[0].getX()+ " count" +deleteCount);
+			}
 		}
 		System.out.println("delete stars" + stars.size());
 	}

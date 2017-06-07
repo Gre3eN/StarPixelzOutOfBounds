@@ -73,7 +73,7 @@ public class Values {
 	protected static int BACKGROUND_STAR_SPEED = 5;
 	protected static int BACKGROUND_STAR_SIZE_SPEED_MODIFICATION = 4; //high number: small speed difference between small and big stars
 	
-	protected static int BACKGROUND_STAR_START_SPAWN = 200;
+	protected static int BACKGROUND_STAR_START_SPAWN = 30;
 	protected static int BACKGROUND_STAR_SPAWN = 2;
 	
 	
