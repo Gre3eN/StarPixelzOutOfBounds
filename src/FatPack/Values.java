@@ -15,7 +15,7 @@ public class Values {
 	protected static int MIN_PIPE_HEIGHT = 75;
 
 	protected static int PIPE_WIDTH = 50;
-	protected static int PIPE_GAP = 140;
+	protected static int PIPE_GAP = 150;
 	protected static int PIPE_SPEED = 10;
 
 	protected static int PIPE_SPAWN_GAP = FRAME_WIDTH/3 + FRAME_WIDTH/6;
@@ -27,10 +27,10 @@ public class Values {
 	public static int FLAPPY_WIDTH = 50;
 	public static int FLAPPY_HEIGHT = 50;
 	
-	protected static int FLAPPY_JUMP_HEIGHT = 40;
+	protected static int FLAPPY_JUMP_HEIGHT = 35;
 	protected static int FLAPPY_JUMP_DOWN_HEIGHT = 20;
-	protected static int FLAPPY_FALL_HEIGHT = FRAME_HEIGHT/110;
-	protected static int FLAPPY_CHARGE_SPEED = 80;
+	protected static int FLAPPY_FALL_HEIGHT = FRAME_HEIGHT/112;
+	protected static int FLAPPY_CHARGE_SPEED = 90;
 	
 	protected static int FLAPPY_ANIMATION_COUNT = 3;
 	protected static int FLAPPY_ANIMATION_RANGE_RATE = FLAPPY_CHARGE_SPEED / FLAPPY_ANIMATION_COUNT - FLAPPY_CHARGE_SPEED / 20;
@@ -41,11 +41,11 @@ public class Values {
 	protected static int OVAL_HEIGHT = FLAPPY_HEIGHT;
 	protected static int OVAL_WIDTH = FLAPPY_WIDTH;
 	
-	protected static int FIRST_OVAL_EXPAND_RATE = 80;
-	protected static int SECOND_OVAL_EXPAND_RATE = 60;
-	protected static int THIRD_OVAL_EXPAND_RATE = 40;
-	protected static int FOURTH_OVAL_EXPAND_RATE = 40;
-	protected static int FIFTH_OVAL_EXPAND_RATE = 30;
+	protected static int FIRST_OVAL_EXPAND_RATE = 180;
+	protected static int SECOND_OVAL_EXPAND_RATE = 160;
+	protected static int THIRD_OVAL_EXPAND_RATE = 140;
+	protected static int FOURTH_OVAL_EXPAND_RATE = 140;
+	protected static int FIFTH_OVAL_EXPAND_RATE = 130;
 	
 	protected static int OVAL_EXPAND_TIME = 12;
 	
