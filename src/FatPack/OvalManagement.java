@@ -23,8 +23,8 @@ public class OvalManagement {
 		ovals.add(new InnerOval(flappyY));
 	}
 
-	private void deleteOval() {
-		if (ovals.get(0).getSize() >= Values.OVAL_EXPAND_TIME * Values.FIRST_OVAL_EXPAND_RATE) 
+	private void deleteOval() { 
+		if (ovals.get(0).getTransparency() <= 0)
 			ovals.remove(0);
 		if (ovals.size() > Values.OVALS_CAP){
 			ovals.remove(0);
@@ -33,7 +33,7 @@ public class OvalManagement {
 		}
 		if (ovals.size() > 50)
 			ovals.clear();
-		System.out.println("Oval delete" + ovals.size());
+		//System.out.println("Oval delete" + ovals.size());
 	}
 	
 	public void flappyCharge() {

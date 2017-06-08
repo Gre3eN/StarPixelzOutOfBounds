@@ -15,7 +15,7 @@ public class Oval {
 	
 	public void expand(){	}
 	
-	public int getOvalTransparency(){
+	public int getTransparency(){
 		if(transparency < 0)transparency = 0;
 		return transparency;
 	}

@@ -20,47 +20,56 @@ public class GamePanel extends JPanel {
 	private int[] specialColor;
 	private boolean gameOver = false;
 	private boolean play = false;
+	
+	// tests
+	long startTime;
+	long estimatedTime;
 
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
 
-		// background
-		g.setColor(Values.BACKGROUND_COLOR);
-		g.fillRect(0, 0, Values.FRAME_WIDTH, Values.FRAME_HEIGHT);
-		drawBackGroundStars(g);
-		// ovals
-		long startTime = System.nanoTime(); 
-		Shape ring;
-		for (Oval o : ovals) {
-			g2.setColor(new Color(specialColor[0], specialColor[1], specialColor[2], o.getOvalTransparency()));
-			ring = Values.createRingShape(o.getX(), o.getY(), o.getSize());
-			g2.fill(ring);
-		}
+		drawBackground(g);
 		
-		long estimatedTime = System.nanoTime() - startTime;
+		startTime = System.nanoTime(); 
+		drawBackGroundStars(g);
+		estimatedTime = System.nanoTime() - startTime;
+		System.out.println("Star draw"+estimatedTime);
+		
+		startTime = System.nanoTime(); 
+		drawOvals(g2);
+		estimatedTime = System.nanoTime() - startTime;
 		System.out.println("Oval draw"+estimatedTime);
-		// pipes
-		for (Pipe p : pipes) {
-			g.setColor(Values.PIPE_COLOR);
-			g.fillRect(p.getX(), p.getY1(), p.getWidth(), p.getHeigth1());
-			g.fillRect(p.getX(), p.getY2(), p.getWidth(), p.getHeigth2());
-		}
-		// Flappy Charge Animation
-		for (int t : flappyAniTrans) {
-			g.setColor(new Color(specialColor[0], specialColor[1], specialColor[2], t));
-		}
-		for (int a : flappyChAni) {
-			g.fillRect(a, flappyY, Values.FLAPPY_WIDTH, Values.FLAPPY_HEIGHT);
-		}
-		// Flappy
-		g.setColor(new Color(specialColor[0], specialColor[1], specialColor[2]));
-		g.fillRect(Values.FLAPPY_X, flappyY, Values.FLAPPY_HEIGHT, Values.FLAPPY_WIDTH);
-		// floor
-		g.setColor(Values.FLOOR_COLOR);
-		g.fillRect(0, (Values.FRAME_HEIGHT - Values.FLOOR_HEIGHT), Values.FRAME_WIDTH, Values.FLOOR_HEIGHT);
 
-		// Fail
+		startTime = System.nanoTime(); 
+		drawPipes(g);
+		estimatedTime = System.nanoTime() - startTime;
+		System.out.println("Pipes draw"+estimatedTime);
+		
+		drawChargeAnimation(g);
+		drawPlayer(g);
+		drawFail(g);
+		drawIdiot(g);
+		drawStartScreen(g);
+	}
+
+	private void drawStartScreen(Graphics g) {
+		if (!play) {
+			g.setColor(Values.FAIL_COLOR);
+			g.setFont(new Font("Harrington", Font.BOLD, 150));
+			g.drawString("Press 'S' to start", Values.FRAME_WIDTH / 11, Values.FRAME_HEIGHT / 2);
+		}
+	}
+
+	private void drawIdiot(Graphics g) {
+		if (ovals.size() > 40){
+			g.setColor(Values.FAIL_COLOR);
+			g.setFont(new Font("Harrington", Font.BOLD, 50));
+			g.drawString("Idiot -.-", 100, 100);
+		}
+	}
+
+	private void drawFail(Graphics g) {
 		if (gameOver) {
 			g.setColor(Values.FAIL_COLOR);
 			g.setFont(new Font("Harrington", Font.BOLD, 150));
@@ -69,18 +78,42 @@ public class GamePanel extends JPanel {
 			g.setFont(new Font("Harrington", Font.PLAIN, 50));
 			g.drawString("press R", Values.FLAPPY_X + 230, Values.FRAME_HEIGHT / 2 + 100);
 		}
-		// idiot
-		if (ovals.size() > 40){
-			g.setColor(Values.FAIL_COLOR);
-			g.setFont(new Font("Harrington", Font.BOLD, 50));
-			g.drawString("Idiot -.-", 100, 100);
+	}
+
+	private void drawPlayer(Graphics g) {
+		g.setColor(new Color(specialColor[0], specialColor[1], specialColor[2]));
+		g.fillRect(Values.FLAPPY_X, flappyY, Values.FLAPPY_HEIGHT, Values.FLAPPY_WIDTH);
+	}
+
+	private void drawChargeAnimation(Graphics g) {
+		for (int t : flappyAniTrans) {
+			g.setColor(new Color(specialColor[0], specialColor[1], specialColor[2], t));
 		}
-		// start screen
-		if (!play) {
-			g.setColor(Values.FAIL_COLOR);
-			g.setFont(new Font("Harrington", Font.BOLD, 150));
-			g.drawString("Press 'S' to start", Values.FRAME_WIDTH / 11, Values.FRAME_HEIGHT / 2);
+		for (int a : flappyChAni) {
+			g.fillRect(a, flappyY, Values.FLAPPY_WIDTH, Values.FLAPPY_HEIGHT);
 		}
+	}
+
+	private void drawPipes(Graphics g) {
+		for (Pipe p : pipes) {
+			g.setColor(Values.PIPE_COLOR);
+			g.fillRect(p.getX(), p.getY1(), p.getWidth(), p.getHeigth1());
+			g.fillRect(p.getX(), p.getY2(), p.getWidth(), p.getHeigth2());
+		}
+	}
+
+	private void drawOvals(Graphics2D g2) {
+		Shape ring;
+		for (Oval o : ovals) {
+			g2.setColor(new Color(specialColor[0], specialColor[1], specialColor[2], o.getTransparency()));
+			ring = Values.createRingShape(o.getX(), o.getY(), o.getSize());
+			g2.fill(ring);
+		}
+	}
+
+	private void drawBackground(Graphics g) {
+		g.setColor(Values.BACKGROUND_COLOR);
+		g.fillRect(0, 0, Values.FRAME_WIDTH, Values.FRAME_HEIGHT);
 	}
 
 	public void updatePanel() {

@@ -68,7 +68,7 @@ public class Values {
 	protected static Color PIPE_COLOR = new Color(0, 0, 0);
 	protected static Color FAIL_COLOR = new Color(255, 255, 255, 200);
 	
-	public static Shape createRingShape(double x, double y, double size) {
+	protected static Shape createRingShape(double x, double y, double size) {
 		Ellipse2D outer = new Ellipse2D.Double(x, y, size, size);
 		Ellipse2D inner = new Ellipse2D.Double(x + size * 0.15, y + size * 0.15, size * 0.7, size * 0.7);
 		Area area = new Area(outer);
