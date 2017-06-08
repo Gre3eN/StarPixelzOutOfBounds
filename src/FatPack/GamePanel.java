@@ -46,7 +46,11 @@ public class GamePanel extends JPanel {
 		estimatedTime = System.nanoTime() - startTime;
 		System.out.println("Pipes draw"+estimatedTime);
 		
+		startTime = System.nanoTime(); 
 		drawChargeAnimation(g);
+		estimatedTime = System.nanoTime() - startTime;
+		System.out.println("Charge draw"+estimatedTime);
+		
 		drawPlayer(g);
 		drawFail(g);
 		drawIdiot(g);
