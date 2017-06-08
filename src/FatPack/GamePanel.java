@@ -69,7 +69,13 @@ public class GamePanel extends JPanel {
 			g.setFont(new Font("Harrington", Font.PLAIN, 50));
 			g.drawString("press R", Values.FLAPPY_X + 230, Values.FRAME_HEIGHT / 2 + 100);
 		}
-
+		// idiot
+		if (ovals.size() > 40){
+			g.setColor(Values.FAIL_COLOR);
+			g.setFont(new Font("Harrington", Font.BOLD, 50));
+			g.drawString("Idiot -.-", 100, 100);
+		}
+		// start screen
 		if (!play) {
 			g.setColor(Values.FAIL_COLOR);
 			g.setFont(new Font("Harrington", Font.BOLD, 150));

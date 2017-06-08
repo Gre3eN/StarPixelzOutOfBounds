@@ -46,9 +46,7 @@ public class Values {
 	
 	protected static int FIRST_OVAL_EXPAND_RATE = 80;
 	protected static int SECOND_OVAL_EXPAND_RATE = 60;
-	protected static int THIRD_OVAL_EXPAND_RATE = 40;
 	protected static int FOURTH_OVAL_EXPAND_RATE = 50;
-	protected static int FIFTH_OVAL_EXPAND_RATE = 30;
 	
 	protected static int OVAL_EXPAND_TIME = 12;
 	
@@ -56,9 +54,7 @@ public class Values {
 	
 	protected static int FIRST_OVAL_START_TRANSPERENCY = 127;
 	protected static int SECOND_OVAL_START_TRANSPERENCY = 255;
-	protected static int THIRD_OVAL_START_TRANSPERENCY = 255;
 	protected static int FOURTH_OVAL_START_TRANSPERENCY = 127;
-	protected static int FIFTH_OVAL_START_TRANSPERENCY = 255;
 	
 	protected static int OVAL_COLOR_CHANGE_RATE = 15; //can only be 5 or 15 because 255 % x has to be 0 or the code in the ColorManager.changeColor() needs to be changed
 	
@@ -73,9 +69,8 @@ public class Values {
 	protected static Color FAIL_COLOR = new Color(255, 255, 255, 200);
 	
 	public static Shape createRingShape(double x, double y, double size) {
-		double modifiedSize = size * 0.7;
 		Ellipse2D outer = new Ellipse2D.Double(x, y, size, size);
-		Ellipse2D inner = new Ellipse2D.Double(x + size * 0.15, y + size * 0.15, modifiedSize, modifiedSize);
+		Ellipse2D inner = new Ellipse2D.Double(x + size * 0.15, y + size * 0.15, size * 0.7, size * 0.7);
 		Area area = new Area(outer);
 		area.subtract(new Area(inner));
 		return area;

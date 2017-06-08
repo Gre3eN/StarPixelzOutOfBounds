@@ -30,8 +30,10 @@ public class OvalManagement {
 			ovals.remove(0);
 			ovals.remove(0);
 			ovals.remove(0);
-			System.out.println("Oval delete" + ovals.size());
 		}
+		if (ovals.size() > 50)
+			ovals.clear();
+		System.out.println("Oval delete" + ovals.size());
 	}
 	
 	public void flappyCharge() {
