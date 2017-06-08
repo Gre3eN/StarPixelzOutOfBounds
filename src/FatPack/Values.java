@@ -26,6 +26,7 @@ public class Values {
 	public static int FLAPPY_Y = 50;
 	public static int FLAPPY_WIDTH = 50;
 	public static int FLAPPY_HEIGHT = 50;
+	public static int FLAPPY_X2 = FLAPPY_X + FLAPPY_WIDTH;
 	
 	protected static int FLAPPY_JUMP_HEIGHT = 35;
 	protected static int FLAPPY_JUMP_DOWN_HEIGHT = 20;
@@ -41,13 +42,13 @@ public class Values {
 	protected static int OVAL_HEIGHT = FLAPPY_HEIGHT;
 	protected static int OVAL_WIDTH = FLAPPY_WIDTH;
 	
-	protected static int FIRST_OVAL_EXPAND_RATE = 180;
-	protected static int SECOND_OVAL_EXPAND_RATE = 160;
-	protected static int THIRD_OVAL_EXPAND_RATE = 140;
-	protected static int FOURTH_OVAL_EXPAND_RATE = 140;
-	protected static int FIFTH_OVAL_EXPAND_RATE = 130;
+	protected static int FIRST_OVAL_EXPAND_RATE = 100;
+	protected static int SECOND_OVAL_EXPAND_RATE = 60;
+	protected static int THIRD_OVAL_EXPAND_RATE = 40;
+	protected static int FOURTH_OVAL_EXPAND_RATE = 40;
+	protected static int FIFTH_OVAL_EXPAND_RATE = 30;
 	
-	protected static int OVAL_EXPAND_TIME = 12;
+	protected static int OVAL_EXPAND_TIME = 50;
 	
 	protected static int OVAL_COUNT = 5;
 	
