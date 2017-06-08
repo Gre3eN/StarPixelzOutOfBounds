@@ -14,8 +14,7 @@ public class GamePanel extends JPanel {
 	private ArrayList<Oval> ovals = new ArrayList<Oval>();
 	private ArrayList<int[]> backGroundStars = new ArrayList<>();
 	private int[] xywht;
-	private ArrayList<Integer> flappyChAni = new ArrayList<Integer>();
-	private ArrayList<Integer> flappyAniTrans = new ArrayList<Integer>();
+	private ArrayList<ChargeAnimation> charge = new ArrayList<>();
 	private int flappyY;
 	private int[] specialColor;
 	private boolean gameOver = false;
@@ -90,11 +89,9 @@ public class GamePanel extends JPanel {
 	}
 
 	private void drawChargeAnimation(Graphics g) {
-		for (int t : flappyAniTrans) {
-			g.setColor(new Color(specialColor[0], specialColor[1], specialColor[2], t));
-		}
-		for (int a : flappyChAni) {
-			g.fillRect(a, flappyY, Values.FLAPPY_WIDTH, Values.FLAPPY_HEIGHT);
+		for (ChargeAnimation c : charge) {
+			g.setColor(new Color(specialColor[0], specialColor[1], specialColor[2], c.getTransparency()));
+			g.fillRect(c.getX(), flappyY, Values.FLAPPY_WIDTH, Values.FLAPPY_HEIGHT);
 		}
 	}
 
@@ -154,13 +151,12 @@ public class GamePanel extends JPanel {
 		this.backGroundStars = backgroundStars;
 	}
 
-	public void updateFlappyAnimation(ArrayList<Integer> animation, ArrayList<Integer> transparency) {
-		flappyChAni = animation;
-		flappyAniTrans = transparency;
-	}
-
 	public void updateFlappy(int flappyY) {
 		this.flappyY = flappyY;
+	}
+	
+	public void updateCharge(ArrayList<ChargeAnimation> charge){
+		this.charge = charge;
 	}
 
 	public void reset() {

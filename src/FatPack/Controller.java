@@ -10,7 +10,7 @@ public class Controller {
 	private OvalManagement ovalManagement;
 	private BackGroundStarManagement backGroundStarManagement;
 	private Flappy flappy;
-	private FlappyChargeAnimation flappyChargeAni;
+	private AnimationManager animationManager;
 	private ColorManager colorManager;
 	private Timer timer, timer2;
 	private int ovalJumpReduct = 0;
@@ -22,7 +22,7 @@ public class Controller {
 		ovalManagement = new OvalManagement();
 		backGroundStarManagement = new BackGroundStarManagement();
 		flappy = new Flappy();
-		flappyChargeAni = new FlappyChargeAnimation();
+		animationManager = new AnimationManager();
 		colorManager = new ColorManager();
 		gamePanel.updateSpecialColor(colorManager.getRGB());
 		
@@ -41,8 +41,8 @@ public class Controller {
 			backGroundStarManagement.update();
 			gamePanel.updateBackGroundStars(backGroundStarManagement.getBackGroundStars());
 			gamePanel.updateFlappy(flappy.getY());
-			flappyChargeAni.updateTransparency();
-			gamePanel.updateFlappyAnimation(flappyChargeAni.getAnimation(), flappyChargeAni.getTransparency());
+			animationManager.update();
+			gamePanel.updateCharge(animationManager.getCharge());
 			gamePanel.updatePanel();
 			flappy.fall();
 			gameFrame.setScore(pipeManagement.getScore());
@@ -72,7 +72,7 @@ public class Controller {
 				pipeManagement.flappyCharge();
 				ovalManagement.flappyCharge();
 				backGroundStarManagement.charge();
-				flappyChargeAni.setAnimation();
+				animationManager.spawnCharge();
 				gameFrame.setEnterTyped(false);
 			}
 			
@@ -101,7 +101,7 @@ public class Controller {
 			gamePanel.reset();
 			gameFrame.reset();
 			flappy.reset();
-			flappyChargeAni.reset();
+			animationManager.reset();
 			timer.start();
 			timer2.stop();
 		}
