@@ -13,6 +13,7 @@ public class Controller {
 	private FlappyChargeAnimation flappyChargeAni;
 	private ColorManager colorManager;
 	private Timer timer, timer2;
+	private int ovalJumpReduct = 0;
 
 	public Controller() {
 		gamePanel = new GamePanel();
@@ -23,6 +24,7 @@ public class Controller {
 		flappy = new Flappy();
 		flappyChargeAni = new FlappyChargeAnimation();
 		colorManager = new ColorManager();
+		gamePanel.updateSpecialColor(colorManager.getRGB());
 		
 		timer = new Timer(Values.TIMER_DELAY, listener -> timerAction());
 		timer2 = new Timer(Values.TIMER_DELAY / 10, listener -> timer2Action());
@@ -34,24 +36,36 @@ public class Controller {
 
 	public void timerAction() {
 		if(gamePanel.getPlay()) {
+			gamePanel.updateSpecialColor(colorManager.getRGB());
 			gamePanel.updatePipes(pipeManagement.update());
 			backGroundStarManagement.update();
 			gamePanel.updateBackGroundStars(backGroundStarManagement.getBackGroundStars());
-			gamePanel.updateFlappy(flappy.getY(), colorManager.getColor());
+			gamePanel.updateFlappy(flappy.getY());
 			flappyChargeAni.updateTransparency();
-			gamePanel.updateFlappyAnimation(flappyChargeAni.getAnimation(), flappyChargeAni.getTransparency(), colorManager.getRGB());
+			gamePanel.updateFlappyAnimation(flappyChargeAni.getAnimation(), flappyChargeAni.getTransparency());
 			gamePanel.updatePanel();
 			flappy.fall();
 			gameFrame.setScore(pipeManagement.getScore());
-			
+			long startTime = System.nanoTime();    
+			  
 			if(ovalManagement.getOvals().size() > 0) 
-				gamePanel.updateOvals(ovalManagement.update());
+				ovalManagement.update();
+				gamePanel.updateOvals(ovalManagement.getOvals());
+			
+			long estimatedTime = System.nanoTime() - startTime;
+			//System.out.println("Oval controller"+estimatedTime);
+			
+			if (ovalJumpReduct >= 2)
+				ovalJumpReduct = 0;
 			
 			if (gameFrame.isSpaceTyped()){
 				colorManager.changeColor();
 				flappy.jump();
-				ovalManagement.setRGB(colorManager.getRGB());
-				ovalManagement.spawnOval(Values.FLAPPY_X, flappy.getY());
+				//if(ovalJumpReduct == 0){
+					ovalManagement.spawnOval(flappy.getY());
+				//}
+				ovalJumpReduct++;
+				
 			}
 			
 			if (gameFrame.isEnterTyped()){
@@ -65,8 +79,10 @@ public class Controller {
 			if (gameFrame.isDownTyped()) {
 				colorManager.changeColor();
 				flappy.jumpDown();
-				ovalManagement.setRGB(colorManager.getRGB());
-				ovalManagement.spawnOval(Values.FLAPPY_X, flappy.getY());
+				//if(ovalJumpReduct == 0){
+					ovalManagement.spawnOval(flappy.getY());
+				//}
+				ovalJumpReduct++;
 			}
 			
 			if (gamePanel.gameOver()) {

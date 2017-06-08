@@ -3,6 +3,8 @@ package FatPack;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Shape;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 
@@ -15,23 +17,29 @@ public class GamePanel extends JPanel {
 	private ArrayList<Integer> flappyChAni = new ArrayList<Integer>();
 	private ArrayList<Integer> flappyAniTrans = new ArrayList<Integer>();
 	private int flappyY;
-	private int[] flappyAniColor;
-	private Color flappyColor;
+	private int[] specialColor;
 	private boolean gameOver = false;
 	private boolean play = false;
 
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		Graphics2D g2 = (Graphics2D) g;
 
 		// background
 		g.setColor(Values.BACKGROUND_COLOR);
 		g.fillRect(0, 0, Values.FRAME_WIDTH, Values.FRAME_HEIGHT);
-		// ovals
-		for (Oval o : ovals) {
-			g.setColor(o.getOvalColor());
-			g.fillOval(o.getOval()[0], o.getOval()[1], o.getOval()[2], o.getOval()[3]);
-		}
 		drawBackGroundStars(g);
+		// ovals
+		long startTime = System.nanoTime(); 
+		Shape ring;
+		for (Oval o : ovals) {
+			g2.setColor(new Color(specialColor[0], specialColor[1], specialColor[2], o.getOvalTransparency()));
+			ring = Values.createRingShape(o.getX(), o.getY(), o.getSize());
+			g2.fill(ring);
+		}
+		
+		long estimatedTime = System.nanoTime() - startTime;
+		System.out.println("Oval draw"+estimatedTime);
 		// pipes
 		for (Pipe p : pipes) {
 			g.setColor(Values.PIPE_COLOR);
@@ -40,13 +48,13 @@ public class GamePanel extends JPanel {
 		}
 		// Flappy Charge Animation
 		for (int t : flappyAniTrans) {
-			g.setColor(new Color(flappyAniColor[0], flappyAniColor[1], flappyAniColor[2], t));
+			g.setColor(new Color(specialColor[0], specialColor[1], specialColor[2], t));
 		}
 		for (int a : flappyChAni) {
 			g.fillRect(a, flappyY, Values.FLAPPY_WIDTH, Values.FLAPPY_HEIGHT);
 		}
 		// Flappy
-		g.setColor(flappyColor);
+		g.setColor(new Color(specialColor[0], specialColor[1], specialColor[2]));
 		g.fillRect(Values.FLAPPY_X, flappyY, Values.FLAPPY_HEIGHT, Values.FLAPPY_WIDTH);
 		// floor
 		g.setColor(Values.FLOOR_COLOR);
@@ -86,6 +94,10 @@ public class GamePanel extends JPanel {
 		}
 		return gameOver;
 	}
+	
+	public void updateSpecialColor (int[] rgb){
+		specialColor = rgb;
+	}
 
 	public void updatePipes(ArrayList<Pipe> newPipes) {
 		this.pipes = newPipes;
@@ -99,15 +111,13 @@ public class GamePanel extends JPanel {
 		this.backGroundStars = backgroundStars;
 	}
 
-	public void updateFlappyAnimation(ArrayList<Integer> animation, ArrayList<Integer> transparency, int[] rgb) {
+	public void updateFlappyAnimation(ArrayList<Integer> animation, ArrayList<Integer> transparency) {
 		flappyChAni = animation;
 		flappyAniTrans = transparency;
-		flappyAniColor = rgb;
 	}
 
-	public void updateFlappy(int flappyY, Color flappyColor) {
+	public void updateFlappy(int flappyY) {
 		this.flappyY = flappyY;
-		this.flappyColor = flappyColor;
 	}
 
 	public void reset() {

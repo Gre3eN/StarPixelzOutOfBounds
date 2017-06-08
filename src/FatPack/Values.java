@@ -3,6 +3,9 @@ package FatPack;
 import java.awt.Color;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
+import java.awt.Shape;
+import java.awt.geom.Area;
+import java.awt.geom.Ellipse2D;
 
 public class Values {
 
@@ -44,7 +47,7 @@ public class Values {
 	protected static int FIRST_OVAL_EXPAND_RATE = 80;
 	protected static int SECOND_OVAL_EXPAND_RATE = 60;
 	protected static int THIRD_OVAL_EXPAND_RATE = 40;
-	protected static int FOURTH_OVAL_EXPAND_RATE = 40;
+	protected static int FOURTH_OVAL_EXPAND_RATE = 50;
 	protected static int FIFTH_OVAL_EXPAND_RATE = 30;
 	
 	protected static int OVAL_EXPAND_TIME = 12;
@@ -68,4 +71,13 @@ public class Values {
 	protected static Color FLOOR_COLOR = new Color(40, 40, 40);
 	protected static Color PIPE_COLOR = new Color(0, 0, 0);
 	protected static Color FAIL_COLOR = new Color(255, 255, 255, 200);
+	
+	public static Shape createRingShape(double x, double y, double size) {
+		double modifiedSize = size * 0.7;
+		Ellipse2D outer = new Ellipse2D.Double(x, y, size, size);
+		Ellipse2D inner = new Ellipse2D.Double(x + size * 0.15, y + size * 0.15, modifiedSize, modifiedSize);
+		Area area = new Area(outer);
+		area.subtract(new Area(inner));
+		return area;
+	}
 }
