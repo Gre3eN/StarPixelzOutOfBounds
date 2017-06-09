@@ -1,5 +1,8 @@
 package FatPack;
 
+import java.awt.Shape;
+import java.util.ArrayList;
+
 import javax.swing.Timer;
 
 public class Controller {
@@ -14,6 +17,7 @@ public class Controller {
 	private ColorManager colorManager;
 	private Timer timer, timer2;
 	private int ovalJumpReduct = 0;
+	private boolean gameOver = false;
 
 	public Controller() {
 		gamePanel = new GamePanel();
@@ -54,14 +58,14 @@ public class Controller {
 			
 			keyAction();
 			
+			if(pipeManagement.getPipes().size() > 0)
+				gameOver(pipeManagement.getPipes().get(0));
+			gameFrame.setGameOver(gameOver);
+			gamePanel.setGameOver(gameOver);
+			
 			gamePanel.updatePanel();
 			
-			if(pipeManagement.getPipes().size() > 0)
-				flappy.gameOver(pipeManagement.getPipes().get(0));
-			gameFrame.setGameOver(flappy.isGameOver());
-			gamePanel.setGameOver(flappy.isGameOver());
-			
-			if (flappy.isGameOver()) {
+			if (gameOver) {
 				timer.stop();
 				Sound.playClip("Resources/gameOverSound.wav");
 				timer2.start();
@@ -98,6 +102,7 @@ public class Controller {
 	
 	public void timer2Action() {
 		if (gameFrame.getRestartNow()) {
+			gameOver = false;
 			pipeManagement.reset();
 			ovalManagement.reset();
 			backGroundStarManagement.reset();
@@ -108,5 +113,29 @@ public class Controller {
 			timer.start();
 			timer2.stop();
 		}
+	}
+	
+	private static int X = Values.FLAPPY_X;
+	private static int X2 = Values.FLAPPY_X2;
+	
+	private void gameOver(Pipe p){
+		ArrayList<Shape> actualShape = p.gapShape();
+		Pipe actualPipe = p;
+		
+		if (actualPipe.getX() <= X2 && X2 <= actualPipe.getX() + Values.PIPE_WIDTH){
+			for(int i = 0; i < actualPipe.getGapCount(); i++){
+				if(actualShape.get(i).contains(X2, flappy.getY())
+					&& actualShape.get(i).contains(X2, flappy.getY() + Values.FLAPPY_HEIGHT))
+					gameOver = false;
+				else gameOver = true;
+			}
+		}else if (actualPipe.getX() <= X && X <= actualPipe.getX() + Values.PIPE_WIDTH){
+			for(int i = 0; i < actualPipe.getGapCount(); i++){
+				if(actualShape.get(i).contains(X, flappy.getY())
+					&& actualShape.get(i).contains(X, flappy.getY() + Values.FLAPPY_HEIGHT))
+					gameOver = false;
+				else gameOver = true;
+			}
+		}else gameOver = false;		
 	}
 }
