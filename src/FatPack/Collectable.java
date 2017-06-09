@@ -2,11 +2,11 @@ package FatPack;
 
 import java.awt.Shape;
 import java.awt.geom.AffineTransform;
-import java.util.ArrayList;
+import java.awt.Rectangle;
 import java.util.Observable;
 import java.util.Random;
 
-import com.sun.javafx.geom.Rectangle;
+
 
 public class Collectable extends Observable {
 
@@ -27,8 +27,8 @@ public class Collectable extends Observable {
 		y = randy.nextInt(Values.FRAME_HEIGHT - 100) + 50;
 		core = new Rectangle(x, y, CollectableValues.WIDTH, CollectableValues.HEIGHT);
 
-		rotatingCore = (Shape) new Rectangle(core);
-		rotatingCoreHolder = (Shape) new Rectangle(core);
+		rotatingCore = (Shape) core;
+		rotatingCoreHolder = (Shape) core;
 
 		anchorx = core.x + core.width / 2;
 		anchory = core.y + core.height / 2;
@@ -76,7 +76,7 @@ public class Collectable extends Observable {
 			}
 		}
 	}
-
+	
 	public Shape getRotatingCore() {
 		return rotatingCore;
 	}

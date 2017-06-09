@@ -12,10 +12,15 @@ public class Controller implements Observer{
 	private PipeManagement pipeManagement;
 	private OvalManagement ovalManagement;
 	private BackGroundStarManagement backGroundStarManagement;
+	
+	private Collectable collectable;
+	private boolean spawnCollectable;
+	private int score, scoreHolder;
 	private Flappy flappy;
 	private FlappyChargeAnimation flappyChargeAni;
 	private ColorManager colorManager;
 	private Timer timer, timer2;
+	
 	
 	public Controller() {
 		gamePanel = new GamePanel();
@@ -26,6 +31,7 @@ public class Controller implements Observer{
 		flappy = new Flappy();
 		flappyChargeAni = new FlappyChargeAnimation();
 		colorManager = new ColorManager();
+		score=0;
 		
 		timer = new Timer(Values.TIMER_DELAY, listener -> timerAction());
 		timer2 = new Timer(Values.TIMER_DELAY / 10, listener -> timer2Action());
@@ -46,6 +52,9 @@ public class Controller implements Observer{
 			gamePanel.updatePanel();
 			flappy.fall();
 			gameFrame.setScore(pipeManagement.getScore());
+			score = pipeManagement.getScore();
+			
+			collectableAction();
 			
 		
 			if(ovalManagement.getOvals().size() > 0) 
@@ -83,6 +92,8 @@ public class Controller implements Observer{
 
 	public void timer2Action() {
 		if (gameFrame.getRestartNow()) {
+			score=0;
+			spawnCollectable=false;
 			pipeManagement.reset();
 			ovalManagement.reset();
 			backGroundStarManagement.reset();
@@ -95,10 +106,33 @@ public class Controller implements Observer{
 		}
 	}
 
+	private void collectableAction() {
+
+		if(score%2==0 && score!= scoreHolder) {
+			spawnCollectable=true;
+			scoreHolder=score;
+		}
+		
+		collectableSpawn();
+		collectableUpdate();
+	}
+	private void collectableSpawn() {
+		if(spawnCollectable) {
+			collectable=new Collectable();
+			spawnCollectable=false;
+			collectable.addObserver(this);
+		}
+	}
+	private void collectableUpdate() {
+		if(collectable!=null) {
+			collectable.update();
+			gamePanel.updateCollectable(collectable.getRotatingCore());
+		}
+	}
 
 	@Override
 	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
+		if(o==collectable) System.out.println("DANGER DANGER");
 		
 	}
 }

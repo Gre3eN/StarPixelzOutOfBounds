@@ -36,7 +36,7 @@ public class GamePanel extends JPanel {
 		}
 		drawBackGroundStars(g);
 		
-		//drawCollectable(g2D);
+		if(rotatingCore!=null)drawCollectable(g2D);
 		// pipes
 		for (Pipe p : pipes) {
 			g.setColor(Values.PIPE_COLOR);
@@ -104,6 +104,7 @@ public class GamePanel extends JPanel {
 		this.backGroundStars = backgroundStars;
 	}
 	public void updateCollectable(Shape rotatingCore) {
+		this.rotatingCore= rotatingCore;
 		
 	}
 
