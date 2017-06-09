@@ -57,7 +57,7 @@ public class Controller {
 			gamePanel.updatePanel();
 			
 			if(pipeManagement.getPipes().size() > 0)
-				flappy.gameOver(pipeManagement.getPipes().get(0).gapShape(), pipeManagement.getPipes().get(0));
+				flappy.gameOver(pipeManagement.getPipes().get(0));
 			gameFrame.setGameOver(flappy.isGameOver());
 			gamePanel.setGameOver(flappy.isGameOver());
 			

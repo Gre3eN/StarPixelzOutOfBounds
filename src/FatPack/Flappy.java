@@ -4,14 +4,14 @@ import java.awt.Shape;
 import java.util.ArrayList;
 
 public class Flappy {
-	// TODO Flappy Sturzflug
+	
 	private int y;
 	private static int X = Values.FLAPPY_X;
 	private static int X2 = Values.FLAPPY_X2;
 	private boolean gameOver = false;
 	
-	public void gameOver(ArrayList<Shape> s, Pipe p){
-		ArrayList<Shape> actualShape = s;
+	public void gameOver(Pipe p){
+		ArrayList<Shape> actualShape = p.gapShape();
 		Pipe actualPipe = p;
 		
 		if (actualPipe.x <= X2 && X2 <= actualPipe.x + Values.PIPE_WIDTH){
