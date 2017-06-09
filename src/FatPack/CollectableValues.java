@@ -7,5 +7,5 @@ public class CollectableValues {
 	public static int HEIGHT=25;
 	
 	public static int SPEED=20;
-	public static int SCORE_TO_SPAWN=10;
+	public static int PIPES_TO_SPAWN=2;
 }
