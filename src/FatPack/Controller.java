@@ -119,7 +119,8 @@ public class Controller implements Observer {
 			Rectangle core = (Rectangle) arg;
 			Rectangle flappyRec = flappy.getRect();
 			if (core.intersects(flappyRec)) {
-				System.out.println("rect");
+				System.out.println("CATCH EM ALL!");
+				//Sound.playReallyCoolClip();
 			}
 		}
 

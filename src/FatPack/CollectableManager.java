@@ -41,21 +41,6 @@ public class CollectableManager {
 		}
 	}
 
-	public void spawnCollectable() {
-		temp = new Collectable();
-		temp.addObserver(controller);
-
-		collectables.add(temp);
-	}
-
-	public void deleteCollectable() {
-		for (int i = 0; i < collectables.size(); i++) {
-			if (collectables.get(i).getCore().x <= 0) {
-				collectables.remove(i);
-			}
-		}
-	}
-
 	public void reset() {
 		collectables.clear();
 		lastSpawnAt = 0;
@@ -63,5 +48,20 @@ public class CollectableManager {
 
 	public ArrayList<Collectable> getCollectables() {
 		return collectables;
+	}
+
+	private void spawnCollectable() {
+		temp = new Collectable();
+		temp.addObserver(controller);
+
+		collectables.add(temp);
+	}
+
+	private void deleteCollectable() {
+		for (int i = 0; i < collectables.size(); i++) {
+			if (collectables.get(i).getCore().x <= 0) {
+				collectables.remove(i);
+			}
+		}
 	}
 }
