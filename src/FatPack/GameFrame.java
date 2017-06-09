@@ -19,6 +19,7 @@ public class GameFrame extends JFrame {
 	private boolean isUpTyped = false;
 	private boolean isSpaceTyped = false;
 	private boolean isDownTyped = false;
+	private boolean gameOver = false;
 
 	public GameFrame(GamePanel gamePanel) {
 	
@@ -44,7 +45,7 @@ public class GameFrame extends JFrame {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_UP){
-					if (!gamePanel.getGameOver()) {
+					if (!gameOver) {
 						isUpTyped = true;
 						jumps++;
 						jumpLabel.setText("Jumps: " + jumps);
@@ -53,7 +54,7 @@ public class GameFrame extends JFrame {
 				}
 				
 				if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-					if (!gamePanel.getGameOver()) {
+					if (!gameOver) {
 						isDownTyped = true;
 					}
 				}
@@ -77,7 +78,7 @@ public class GameFrame extends JFrame {
 					isDownTyped = false;
 				
 				if (e.getKeyCode() == KeyEvent.VK_R) {
-					if (gamePanel.getGameOver()) {
+					if (gameOver) {
 						restartNow = true;
 					}
 				}		
@@ -119,5 +120,9 @@ public class GameFrame extends JFrame {
 	
 	public void setSpaceTyped(boolean isKeyTyped) {
 		this.isSpaceTyped = isKeyTyped;
+	}
+	
+	public void setGameOver(boolean g){
+		gameOver = g;
 	}
 }

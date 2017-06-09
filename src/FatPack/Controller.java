@@ -38,7 +38,8 @@ public class Controller {
 		if(gamePanel.getPlay()) {
 			
 			gamePanel.updateSpecialColor(colorManager.getRGB());
-			gamePanel.updatePipes(pipeManagement.update());
+			pipeManagement.update();
+			gamePanel.updatePipes(pipeManagement.getPipes());
 			backGroundStarManagement.update();
 			gamePanel.updateBackGroundStars(backGroundStarManagement.getBackGroundStars());
 			gamePanel.updateFlappy(flappy.getY());
@@ -53,9 +54,15 @@ public class Controller {
 			
 			keyAction();
 			
+			if(pipeManagement.getPipes().size() > 0)
+				flappy.gameOver(pipeManagement.getPipes().get(0).gapShape(), pipeManagement.getPipes().get(0));
+			
+			gameFrame.setGameOver(flappy.isGameOver());
+			gamePanel.setGameOver(flappy.isGameOver());
+			
 			gamePanel.updatePanel();
 			
-			if (gamePanel.getGameOver()) {
+			if (flappy.isGameOver()) {
 				timer.stop();
 				Sound.playClip("Resources/gameOverSound.wav");
 				timer2.start();

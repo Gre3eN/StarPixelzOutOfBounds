@@ -17,8 +17,8 @@ public class GamePanel extends JPanel {
 	private ArrayList<ChargeAnimation> charge = new ArrayList<>();
 	private int flappyY;
 	private int[] specialColor;
-	private boolean gameOver = false;
 	private boolean play = false;
+	private boolean gameOver = false;
 
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -106,30 +106,7 @@ public class GamePanel extends JPanel {
 	}
 
 	public void updatePanel() {
-		if(pipes.size() > 0)
-			gameOver(pipes.get(0).gapShape(), pipes.get(0));
 		repaint();
-	}
-	
-	private void gameOver(ArrayList<Shape> s, Pipe p){
-		ArrayList<Shape> actualShape = s;
-		Pipe actualPipe = p;
-		
-		if (actualPipe.x <= Values.FLAPPY_X2 && Values.FLAPPY_X2 <= actualPipe.x + Values.PIPE_WIDTH){
-			for(int i = 0; i < actualPipe.gapCount; i++){
-				if(actualShape.get(i).contains(Values.FLAPPY_X2, flappyY)
-					&& actualShape.get(i).contains(Values.FLAPPY_X2, flappyY + Values.FLAPPY_HEIGHT))
-					gameOver = false;
-				else gameOver = true;
-			}
-		}else if (actualPipe.x <= Values.FLAPPY_X && Values.FLAPPY_X <= actualPipe.x + Values.PIPE_WIDTH){
-			for(int i = 0; i < actualPipe.gapCount; i++){
-				if(actualShape.get(i).contains(Values.FLAPPY_X, flappyY)
-					&& actualShape.get(i).contains(Values.FLAPPY_X, flappyY + Values.FLAPPY_HEIGHT))
-					gameOver = false;
-				else gameOver = true;
-			}
-		}else gameOver = false;		
 	}
 	
 	public void updateSpecialColor (int[] rgb){
@@ -161,15 +138,15 @@ public class GamePanel extends JPanel {
 		repaint();
 	}
 
-	public boolean getGameOver() {
-		return gameOver;
-	}
-
 	public void setPlay(boolean play) {
 		this.play = play;
 	}
 
 	public boolean getPlay() {
 		return play;
+	}
+	
+	public void setGameOver(boolean g){
+		gameOver = g;
 	}
 }
