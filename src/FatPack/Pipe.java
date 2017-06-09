@@ -14,10 +14,10 @@ public class Pipe {
 		x = Values.FRAME_WIDTH;
 		y1 = 0;
 		heigth1 = randy
-				.nextInt(Values.FRAME_HEIGHT - Values.FLOOR_HEIGHT - Values.PIPE_GAP - 2 * Values.MIN_PIPE_HEIGHT)
+				.nextInt(Values.FRAME_HEIGHT - Values.PIPE_GAP - 2* Values.MIN_PIPE_HEIGHT)
 				+ Values.MIN_PIPE_HEIGHT;
 		y2 = heigth1 + Values.PIPE_GAP;
-		heigth2 = Values.FRAME_HEIGHT - y2 - Values.FLOOR_HEIGHT;
+		heigth2 = Values.FRAME_HEIGHT - y2;
 		width = Values.PIPE_WIDTH;
 	}
 

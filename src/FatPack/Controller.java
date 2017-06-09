@@ -55,35 +55,7 @@ public class Controller {
 			long estimatedTime = System.nanoTime() - startTime;
 			//System.out.println("Oval controller"+estimatedTime);
 			
-			if (ovalJumpReduct >= 2)
-				ovalJumpReduct = 0;
-			
-			if (gameFrame.isSpaceTyped()){
-				colorManager.changeColor();
-				flappy.jump();
-				//if(ovalJumpReduct == 0){
-					ovalManagement.spawnOval(flappy.getY());
-				//}
-				ovalJumpReduct++;
-				
-			}
-			
-			if (gameFrame.isEnterTyped()){
-				pipeManagement.flappyCharge();
-				ovalManagement.flappyCharge();
-				backGroundStarManagement.charge();
-				animationManager.spawnCharge();
-				gameFrame.setEnterTyped(false);
-			}
-			
-			if (gameFrame.isDownTyped()) {
-				colorManager.changeColor();
-				flappy.jumpDown();
-				//if(ovalJumpReduct == 0){
-					ovalManagement.spawnOval(flappy.getY());
-				//}
-				ovalJumpReduct++;
-			}
+			keyAction();
 			
 			if (gamePanel.gameOver()) {
 				timer.stop();
@@ -92,6 +64,38 @@ public class Controller {
 			}
 		}
 	}
+
+	private void keyAction() {
+		if (ovalJumpReduct >= 2)
+			ovalJumpReduct = 0;
+		
+		if (gameFrame.isSpaceTyped()){
+			colorManager.changeColor();
+			flappy.jump();
+			//if(ovalJumpReduct == 0){
+				ovalManagement.spawnOval(flappy.getY());
+			//}
+			ovalJumpReduct++;	
+		}
+		
+		if (gameFrame.isEnterTyped()){
+			pipeManagement.flappyCharge();
+			ovalManagement.flappyCharge();
+			backGroundStarManagement.charge();
+			animationManager.spawnCharge();
+			gameFrame.setEnterTyped(false);
+		}
+		
+		if (gameFrame.isDownTyped()) {
+			colorManager.changeColor();
+			flappy.jumpDown();
+			//if(ovalJumpReduct == 0){
+				ovalManagement.spawnOval(flappy.getY());
+			//}
+			ovalJumpReduct++;
+		}
+	}
+
 
 	public void timer2Action() {
 		if (gameFrame.getRestartNow()) {

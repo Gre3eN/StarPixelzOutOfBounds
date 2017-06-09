@@ -31,7 +31,7 @@ public class OvalManagement {
 			ovals.remove(0);
 			ovals.remove(0);
 		}
-		if (ovals.size() > 50)
+		if (ovals.size() > 45)
 			ovals.clear();
 		//System.out.println("Oval delete" + ovals.size());
 	}

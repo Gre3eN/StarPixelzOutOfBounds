@@ -15,7 +15,7 @@ public class GamePanel extends JPanel {
 	private ArrayList<int[]> backGroundStars = new ArrayList<>();
 	private int[] xywht;
 	private ArrayList<ChargeAnimation> charge = new ArrayList<>();
-	private int flappyY;
+	private int flappyY = Values.FLAPPY_Y;
 	private int[] specialColor;
 	private boolean gameOver = false;
 	private boolean play = false;

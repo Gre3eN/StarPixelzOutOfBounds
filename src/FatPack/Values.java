@@ -15,7 +15,7 @@ public class Values {
 	protected static int FRAME_HEIGHT = gd.getDisplayMode().getHeight() ;
 
 	protected static int FLOOR_HEIGHT = FRAME_HEIGHT/10;
-	protected static int MIN_PIPE_HEIGHT = 75;
+	protected static int MIN_PIPE_HEIGHT = 150;
 
 	protected static int PIPE_WIDTH = 50;
 	protected static int PIPE_GAP = 140;
@@ -26,7 +26,7 @@ public class Values {
 	public static int TIMER_DELAY = 50;
 	
 	public static int FLAPPY_X = 230;
-	public static int FLAPPY_Y = 50;
+	public static int FLAPPY_Y = FRAME_HEIGHT / 2;
 	public static int FLAPPY_WIDTH = 50;
 	public static int FLAPPY_HEIGHT = 50;
 	
@@ -37,7 +37,7 @@ public class Values {
 	
 	protected static int FLAPPY_ANIMATION_COUNT = 3;
 	protected static int FLAPPY_ANIMATION_RANGE_RATE = FLAPPY_CHARGE_SPEED / FLAPPY_ANIMATION_COUNT - FLAPPY_CHARGE_SPEED / 20;
-	protected static int FLAPPY_ANIMATION_TIME = 5; 	//5 timer actions
+	protected static int FLAPPY_ANIMATION_TIME = 3; 	//timer actions
 	protected static int FLAPPY_ANIMATION_START_TRANSPARENCY = 100;
 	protected static int FLAPPY_ANIMATION_TRANSPARENCY_LOSS = FLAPPY_ANIMATION_START_TRANSPARENCY / FLAPPY_ANIMATION_TIME;
 	
