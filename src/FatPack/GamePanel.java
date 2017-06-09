@@ -10,12 +10,12 @@ import javax.swing.JPanel;
 
 public class GamePanel extends JPanel {
 
-	private ArrayList<Pipe> pipes = new ArrayList<Pipe>();
+	public ArrayList<Pipe> pipes = new ArrayList<Pipe>();
 	private ArrayList<Oval> ovals = new ArrayList<Oval>();
 	private ArrayList<int[]> backGroundStars = new ArrayList<>();
 	private int[] xywht;
 	private ArrayList<ChargeAnimation> charge = new ArrayList<>();
-	private int flappyY = Values.FLAPPY_Y;
+	public int flappyY = Values.FLAPPY_Y;
 	private int[] specialColor;
 	private boolean gameOver = false;
 	private boolean play = false;
@@ -109,8 +109,8 @@ public class GamePanel extends JPanel {
 		repaint();
 	}
 
-	public boolean gameOver() {
-		if (flappyY + Values.FLAPPY_HEIGHT + Values.FLOOR_HEIGHT >= Values.FRAME_HEIGHT || flappyY <= 0) {
+	/*public boolean gameOver() {
+		if (flappyY + Values.FLAPPY_HEIGHT >= Values.FRAME_HEIGHT || flappyY + Values.FLAPPY_HEIGHT <= 0) {
 			gameOver = true;
 		}
 		if (Values.FLAPPY_X + Values.FLAPPY_WIDTH >= pipes.get(0).getX()
@@ -121,7 +121,7 @@ public class GamePanel extends JPanel {
 			}
 		}
 		return gameOver;
-	}
+	}*/
 	
 	public void updateSpecialColor (int[] rgb){
 		specialColor = rgb;
@@ -152,6 +152,10 @@ public class GamePanel extends JPanel {
 		repaint();
 	}
 
+	public void setGameOver(boolean gameOver) {
+		this.gameOver = gameOver;
+	}
+	
 	public boolean getGameOver() {
 		return gameOver;
 	}

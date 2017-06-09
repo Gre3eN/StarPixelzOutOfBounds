@@ -14,6 +14,7 @@ public class Controller {
 	private ColorManager colorManager;
 	private Timer timer, timer2;
 	private int ovalJumpReduct = 0;
+	private boolean gameOver = false;
 
 	public Controller() {
 		gamePanel = new GamePanel();
@@ -55,7 +56,7 @@ public class Controller {
 			
 			gamePanel.updatePanel();
 			
-			if (gamePanel.gameOver()) {
+			if (gameOver()) {
 				timer.stop();
 				Sound.playClip("Resources/gameOverSound.wav");
 				timer2.start();
@@ -99,8 +100,21 @@ public class Controller {
 			gameFrame.reset();
 			flappy.reset();
 			animationManager.reset();
+			gameOver = false;
 			timer.start();
 			timer2.stop();
 		}
+	}
+	
+	public boolean gameOver() {
+		if (Values.FLAPPY_X + Values.FLAPPY_WIDTH >= gamePanel.pipes.get(0).getX()
+				&& Values.FLAPPY_X <= gamePanel.pipes.get(0).getX() + gamePanel.pipes.get(0).getWidth()) {
+			if (gamePanel.flappyY <= gamePanel.pipes.get(0).getHeigth1()
+					|| gamePanel.flappyY + Values.FLAPPY_HEIGHT >= gamePanel.pipes.get(0).getHeigth1() + Values.PIPE_GAP) {
+				gameOver = true;
+			}
+		}
+		gamePanel.setGameOver(gameOver);
+		return gameOver;
 	}
 }
