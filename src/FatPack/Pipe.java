@@ -1,15 +1,36 @@
 package FatPack;
 
+import java.util.ArrayList;
 import java.util.Random;
+import java.awt.Shape;
+import java.awt.geom.Area;
+import java.awt.geom.Rectangle2D;
 
 public class Pipe {
 
-	protected Random randy = new Random();
+	
+	protected Random randy;
 	protected int x;
 	protected int y1, y2;
 	protected int height1, height2;
 	protected int width;
-	protected int gapY0, gapY1;
+	protected int gapCount;
+	protected int[] gap;
+	protected int[] gapHeight;
+	ArrayList<Shape> gaps;
+	
+	public Pipe(){
+		gaps = new ArrayList<Shape>();
+		randy = new Random();
+	}
+	
+	protected ArrayList<Shape> gapShape(){
+		gaps.clear();
+		for (int i=0; i < gapCount; i++){
+			gaps.add(new Rectangle2D.Double(x, gap[i], width, gapHeight[i]));
+		}
+		return gaps;
+	}
 
 	public void moveLeft() {
 		x -= Values.PIPE_SPEED;
@@ -43,11 +64,7 @@ public class Pipe {
 		return height1;
 	}
 	
-	public int getGapY0() {
-		return gapY0;
-	}
-	
-	public int getGapY1() {
-		return gapY1;
+	public int getGapCount() {
+		return gapCount;
 	}
 }

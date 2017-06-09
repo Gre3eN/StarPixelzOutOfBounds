@@ -57,7 +57,7 @@ public class Controller {
 			
 			keyAction();
 			
-			if (gamePanel.gameOver()) {
+			if (gamePanel.getGameOver()) {
 				timer.stop();
 				Sound.playClip("Resources/gameOverSound.wav");
 				timer2.start();
@@ -95,7 +95,10 @@ public class Controller {
 			ovalJumpReduct++;
 		}
 	}
-
+	
+	private void collision(){
+		
+	}
 
 	public void timer2Action() {
 		if (gameFrame.getRestartNow()) {

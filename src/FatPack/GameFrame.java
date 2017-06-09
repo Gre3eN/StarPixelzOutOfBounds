@@ -55,7 +55,7 @@ public class GameFrame extends JFrame {
 				if (e.getKeyCode() == KeyEvent.VK_DOWN) isDownTyped = false;
 
 				if (e.getKeyCode() == KeyEvent.VK_R) {
-					if (gamePanel.gameOver()) {
+					if (gamePanel.getGameOver()) {
 						restartNow = true;
 					}
 				}

@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Shape;
+import java.awt.geom.Area;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 
@@ -121,21 +122,30 @@ public class GamePanel extends JPanel {
 	}
 
 	public void updatePanel() {
+		if(pipes.size() > 0)
+			gameOver(pipes.get(0).gapShape(), pipes.get(0));
 		repaint();
 	}
-
-	public boolean gameOver() {
-		if (flappyY + Values.FLAPPY_HEIGHT + Values.FLOOR_HEIGHT >= Values.FRAME_HEIGHT || flappyY <= 0) {
-			gameOver = true;
-		}
-		if (Values.FLAPPY_X + Values.FLAPPY_WIDTH >= pipes.get(0).getX()
-				&& Values.FLAPPY_X <= pipes.get(0).getX() + pipes.get(0).getWidth()) {
-			if (flappyY <= pipes.get(0).getHeigth1()
-					|| flappyY + Values.FLAPPY_HEIGHT >= pipes.get(0).getHeigth1() + Values.PIPE_GAP) {
-				gameOver = true;
+	
+	private void gameOver(ArrayList<Shape> s, Pipe p){
+		ArrayList<Shape> actualShape = s;
+		Pipe actualPipe = p;
+		
+		if (actualPipe.x <= Values.FLAPPY_X2 && Values.FLAPPY_X2 <= actualPipe.x + Values.PIPE_WIDTH){
+			for(int i = 0; i < actualPipe.gapCount; i++){
+				if(actualShape.get(i).contains(Values.FLAPPY_X2, flappyY)
+					&& actualShape.get(i).contains(Values.FLAPPY_X2, flappyY + Values.FLAPPY_HEIGHT))
+					gameOver = false;
+				else gameOver = true;
 			}
-		}
-		return gameOver;
+		}else if (actualPipe.x <= Values.FLAPPY_X && Values.FLAPPY_X <= actualPipe.x + Values.PIPE_WIDTH){
+			for(int i = 0; i < actualPipe.gapCount; i++){
+				if(actualShape.get(i).contains(Values.FLAPPY_X, flappyY)
+					&& actualShape.get(i).contains(Values.FLAPPY_X, flappyY + Values.FLAPPY_HEIGHT))
+					gameOver = false;
+				else gameOver = true;
+			}
+		}else gameOver = false;		
 	}
 	
 	public void updateSpecialColor (int[] rgb){
