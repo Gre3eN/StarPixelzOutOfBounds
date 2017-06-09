@@ -24,7 +24,7 @@ public class Collectable extends Observable {
 		transform = new AffineTransform();
 
 		x = Values.FRAME_WIDTH;
-		y = randy.nextInt(Values.FRAME_HEIGHT - 100) + 50;
+		y = randy.nextInt(Values.FRAME_HEIGHT - 200) + 50;
 		core = new Rectangle(x, y, CollectableValues.WIDTH, CollectableValues.HEIGHT);
 
 		rotatingCore = (Shape) core;
@@ -70,9 +70,8 @@ public class Collectable extends Observable {
 		if (core.x <= Values.FLAPPY_X2) {
 			int core_X2 = core.x + core.width;
 			if (core_X2 >= Values.FLAPPY_X) {
-				isInDangerZone=true;
 				setChanged();
-				notifyObservers();
+				notifyObservers(core.y);
 			}
 		}
 	}

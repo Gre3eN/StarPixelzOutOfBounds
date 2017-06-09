@@ -15,8 +15,8 @@ public class CollectableManager {
 		scoreHolder=0;
 	}
 
-	public void update(int scoreArg) {
-		this.score=scoreArg;
+	public void update(int score) {
+		//this.score=scoreArg;
 		
 		if(score%CollectableValues.PIPES_TO_SPAWN==0 &&score!=scoreHolder) {
 			scoreHolder=score;

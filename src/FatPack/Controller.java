@@ -132,7 +132,7 @@ public class Controller implements Observer{
 
 	@Override
 	public void update(Observable o, Object arg) {
-		if(o==collectable) System.out.println("DANGER DANGER");
+		if(o==collectable) System.out.println("DANGER DANGER at: " +arg);
 		
 	}
 }
