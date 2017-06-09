@@ -114,17 +114,13 @@ public class Controller implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
-		long time1 =System.nanoTime();
 
-		//System.out.println("-1");
 		if (o.getClass().isInstance(new Collectable())) {
-			//System.out.println("0");
 			Rectangle core = (Rectangle) arg;
 			Rectangle flappyRec = flappy.getRect();
-		
-			if(core.intersects(flappyRec)) 	System.out.println("rect");
-		
-			System.out.println(System.nanoTime()-time1);
+			if (core.intersects(flappyRec)) {
+				System.out.println("rect");
+			}
 		}
 
 	}
