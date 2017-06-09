@@ -77,9 +77,4 @@ public class Values {
 		area.subtract(new Area(inner));
 		return area;
 	}
-	
-	protected static Shape playerShape(double y){
-		Rectangle2D player = new Rectangle2D.Double(FLAPPY_X, y, FLAPPY_HEIGHT, FLAPPY_WIDTH);
-		return new Area(player);
-	}
 }

@@ -5,7 +5,6 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Shape;
-import java.awt.geom.Area;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 
@@ -51,8 +50,7 @@ public class GamePanel extends JPanel {
 		estimatedTime = System.nanoTime() - startTime;
 		System.out.println("Charge draw"+estimatedTime);
 		
-		if(play)
-			drawPlayer(g);
+		drawPlayer(g);
 		drawFail(g);
 		drawIdiot(g);
 		drawStartScreen(g);
@@ -86,8 +84,6 @@ public class GamePanel extends JPanel {
 	}
 
 	private void drawPlayer(Graphics g) {
-		//g.setColor(new Color(0, 0, 0, 160));
-		//g.fillOval(Values.FLAPPY_X - Values.FLAPPY_WIDTH, flappyY - Values.FLAPPY_HEIGHT, Values.FLAPPY_WIDTH *3, Values.FLAPPY_HEIGHT *3);
 		g.setColor(new Color(specialColor[0], specialColor[1], specialColor[2]));
 		g.fillRect(Values.FLAPPY_X, flappyY, Values.FLAPPY_WIDTH, Values.FLAPPY_HEIGHT);
 	}
