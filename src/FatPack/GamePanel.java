@@ -19,37 +19,15 @@ public class GamePanel extends JPanel {
 	private int[] specialColor;
 	private boolean gameOver = false;
 	private boolean play = false;
-	
-	// tests
-	long startTime;
-	long estimatedTime;
 
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
-
 		drawBackground(g);
-		
-		startTime = System.nanoTime(); 
 		drawBackGroundStars(g);
-		estimatedTime = System.nanoTime() - startTime;
-		System.out.println("Star draw"+estimatedTime);
-		
-		startTime = System.nanoTime(); 
 		drawOvals(g2);
-		estimatedTime = System.nanoTime() - startTime;
-		System.out.println("Oval draw"+estimatedTime);
-
-		startTime = System.nanoTime(); 
 		drawPipes(g);
-		estimatedTime = System.nanoTime() - startTime;
-		System.out.println("Pipes draw"+estimatedTime);
-		
-		startTime = System.nanoTime(); 
 		drawChargeAnimation(g);
-		estimatedTime = System.nanoTime() - startTime;
-		System.out.println("Charge draw"+estimatedTime);
-		
 		drawPlayer(g);
 		drawFail(g);
 		drawIdiot(g);
@@ -84,8 +62,10 @@ public class GamePanel extends JPanel {
 	}
 
 	private void drawPlayer(Graphics g) {
-		g.setColor(new Color(specialColor[0], specialColor[1], specialColor[2]));
-		g.fillRect(Values.FLAPPY_X, flappyY, Values.FLAPPY_WIDTH, Values.FLAPPY_HEIGHT);
+		if (play) {
+			g.setColor(new Color(specialColor[0], specialColor[1], specialColor[2]));
+			g.fillRect(Values.FLAPPY_X, flappyY, Values.FLAPPY_HEIGHT, Values.FLAPPY_WIDTH);
+		}	
 	}
 
 	private void drawChargeAnimation(Graphics g) {
@@ -98,8 +78,8 @@ public class GamePanel extends JPanel {
 	private void drawPipes(Graphics g) {
 		for (Pipe p : pipes) {
 			g.setColor(Values.PIPE_COLOR);
-			g.fillRect(p.getX(), p.getY1(), p.getWidth(), p.getHeigth1());
-			g.fillRect(p.getX(), p.getY2(), p.getWidth(), p.getHeigth2());
+			g.fillRect(p.getX(), p.getY1(), p.getWidth(), p.getHeight1());
+			g.fillRect(p.getX(), p.getY2(), p.getWidth(), p.getHeight2());
 		}
 	}
 
@@ -115,6 +95,14 @@ public class GamePanel extends JPanel {
 	private void drawBackground(Graphics g) {
 		g.setColor(Values.BACKGROUND_COLOR);
 		g.fillRect(0, 0, Values.FRAME_WIDTH, Values.FRAME_HEIGHT);
+	}
+	
+	private void drawBackGroundStars(Graphics g) {
+		for (int i = 0; i < backGroundStars.size(); i++) {
+			xywht = backGroundStars.get(i);
+			g.setColor(Color.WHITE);
+			g.fillOval(xywht[0], xywht[1], xywht[2], xywht[3]);
+		}
 	}
 
 	public void updatePanel() {
@@ -183,13 +171,5 @@ public class GamePanel extends JPanel {
 
 	public boolean getPlay() {
 		return play;
-	}
-
-	private void drawBackGroundStars(Graphics g) {
-		for (int i = 0; i < backGroundStars.size(); i++) {
-			xywht = backGroundStars.get(i);
-			g.setColor(Color.WHITE);
-			g.fillOval(xywht[0], xywht[1], xywht[2], xywht[3]);
-		}
 	}
 }

@@ -1,28 +1,17 @@
 package FatPack;
-//package FlappyBird;
-
-import java.awt.Color;
-import java.awt.Rectangle;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-
-import org.w3c.dom.css.Rect;
 
 public class Flappy {
-
+	// TODO Flappy Sturzflug
 	private int y;
 	
 	public Flappy() {
 		y=Values.FLAPPY_Y;
 	}
 	
-	public void collision(){
-		
-	}
-	
 	public void fall() {
 		y+=Values.FLAPPY_FALL_HEIGHT;
 	}
+	
 	public void jump() {
 		y-=Values.FLAPPY_JUMP_HEIGHT;
 	}

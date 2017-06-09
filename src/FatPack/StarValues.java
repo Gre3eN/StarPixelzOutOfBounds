@@ -1,7 +1,5 @@
 package FatPack;
 
-import java.awt.Color;
-
 public class StarValues {
 	public static int INITIAL_COUNT = 75;
 	public static int MAX_COUNT = INITIAL_COUNT;

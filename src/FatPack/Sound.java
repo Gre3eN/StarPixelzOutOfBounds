@@ -1,12 +1,8 @@
 package FatPack;
+
 import java.io.*;
 import javax.sound.sampled.*;
 
-/**
- * 
- * @author Tim
- *
- */
 public class Sound {
 	
 	private static Clip clip;
@@ -23,7 +19,7 @@ public class Sound {
 			info = new DataLine.Info(Clip.class, format);
 			clip = (Clip) AudioSystem.getLine(info);
 			clip.open(stream);
-			FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);  // Lautstärkeanpassung
+			FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);  // Lautstaerkeanpassung
 		
 			if (fileName.equals("Resources/through_space.wav")) {
 				clip.loop(Clip.LOOP_CONTINUOUSLY);
@@ -33,9 +29,7 @@ public class Sound {
 				gainControl.setValue(-8.f);
 			}	
 			clip.start();
-			//clip.drain(); keine Möglichkeit gefunden, den Audiobuffer vernünftig zu leeren 
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}	
 	}

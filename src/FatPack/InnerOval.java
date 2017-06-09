@@ -11,11 +11,7 @@ public class InnerOval extends Oval{
 		size += Values.FOURTH_OVAL_EXPAND_RATE;
 		x -= Values.FOURTH_OVAL_EXPAND_RATE / 2;
 		y -= Values.FOURTH_OVAL_EXPAND_RATE / 2;
-		if(transparency > 0){
+		if(transparency > 0)
 			transparency -= Values.OUTER_OVAL_TRANSPERENCY_LOSS;
-		}
 	}
-	
-	
-
 }

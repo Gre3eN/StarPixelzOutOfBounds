@@ -11,8 +11,7 @@ public class MidOval extends Oval{
 		size += Values.SECOND_OVAL_EXPAND_RATE;
 		x -= Values.SECOND_OVAL_EXPAND_RATE / 2;
 		y -= Values.SECOND_OVAL_EXPAND_RATE / 2;
-		if(transparency > 0){
+		if(transparency > 0)
 			transparency -= Values.INNER_OVAL_TRANSPERENCY_LOSS;
-		}
 	}
 }

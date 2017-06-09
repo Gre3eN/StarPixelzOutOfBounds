@@ -3,11 +3,9 @@ package FatPack;
 import java.util.ArrayList;
 import java.util.Random;
 import java.awt.Shape;
-import java.awt.geom.Area;
 import java.awt.geom.Rectangle2D;
 
 public class Pipe {
-
 	
 	protected Random randy;
 	protected int x;
@@ -48,23 +46,23 @@ public class Pipe {
 		return y1;
 	}
 
-	public int getHeigth2() {
-		return height2;
-	}
-
-	public int getWidth() {
-		return width;
-	}
-
 	public int getY2() {
 		return y2;
 	}
 
-	public int getHeigth1() {
+	public int getHeight1() {
 		return height1;
 	}
 	
 	public int getGapCount() {
 		return gapCount;
+	}
+	
+	public int getHeight2() {
+		return height2;
+	}
+
+	public int getWidth() {
+		return width;
 	}
 }
