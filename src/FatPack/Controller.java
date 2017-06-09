@@ -13,8 +13,8 @@ public class Controller implements Observer {
 	private OvalManagement ovalManagement;
 	private BackGroundStarManagement backGroundStarManagement;
 
-	private Collectable collectable;
 	private CollectableManager collectableManager;
+
 	private Flappy flappy;
 	private FlappyChargeAnimation flappyChargeAni;
 	private ColorManager colorManager;
@@ -112,8 +112,10 @@ public class Controller implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
-		if (o == collectable)
+		long time1 = System.nanoTime();
+		if (o.getClass().isInstance(new Collectable())) {
 			System.out.println("Collectable in DangerZone at Y: " + arg);
-
+		}
+		System.out.println(System.nanoTime() - time1);
 	}
 }

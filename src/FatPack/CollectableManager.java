@@ -12,31 +12,32 @@ public class CollectableManager {
 	public CollectableManager(Controller controller) {
 		this.controller = controller;
 		lastSpawnAt = 0;
-		
-		collectables=new ArrayList<>();
-		
-		collectables.add(new Collectable());
+
+		collectables = new ArrayList<>();
+
+		temp = new Collectable();
+		temp.addObserver(controller);
+		collectables.add(temp);
 	}
 
 	public void update(int score) {
 		if (score % CollectableValues.PIPES_TO_SPAWN == 0 && score != lastSpawnAt) {
-			System.out.println("try to spawn");
 			lastSpawnAt = score;
 			spawnCollectable();
 		}
-		
-		for(Collectable c : collectables) {
+
+		for (Collectable c : collectables) {
 			c.update();
 		}
-			
+
 		deleteCollectable();
 	}
 
 	public void charge() {
-		if(collectables.size()>0) {
+		if (collectables.size() > 0) {
 			for (Collectable c : collectables) {
 				c.charge();
-			}			
+			}
 		}
 	}
 
@@ -48,12 +49,10 @@ public class CollectableManager {
 	}
 
 	public void deleteCollectable() {
-		if(collectables.size()>0) {
-			for (int i=0; i< collectables.size(); i++) {
-				if (collectables.get(i).getCore().x <= 0) {
-					collectables.remove(i);
-				}
-			}			
+		for (int i = 0; i < collectables.size(); i++) {
+			if (collectables.get(i).getCore().x <= 0) {
+				collectables.remove(i);
+			}
 		}
 	}
 
