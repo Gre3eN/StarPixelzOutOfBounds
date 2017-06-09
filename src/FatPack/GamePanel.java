@@ -10,12 +10,12 @@ import javax.swing.JPanel;
 
 public class GamePanel extends JPanel {
 
-	public ArrayList<Pipe> pipes = new ArrayList<Pipe>();
+	private ArrayList<Pipe> pipes = new ArrayList<Pipe>();
 	private ArrayList<Oval> ovals = new ArrayList<Oval>();
 	private ArrayList<int[]> backGroundStars = new ArrayList<>();
 	private int[] xywht;
 	private ArrayList<ChargeAnimation> charge = new ArrayList<>();
-	public int flappyY = Values.FLAPPY_Y;
+	private int flappyY = Values.FLAPPY_Y;
 	private int[] specialColor;
 	private boolean gameOver = false;
 	private boolean play = false;

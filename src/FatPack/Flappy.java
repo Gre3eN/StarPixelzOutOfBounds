@@ -20,6 +20,14 @@ public class Flappy {
 		y+=Values.FLAPPY_JUMP_DOWN_HEIGHT;
 	}
 	
+	public void teleUp() {
+		y=-Values.FLAPPY_HEIGHT/2;
+	}
+	
+	public void teleDown() {
+		y=Values.FRAME_HEIGHT - Values.FLAPPY_HEIGHT/2;
+	}
+	
 	public int getY() {
 		return y;
 	}
