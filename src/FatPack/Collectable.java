@@ -6,19 +6,15 @@ import java.awt.Rectangle;
 import java.util.Observable;
 import java.util.Random;
 
-
-
 public class Collectable extends Observable {
 
 	private Random randy;
 	AffineTransform transform;
 
-
 	private Rectangle core;
 	private Shape rotatingCore, rotatingCoreHolder;
 	private int x, y, anchorx, anchory;
-	private boolean isInDangerZone;
-	
+
 	public Collectable() {
 		randy = new Random();
 		transform = new AffineTransform();
@@ -32,8 +28,6 @@ public class Collectable extends Observable {
 
 		anchorx = core.x + core.width / 2;
 		anchory = core.y + core.height / 2;
-		
-		isInDangerZone=false;
 	}
 
 	public void update() {
@@ -42,7 +36,7 @@ public class Collectable extends Observable {
 		inDangerZone();
 	}
 
-	public void moveLeft() {
+	private void moveLeft() {
 		transform.setToTranslation(-CollectableValues.SPEED, 0);
 		rotatingCore = transform.createTransformedShape(rotatingCoreHolder);
 		rotatingCoreHolder = rotatingCore;
@@ -57,15 +51,6 @@ public class Collectable extends Observable {
 		rotatingCoreHolder = rotatingCore;
 	}
 
-	public void charge() {
-		transform.setToTranslation(-Values.FLAPPY_CHARGE_SPEED, 0);
-		rotatingCore = transform.createTransformedShape(rotatingCoreHolder);
-		rotatingCoreHolder = rotatingCore;
-
-		core.x -= Values.FLAPPY_CHARGE_SPEED;
-		anchorx -= Values.FLAPPY_CHARGE_SPEED;
-	}
-
 	private void inDangerZone() {
 		if (core.x <= Values.FLAPPY_X2) {
 			int core_X2 = core.x + core.width;
@@ -75,7 +60,16 @@ public class Collectable extends Observable {
 			}
 		}
 	}
-	
+
+	public void charge() {
+		transform.setToTranslation(-Values.FLAPPY_CHARGE_SPEED, 0);
+		rotatingCore = transform.createTransformedShape(rotatingCoreHolder);
+		rotatingCoreHolder = rotatingCore;
+
+		core.x -= Values.FLAPPY_CHARGE_SPEED;
+		anchorx -= Values.FLAPPY_CHARGE_SPEED;
+	}
+
 	public Shape getRotatingCore() {
 		return rotatingCore;
 	}
@@ -88,7 +82,4 @@ public class Collectable extends Observable {
 		return this;
 	}
 
-	public boolean getDanger() {
-		return isInDangerZone;
-	}
 }

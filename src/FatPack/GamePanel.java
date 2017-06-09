@@ -13,7 +13,7 @@ public class GamePanel extends JPanel {
 	private ArrayList<Pipe> pipes = new ArrayList<Pipe>();
 	private ArrayList<Oval> ovals = new ArrayList<Oval>();
 	private ArrayList<int[]> backGroundStars = new ArrayList<>();
-	private Shape rotatingCore;
+	private ArrayList<Collectable> collectables = new ArrayList<>();
 	private int[] xywht;
 	private ArrayList<Integer> flappyChAni = new ArrayList<Integer>();
 	private ArrayList<Integer> flappyAniTrans = new ArrayList<Integer>();
@@ -25,7 +25,7 @@ public class GamePanel extends JPanel {
 
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		Graphics2D g2D  = (Graphics2D) g;
+		Graphics2D g2D = (Graphics2D) g;
 		// background
 		g.setColor(Values.BACKGROUND_COLOR);
 		g.fillRect(0, 0, Values.FRAME_WIDTH, Values.FRAME_HEIGHT);
@@ -35,8 +35,7 @@ public class GamePanel extends JPanel {
 			g.fillOval(o.getOval()[0], o.getOval()[1], o.getOval()[2], o.getOval()[3]);
 		}
 		drawBackGroundStars(g);
-		
-		if(rotatingCore!=null)drawCollectable(g2D);
+		drawCollectable(g2D);
 		// pipes
 		for (Pipe p : pipes) {
 			g.setColor(Values.PIPE_COLOR);
@@ -103,9 +102,9 @@ public class GamePanel extends JPanel {
 	public void updateBackGroundStars(ArrayList<int[]> backgroundStars) {
 		this.backGroundStars = backgroundStars;
 	}
-	public void updateCollectable(Shape rotatingCore) {
-		this.rotatingCore= rotatingCore;
-		
+
+	public void updateCollectable(ArrayList<Collectable> collectables) {
+		this.collectables=collectables;
 	}
 
 	public void updateFlappyAnimation(ArrayList<Integer> animation, ArrayList<Integer> transparency, int[] rgb) {
@@ -143,8 +142,13 @@ public class GamePanel extends JPanel {
 			g.fillOval(xywht[0], xywht[1], xywht[2], xywht[3]);
 		}
 	}
+
 	private void drawCollectable(Graphics2D g2D) {
-		g2D.setColor(Color.YELLOW);
-		g2D.fill(rotatingCore);
+		if (collectables.size() > 0) {
+			g2D.setColor(Color.YELLOW);
+			for(Collectable c : collectables) {
+				g2D.fill(c.getRotatingCore());	
+			}
+		}
 	}
 }
