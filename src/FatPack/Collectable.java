@@ -68,7 +68,7 @@ public class Collectable extends Observable {
 			int core_X2 = core.x + core.width;
 			if (core_X2 >= Values.FLAPPY_X) {
 				setChanged();
-				notifyObservers(core.y);
+				notifyObservers(core);
 			}
 		}
 	}

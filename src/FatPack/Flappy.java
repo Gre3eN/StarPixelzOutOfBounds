@@ -11,6 +11,7 @@ import org.w3c.dom.css.Rect;
 public class Flappy {
 
 	private int y;
+
 	
 	public Flappy() {
 		y=Values.FRAME_HEIGHT / 2;
@@ -30,6 +31,13 @@ public class Flappy {
 	
 	public int getY() {
 		return y;
+	}
+	public int getY2() {
+		return y + Values.FLAPPY_HEIGHT;
+	}
+	
+	public Rectangle getRect() {
+		return new Rectangle(Values.FLAPPY_X, y, Values.FLAPPY_WIDTH, Values.FLAPPY_HEIGHT);
 	}
 	
 	public void reset() {
