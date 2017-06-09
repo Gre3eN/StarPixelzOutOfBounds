@@ -54,13 +54,12 @@ public class Controller {
 			
 			keyAction();
 			
+			gamePanel.updatePanel();
+			
 			if(pipeManagement.getPipes().size() > 0)
 				flappy.gameOver(pipeManagement.getPipes().get(0).gapShape(), pipeManagement.getPipes().get(0));
-			
 			gameFrame.setGameOver(flappy.isGameOver());
 			gamePanel.setGameOver(flappy.isGameOver());
-			
-			gamePanel.updatePanel();
 			
 			if (flappy.isGameOver()) {
 				timer.stop();

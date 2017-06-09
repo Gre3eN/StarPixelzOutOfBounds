@@ -51,15 +51,12 @@ public class Flappy {
 		return gameOver;
 	}
 	
-	public void setGameOver(boolean g){
-		gameOver = g;
-	}
-	
 	public int getY() {
 		return y;
 	}
 	
 	public void reset() {
 		y = Values.FRAME_HEIGHT / 2;
+		gameOver = false;
 	}
 }
