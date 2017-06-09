@@ -6,6 +6,7 @@ import java.awt.GraphicsEnvironment;
 import java.awt.Shape;
 import java.awt.geom.Area;
 import java.awt.geom.Ellipse2D;
+import java.awt.geom.Rectangle2D;
 
 public class Values {
 
@@ -74,5 +75,10 @@ public class Values {
 		Area area = new Area(outer);
 		area.subtract(new Area(inner));
 		return area;
+	}
+	
+	protected static Shape playerShape(double y){
+		Rectangle2D player = new Rectangle2D.Double(FLAPPY_X, y, FLAPPY_HEIGHT, FLAPPY_WIDTH);
+		return new Area(player);
 	}
 }

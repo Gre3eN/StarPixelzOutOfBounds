@@ -8,7 +8,7 @@ public class PipeManagement {
 	private int pipeScore = 0;
 
 	public PipeManagement() {
-		pipes.add(new Pipe());
+		pipes.add(new NormalPipe());
 	}
 
 	public ArrayList<Pipe> update() {
@@ -28,7 +28,7 @@ public class PipeManagement {
 
 	private void spawnPipe() {
 		if (pipes.get(pipes.size() - 1).getX() <= Values.FRAME_WIDTH - Values.PIPE_SPAWN_GAP) {
-			pipes.add(new Pipe());
+			pipes.add(new NormalPipe());
 		}
 	}
 
@@ -42,7 +42,7 @@ public class PipeManagement {
 
 	public void reset() {
 		pipes.clear();
-		pipes.add(new Pipe());
+		pipes.add(new NormalPipe());
 		pipeScore=0;
 	}
 	

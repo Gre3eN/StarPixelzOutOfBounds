@@ -13,9 +13,12 @@ public class Flappy {
 	private int y;
 	
 	public Flappy() {
-		y=Values.FRAME_HEIGHT / 2;
+		y=Values.FLAPPY_Y;
 	}
-	//TODO flappy Sturzflug
+	
+	public void collision(){
+		
+	}
 	
 	public void fall() {
 		y+=Values.FLAPPY_FALL_HEIGHT;

@@ -4,22 +4,12 @@ import java.util.Random;
 
 public class Pipe {
 
-	private Random randy = new Random();
-	private int x;
-	private int y1, y2;
-	private int heigth1, heigth2;
-	private int width;
-
-	public Pipe() {
-		x = Values.FRAME_WIDTH;
-		y1 = 0;
-		heigth1 = randy
-				.nextInt(Values.FRAME_HEIGHT - Values.PIPE_GAP - 2* Values.MIN_PIPE_HEIGHT)
-				+ Values.MIN_PIPE_HEIGHT;
-		y2 = heigth1 + Values.PIPE_GAP;
-		heigth2 = Values.FRAME_HEIGHT - y2;
-		width = Values.PIPE_WIDTH;
-	}
+	protected Random randy = new Random();
+	protected int x;
+	protected int y1, y2;
+	protected int height1, height2;
+	protected int width;
+	protected int gapY0, gapY1;
 
 	public void moveLeft() {
 		x -= Values.PIPE_SPEED;
@@ -38,7 +28,7 @@ public class Pipe {
 	}
 
 	public int getHeigth2() {
-		return heigth2;
+		return height2;
 	}
 
 	public int getWidth() {
@@ -50,6 +40,14 @@ public class Pipe {
 	}
 
 	public int getHeigth1() {
-		return heigth1;
+		return height1;
+	}
+	
+	public int getGapY0() {
+		return gapY0;
+	}
+	
+	public int getGapY1() {
+		return gapY1;
 	}
 }
