@@ -1,8 +1,11 @@
 package FatPack;
 
+import java.util.Observable;
+import java.util.Observer;
+
 import javax.swing.Timer;
 
-public class Controller {
+public class Controller implements Observer{
 
 	private GamePanel gamePanel;
 	private GameFrame gameFrame;
@@ -13,7 +16,7 @@ public class Controller {
 	private FlappyChargeAnimation flappyChargeAni;
 	private ColorManager colorManager;
 	private Timer timer, timer2;
-
+	
 	public Controller() {
 		gamePanel = new GamePanel();
 		gameFrame = new GameFrame(gamePanel);
@@ -44,6 +47,7 @@ public class Controller {
 			flappy.fall();
 			gameFrame.setScore(pipeManagement.getScore());
 			
+		
 			if(ovalManagement.getOvals().size() > 0) 
 				gamePanel.updateOvals(ovalManagement.update());
 			
@@ -89,5 +93,12 @@ public class Controller {
 			timer.start();
 			timer2.stop();
 		}
+	}
+
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		
 	}
 }
