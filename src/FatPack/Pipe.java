@@ -13,11 +13,10 @@ public class Pipe {
 	public Pipe() {
 		x = Values.FRAME_WIDTH;
 		y1 = 0;
-		heigth1 = randy
-				.nextInt(Values.FRAME_HEIGHT - Values.FLOOR_HEIGHT - Values.PIPE_GAP - 2 * Values.MIN_PIPE_HEIGHT)
+		heigth1 = randy.nextInt(Values.FRAME_HEIGHT - Values.PIPE_GAP - 2* Values.MIN_PIPE_HEIGHT)
 				+ Values.MIN_PIPE_HEIGHT;
 		y2 = heigth1 + Values.PIPE_GAP;
-		heigth2 = Values.FRAME_HEIGHT - y2 - Values.FLOOR_HEIGHT;
+		heigth2 = Values.FRAME_HEIGHT - y2;
 		width = Values.PIPE_WIDTH;
 	}
 
@@ -36,20 +35,20 @@ public class Pipe {
 	public int getY1() {
 		return y1;
 	}
-
-	public int getHeigth2() {
-		return heigth2;
-	}
-
-	public int getWidth() {
-		return width;
-	}
-
+	
 	public int getY2() {
 		return y2;
 	}
 
 	public int getHeigth1() {
 		return heigth1;
+	}
+	
+	public int getHeigth2() {
+		return heigth2;
+	}
+
+	public int getWidth() {
+		return width;
 	}
 }

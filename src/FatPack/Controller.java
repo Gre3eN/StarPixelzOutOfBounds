@@ -10,9 +10,10 @@ public class Controller {
 	private OvalManagement ovalManagement;
 	private BackGroundStarManagement backGroundStarManagement;
 	private Flappy flappy;
-	private FlappyChargeAnimation flappyChargeAni;
+	private AnimationManager animationManager;
 	private ColorManager colorManager;
 	private Timer timer, timer2;
+	private int ovalJumpReduct = 0;
 
 	public Controller() {
 		gamePanel = new GamePanel();
@@ -21,8 +22,9 @@ public class Controller {
 		ovalManagement = new OvalManagement();
 		backGroundStarManagement = new BackGroundStarManagement();
 		flappy = new Flappy();
-		flappyChargeAni = new FlappyChargeAnimation();
+		animationManager = new AnimationManager();
 		colorManager = new ColorManager();
+		gamePanel.updateSpecialColor(colorManager.getRGB());
 		
 		timer = new Timer(Values.TIMER_DELAY, listener -> timerAction());
 		timer2 = new Timer(Values.TIMER_DELAY / 10, listener -> timer2Action());
@@ -34,46 +36,57 @@ public class Controller {
 
 	public void timerAction() {
 		if(gamePanel.getPlay()) {
+			
+			gamePanel.updateSpecialColor(colorManager.getRGB());
 			gamePanel.updatePipes(pipeManagement.update());
 			backGroundStarManagement.update();
 			gamePanel.updateBackGroundStars(backGroundStarManagement.getBackGroundStars());
-			gamePanel.updateFlappy(flappy.getY(), colorManager.getColor());
-			flappyChargeAni.updateTransparency();
-			gamePanel.updateFlappyAnimation(flappyChargeAni.getAnimation(), flappyChargeAni.getTransparency(), colorManager.getRGB());
-			gamePanel.updatePanel();
+			gamePanel.updateFlappy(flappy.getY());
 			flappy.fall();
-			gameFrame.setScore(pipeManagement.getScore());
-			
+			animationManager.update();
+			gamePanel.updateCharge(animationManager.getCharge());
+			gameFrame.setScore(pipeManagement.getScore());    
+
 			if(ovalManagement.getOvals().size() > 0) 
-				gamePanel.updateOvals(ovalManagement.update());
+				ovalManagement.update();
+			gamePanel.updateOvals(ovalManagement.getOvals());
 			
-			if (gameFrame.isSpaceTyped()){
-				colorManager.changeColor();
-				flappy.jump();
-				ovalManagement.setRGB(colorManager.getRGB());
-				ovalManagement.spawnOval(Values.FLAPPY_X, flappy.getY());
-			}
+			keyAction();
 			
-			if (gameFrame.isEnterTyped()){
-				pipeManagement.flappyCharge();
-				ovalManagement.flappyCharge();
-				backGroundStarManagement.charge();
-				flappyChargeAni.setAnimation();
-				gameFrame.setEnterTyped(false);
-			}
-			
-			if (gameFrame.isDownTyped()) {
-				colorManager.changeColor();
-				flappy.jumpDown();
-				ovalManagement.setRGB(colorManager.getRGB());
-				ovalManagement.spawnOval(Values.FLAPPY_X, flappy.getY());
-			}
+			gamePanel.updatePanel();
 			
 			if (gamePanel.gameOver()) {
 				timer.stop();
 				Sound.playClip("Resources/gameOverSound.wav");
 				timer2.start();
 			}
+		}
+	}
+
+	private void keyAction() {
+		if (ovalJumpReduct >= 2)
+			ovalJumpReduct = 0;
+		
+		if (gameFrame.isUpTyped()){
+			colorManager.changeColor();
+			flappy.jump();
+			ovalManagement.spawnOval(flappy.getY());
+			ovalJumpReduct++;	
+		}
+		
+		if (gameFrame.isDownTyped()) {
+			colorManager.changeColor();
+			flappy.jumpDown();
+			ovalManagement.spawnOval(flappy.getY());
+			ovalJumpReduct++;
+		}
+		
+		if (gameFrame.isSpaceTyped()){
+			pipeManagement.flappyCharge();
+			ovalManagement.flappyCharge();
+			backGroundStarManagement.charge();
+			animationManager.spawnCharge();
+			gameFrame.setSpaceTyped(false);
 		}
 	}
 
@@ -85,7 +98,7 @@ public class Controller {
 			gamePanel.reset();
 			gameFrame.reset();
 			flappy.reset();
-			flappyChargeAni.reset();
+			animationManager.reset();
 			timer.start();
 			timer2.stop();
 		}

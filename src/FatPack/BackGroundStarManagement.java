@@ -1,18 +1,16 @@
 package FatPack;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Random;
 
 public class BackGroundStarManagement {
 
-	private ArrayList<int[]> backGroundStars = new ArrayList<>();;
-	private Random randy = new Random();;
+	private ArrayList<int[]> backGroundStars = new ArrayList<>();
+	private Random randy = new Random();
 	private int random;
-	int[] xywhA;
+	int[] starData;
 
 	public BackGroundStarManagement() {
-
 		for (int i = 0; i < StarValues.INITIAL_COUNT; i++) {
 			random = randy.nextInt(8) + 2;
 			backGroundStars.addAll(new BackGroundStar(0, random).getBackGroundStar());
@@ -21,9 +19,9 @@ public class BackGroundStarManagement {
 
 	public void update() {
 		for (int i = 0; i < backGroundStars.size(); i++) {
-			xywhA = backGroundStars.get(i);
-			xywhA[0] -= (StarValues.SPEED +xywhA[4]);
-			backGroundStars.set(i, xywhA);
+			starData = backGroundStars.get(i);
+			starData[0] -= (StarValues.SPEED +starData[4]);
+			backGroundStars.set(i, starData);
 		}
 		delete();
 	}
@@ -46,9 +44,9 @@ public class BackGroundStarManagement {
 
 	public void charge() {
 		for (int i = 0; i < backGroundStars.size(); i++) {
-			xywhA = backGroundStars.get(i);
-			xywhA[0] -= (Values.FLAPPY_CHARGE_SPEED / 2 + xywhA[4]);
-			backGroundStars.set(i, xywhA);
+			starData = backGroundStars.get(i);
+			starData[0] -= (Values.FLAPPY_CHARGE_SPEED / 2 + starData[4]);
+			backGroundStars.set(i, starData);
 		}
 	}
 
