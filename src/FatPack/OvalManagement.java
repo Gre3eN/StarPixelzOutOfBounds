@@ -26,20 +26,18 @@ public class OvalManagement {
 	private void deleteOval() { 
 		if (ovals.get(0).getTransparency() <= 0)
 			ovals.remove(0);
-		if (ovals.size() > Values.OVALS_CAP){
+		if (ovals.size() > Values.OVALS_CAP) {
 			ovals.remove(0);
 			ovals.remove(0);
 			ovals.remove(0);
 		}
 		if (ovals.size() > 45)
 			ovals.clear();
-		//System.out.println("Oval delete" + ovals.size());
 	}
 	
 	public void flappyCharge() {
-		for (int i = 0; i < ovals.size(); i++) {
+		for (int i = 0; i < ovals.size(); i++)
 			ovals.get(i).flappyCharge();
-		}
 	}
 
 	public void reset() {

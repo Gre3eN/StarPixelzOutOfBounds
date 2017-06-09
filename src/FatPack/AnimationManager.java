@@ -16,7 +16,6 @@ public class AnimationManager {
 		for(int i = 0; i < Values.FLAPPY_ANIMATION_TIME; i++)
 			k++;
 		if(k == Values.FLAPPY_ANIMATION_TIME)
-		
 			charge.clear();
 	}
 	
@@ -33,6 +32,5 @@ public class AnimationManager {
 	public void reset(){
 		charge.clear();
 	}
-	
 }
 

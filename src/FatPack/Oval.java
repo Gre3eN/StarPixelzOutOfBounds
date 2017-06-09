@@ -1,8 +1,5 @@
 package FatPack;
 
-import java.awt.Color;
-import java.sql.Array;
-
 public class Oval {
 	
 	protected int transparency, y;
@@ -13,10 +10,10 @@ public class Oval {
 		x -= Values.FLAPPY_CHARGE_SPEED;
 	}
 	
-	public void expand(){	}
+	public void expand(){}
 	
 	public int getTransparency(){
-		if(transparency < 0)transparency = 0;
+		if(transparency < 0) transparency = 0;
 		return transparency;
 	}
 	

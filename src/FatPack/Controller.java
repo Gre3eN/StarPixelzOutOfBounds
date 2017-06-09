@@ -36,26 +36,24 @@ public class Controller {
 
 	public void timerAction() {
 		if(gamePanel.getPlay()) {
+			
 			gamePanel.updateSpecialColor(colorManager.getRGB());
 			gamePanel.updatePipes(pipeManagement.update());
 			backGroundStarManagement.update();
 			gamePanel.updateBackGroundStars(backGroundStarManagement.getBackGroundStars());
 			gamePanel.updateFlappy(flappy.getY());
+			flappy.fall();
 			animationManager.update();
 			gamePanel.updateCharge(animationManager.getCharge());
-			gamePanel.updatePanel();
-			flappy.fall();
-			gameFrame.setScore(pipeManagement.getScore());
-			long startTime = System.nanoTime();    
-			  
+			gameFrame.setScore(pipeManagement.getScore());    
+
 			if(ovalManagement.getOvals().size() > 0) 
 				ovalManagement.update();
-				gamePanel.updateOvals(ovalManagement.getOvals());
-			
-			long estimatedTime = System.nanoTime() - startTime;
-			//System.out.println("Oval controller"+estimatedTime);
+			gamePanel.updateOvals(ovalManagement.getOvals());
 			
 			keyAction();
+			
+			gamePanel.updatePanel();
 			
 			if (gamePanel.gameOver()) {
 				timer.stop();
@@ -69,33 +67,28 @@ public class Controller {
 		if (ovalJumpReduct >= 2)
 			ovalJumpReduct = 0;
 		
-		if (gameFrame.isSpaceTyped()){
+		if (gameFrame.isUpTyped()){
 			colorManager.changeColor();
 			flappy.jump();
-			//if(ovalJumpReduct == 0){
-				ovalManagement.spawnOval(flappy.getY());
-			//}
+			ovalManagement.spawnOval(flappy.getY());
 			ovalJumpReduct++;	
-		}
-		
-		if (gameFrame.isEnterTyped()){
-			pipeManagement.flappyCharge();
-			ovalManagement.flappyCharge();
-			backGroundStarManagement.charge();
-			animationManager.spawnCharge();
-			gameFrame.setEnterTyped(false);
 		}
 		
 		if (gameFrame.isDownTyped()) {
 			colorManager.changeColor();
 			flappy.jumpDown();
-			//if(ovalJumpReduct == 0){
-				ovalManagement.spawnOval(flappy.getY());
-			//}
+			ovalManagement.spawnOval(flappy.getY());
 			ovalJumpReduct++;
 		}
+		
+		if (gameFrame.isSpaceTyped()){
+			pipeManagement.flappyCharge();
+			ovalManagement.flappyCharge();
+			backGroundStarManagement.charge();
+			animationManager.spawnCharge();
+			gameFrame.setSpaceTyped(false);
+		}
 	}
-
 
 	public void timer2Action() {
 		if (gameFrame.getRestartNow()) {
