@@ -1,5 +1,7 @@
 package FatPack;
 
+import java.util.ArrayList;
+
 import javax.swing.Timer;
 
 public class Controller {
@@ -14,6 +16,7 @@ public class Controller {
 	private ColorManager colorManager;
 	private Timer timer, timer2;
 	private int ovalJumpReduct = 0;
+	private boolean gameOver = false;
 
 	public Controller() {
 		gamePanel = new GamePanel();
@@ -38,7 +41,8 @@ public class Controller {
 		if(gamePanel.getPlay()) {
 			
 			gamePanel.updateSpecialColor(colorManager.getRGB());
-			gamePanel.updatePipes(pipeManagement.update());
+			pipeManagement.update();
+			gamePanel.updatePipes(pipeManagement.getPipes());
 			backGroundStarManagement.update();
 			gamePanel.updateBackGroundStars(backGroundStarManagement.getBackGroundStars());
 			gamePanel.updateFlappy(flappy.getY());
@@ -52,10 +56,16 @@ public class Controller {
 			gamePanel.updateOvals(ovalManagement.getOvals());
 			
 			keyAction();
+				
+			if(flappy.getY() + Values.FLAPPY_HEIGHT <= 0)
+				flappy.teleDown();
+				
+			if(flappy.getY() >= Values.FRAME_HEIGHT)
+				flappy.teleUp();
 			
 			gamePanel.updatePanel();
 			
-			if (gamePanel.gameOver()) {
+			if (gameOver()) {
 				timer.stop();
 				Sound.playClip("Resources/gameOverSound.wav");
 				timer2.start();
@@ -99,8 +109,25 @@ public class Controller {
 			gameFrame.reset();
 			flappy.reset();
 			animationManager.reset();
+			gameOver = false;
 			timer.start();
 			timer2.stop();
 		}
+	}
+	
+	public boolean gameOver() {
+		ArrayList<Pipe> pipes = pipeManagement.getPipes();
+		int flappyY = flappy.getY();
+		
+		if (Values.FLAPPY_X + Values.FLAPPY_WIDTH >= pipes.get(0).getX()
+				&& Values.FLAPPY_X <= pipes.get(0).getX() + pipes.get(0).getWidth()) {
+			if (flappyY <= pipes.get(0).getHeigth1()
+					|| flappyY + Values.FLAPPY_HEIGHT >= pipes.get(0).getHeigth1() + Values.PIPE_GAP) {
+				gameOver = true;
+			}
+		}
+		
+		gamePanel.setGameOver(gameOver);
+		return gameOver;
 	}
 }

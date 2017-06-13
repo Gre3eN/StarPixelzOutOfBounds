@@ -77,7 +77,7 @@ public class GameFrame extends JFrame {
 					isDownTyped = false;
 				
 				if (e.getKeyCode() == KeyEvent.VK_R) {
-					if (gamePanel.gameOver()) {
+					if (gamePanel.getGameOver()) {
 						restartNow = true;
 					}
 				}		

@@ -11,12 +11,15 @@ public class PipeManagement {
 		pipes.add(new Pipe());
 	}
 
-	public ArrayList<Pipe> update() {
+	public void update() {
 		for (int i = 0; i < pipes.size(); i++) {
 			pipes.get(i).moveLeft();
 		}
 		spawnPipe();
-		deletePipe();
+		deletePipe();	
+	}
+	
+	public ArrayList<Pipe> getPipes() {
 		return pipes;
 	}
 	
