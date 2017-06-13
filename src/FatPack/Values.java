@@ -29,6 +29,7 @@ public class Values {
 	public static int FLAPPY_Y = FRAME_HEIGHT / 2;
 	public static int FLAPPY_WIDTH = 50;
 	public static int FLAPPY_HEIGHT = 50;
+	public static int FLAPPY_X2 = FLAPPY_X + FLAPPY_WIDTH;
 	
 	protected static int FLAPPY_JUMP_HEIGHT = 40;
 	protected static int FLAPPY_JUMP_DOWN_HEIGHT = 20;

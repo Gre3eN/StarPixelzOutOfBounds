@@ -13,6 +13,7 @@ public class GamePanel extends JPanel {
 	private ArrayList<Pipe> pipes = new ArrayList<Pipe>();
 	private ArrayList<Oval> ovals = new ArrayList<Oval>();
 	private ArrayList<int[]> backGroundStars = new ArrayList<>();
+	private ArrayList<Collectable> collectables = new ArrayList<>();
 	private int[] xywht;
 	private ArrayList<ChargeAnimation> charge = new ArrayList<>();
 	private int flappyY = Values.FLAPPY_Y;
@@ -25,6 +26,7 @@ public class GamePanel extends JPanel {
 		Graphics2D g2 = (Graphics2D) g;
 		drawBackground(g);
 		drawBackGroundStars(g);
+		drawCollectable(g2);
 		drawOvals(g2);
 		drawPipes(g);
 		drawChargeAnimation(g);
@@ -43,7 +45,7 @@ public class GamePanel extends JPanel {
 	}
 
 	private void drawIdiot(Graphics g) {
-		if (ovals.size() > 40){
+		if (ovals.size() > 40) {
 			g.setColor(Values.FAIL_COLOR);
 			g.setFont(new Font("Harrington", Font.BOLD, 50));
 			g.drawString("Idiot -.-", 100, 100);
@@ -65,7 +67,7 @@ public class GamePanel extends JPanel {
 		if (play) {
 			g.setColor(new Color(specialColor[0], specialColor[1], specialColor[2]));
 			g.fillRect(Values.FLAPPY_X, flappyY, Values.FLAPPY_HEIGHT, Values.FLAPPY_WIDTH);
-		}	
+		}
 	}
 
 	private void drawChargeAnimation(Graphics g) {
@@ -96,7 +98,7 @@ public class GamePanel extends JPanel {
 		g.setColor(Values.BACKGROUND_COLOR);
 		g.fillRect(0, 0, Values.FRAME_WIDTH, Values.FRAME_HEIGHT);
 	}
-	
+
 	private void drawBackGroundStars(Graphics g) {
 		for (int i = 0; i < backGroundStars.size(); i++) {
 			xywht = backGroundStars.get(i);
@@ -105,25 +107,20 @@ public class GamePanel extends JPanel {
 		}
 	}
 
+	private void drawCollectable(Graphics2D g2D) {
+		if (collectables.size() > 0) {
+			g2D.setColor(Color.YELLOW);
+			for (Collectable c : collectables) {
+				g2D.fill(c.getRotatingCore());
+			}
+		}
+	}
+
 	public void updatePanel() {
 		repaint();
 	}
 
-	/*public boolean gameOver() {
-		if (flappyY + Values.FLAPPY_HEIGHT >= Values.FRAME_HEIGHT || flappyY + Values.FLAPPY_HEIGHT <= 0) {
-			gameOver = true;
-		}
-		if (Values.FLAPPY_X + Values.FLAPPY_WIDTH >= pipes.get(0).getX()
-				&& Values.FLAPPY_X <= pipes.get(0).getX() + pipes.get(0).getWidth()) {
-			if (flappyY <= pipes.get(0).getHeigth1()
-					|| flappyY + Values.FLAPPY_HEIGHT >= pipes.get(0).getHeigth1() + Values.PIPE_GAP) {
-				gameOver = true;
-			}
-		}
-		return gameOver;
-	}*/
-	
-	public void updateSpecialColor (int[] rgb){
+	public void updateSpecialColor(int[] rgb) {
 		specialColor = rgb;
 	}
 
@@ -139,11 +136,15 @@ public class GamePanel extends JPanel {
 		this.backGroundStars = backgroundStars;
 	}
 
+	public void updateCollectable(ArrayList<Collectable> collectables) {
+		this.collectables = collectables;
+	}
+
 	public void updateFlappy(int flappyY) {
 		this.flappyY = flappyY;
 	}
-	
-	public void updateCharge(ArrayList<ChargeAnimation> charge){
+
+	public void updateCharge(ArrayList<ChargeAnimation> charge) {
 		this.charge = charge;
 	}
 
@@ -155,7 +156,7 @@ public class GamePanel extends JPanel {
 	public void setGameOver(boolean gameOver) {
 		this.gameOver = gameOver;
 	}
-	
+
 	public boolean getGameOver() {
 		return gameOver;
 	}

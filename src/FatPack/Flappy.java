@@ -1,9 +1,11 @@
 package FatPack;
 
+import java.awt.Rectangle;
+
 public class Flappy {
 	// TODO Flappy Sturzflug
 	private int y;
-	
+
 	public Flappy() {
 		y=Values.FRAME_HEIGHT / 2;
 	}
@@ -31,7 +33,9 @@ public class Flappy {
 	public int getY() {
 		return y;
 	}
-	
+	public Rectangle getRect() {
+		return new Rectangle(Values.FLAPPY_X, y, Values.FLAPPY_WIDTH,Values.FLAPPY_HEIGHT);
+	}
 	public void reset() {
 		y = Values.FRAME_HEIGHT / 2;
 	}
