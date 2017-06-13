@@ -15,7 +15,6 @@ public class Controller {
 	private AnimationManager animationManager;
 	private ColorManager colorManager;
 	private Timer timer, timer2;
-	private int ovalJumpReduct = 0;
 	private boolean gameOver = false;
 
 	public Controller() {
@@ -74,21 +73,20 @@ public class Controller {
 	}
 
 	private void keyAction() {
-		if (ovalJumpReduct >= 2)
-			ovalJumpReduct = 0;
+
 		
 		if (gameFrame.isUpTyped()){
 			colorManager.changeColor();
 			flappy.jump();
 			ovalManagement.spawnOval(flappy.getY());
-			ovalJumpReduct++;	
+			
 		}
 		
 		if (gameFrame.isDownTyped()) {
 			colorManager.changeColor();
 			flappy.jumpDown();
 			ovalManagement.spawnOval(flappy.getY());
-			ovalJumpReduct++;
+			
 		}
 		
 		if (gameFrame.isSpaceTyped()){
