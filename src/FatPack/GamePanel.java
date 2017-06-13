@@ -28,7 +28,7 @@ public class GamePanel extends JPanel {
 		drawBackGroundStars(g);
 		drawCollectable(g2);
 		drawOvals(g2);
-		drawPipes(g);
+		drawPipes(g2);
 		drawChargeAnimation(g);
 		drawPlayer(g);
 		drawFail(g);
@@ -77,20 +77,19 @@ public class GamePanel extends JPanel {
 		}
 	}
 
-	private void drawPipes(Graphics g) {
+	private void drawPipes(Graphics2D g) {
 		for (Pipe p : pipes) {
 			g.setColor(Values.PIPE_COLOR);
-			g.fillRect(p.getX(), p.getY1(), p.getWidth(), p.getHeigth1());
-			g.fillRect(p.getX(), p.getY2(), p.getWidth(), p.getHeigth2());
+			g.fill(p.pipeShape());
 		}
 	}
 
-	private void drawOvals(Graphics2D g2) {
+	private void drawOvals(Graphics2D g) {
 		Shape ring;
 		for (Oval o : ovals) {
-			g2.setColor(new Color(specialColor[0], specialColor[1], specialColor[2], o.getTransparency()));
+			g.setColor(new Color(specialColor[0], specialColor[1], specialColor[2], o.getTransparency()));
 			ring = Values.createRingShape(o.getX(), o.getY(), o.getSize());
-			g2.fill(ring);
+			g.fill(ring);
 		}
 	}
 
@@ -107,11 +106,11 @@ public class GamePanel extends JPanel {
 		}
 	}
 
-	private void drawCollectable(Graphics2D g2D) {
+	private void drawCollectable(Graphics2D g) {
 		if (collectables.size() > 0) {
-			g2D.setColor(Color.YELLOW);
+			g.setColor(new Color(specialColor[0], specialColor[1], specialColor[2]));
 			for (Collectable c : collectables) {
-				g2D.fill(c.getRotatingCore());
+				g.fill(c.getRotatingCore());
 			}
 		}
 	}

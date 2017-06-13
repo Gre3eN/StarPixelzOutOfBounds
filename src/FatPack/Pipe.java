@@ -1,23 +1,41 @@
 package FatPack;
 
+import java.util.ArrayList;
 import java.util.Random;
+import java.awt.Shape;
+import java.awt.geom.Area;
+import java.awt.geom.Rectangle2D;
 
 public class Pipe {
-
-	private Random randy = new Random();
-	private int x;
-	private int y1, y2;
-	private int heigth1, heigth2;
-	private int width;
-
-	public Pipe() {
-		x = Values.FRAME_WIDTH;
-		y1 = 0;
-		heigth1 = randy.nextInt(Values.FRAME_HEIGHT - Values.PIPE_GAP - 2* Values.MIN_PIPE_HEIGHT)
-				+ Values.MIN_PIPE_HEIGHT;
-		y2 = heigth1 + Values.PIPE_GAP;
-		heigth2 = Values.FRAME_HEIGHT - y2;
-		width = Values.PIPE_WIDTH;
+	
+	protected Random randy;
+	protected int x;
+	protected int gapY0, gapY1, gapY2;
+	protected int gapCount;
+	protected int[] gap;
+	protected int[] gapHeight;	
+	
+	public Pipe(){
+		randy = new Random();
+	}
+	
+	protected Shape fullPipeShape(){
+		return new Rectangle2D.Double(x, 0, Values.PIPE_WIDTH, Values.FRAME_HEIGHT);
+	}
+	
+	protected ArrayList<Shape> gapShape(){
+		ArrayList<Shape> gaps = new ArrayList<>();
+		for (int i=0; i < gapCount; i++){
+			gaps.add(new Rectangle2D.Double(x, gap[i], Values.PIPE_WIDTH, gapHeight[i]));
+		}
+		return gaps;
+	}
+	
+	protected Shape pipeShape(){
+		Area area = new Area(fullPipeShape());
+		for (Shape s : gapShape())
+			area.subtract(new Area(s));
+		return area;
 	}
 
 	public void moveLeft() {
@@ -31,24 +49,12 @@ public class Pipe {
 	public int getX() {
 		return x;
 	}
-
-	public int getY1() {
-		return y1;
+	
+	public int[] getGaps(){
+		return gap;
 	}
 	
-	public int getY2() {
-		return y2;
-	}
-
-	public int getHeigth1() {
-		return heigth1;
-	}
-	
-	public int getHeigth2() {
-		return heigth2;
-	}
-
-	public int getWidth() {
-		return width;
+	public int getGapCount() {
+		return gapCount;
 	}
 }

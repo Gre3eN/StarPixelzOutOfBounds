@@ -131,9 +131,9 @@ public class Controller implements Observer {
 		int flappyY = flappy.getY();
 
 		if (Values.FLAPPY_X + Values.FLAPPY_WIDTH >= pipes.get(0).getX()
-				&& Values.FLAPPY_X <= pipes.get(0).getX() + pipes.get(0).getWidth()) {
-			if (flappyY <= pipes.get(0).getHeigth1()
-					|| flappyY + Values.FLAPPY_HEIGHT >= pipes.get(0).getHeigth1() + Values.PIPE_GAP) {
+				&& Values.FLAPPY_X <= pipes.get(0).getX() + Values.PIPE_WIDTH) {
+			if (flappyY <= pipes.get(0).getGaps()[0]
+					|| flappyY + Values.FLAPPY_HEIGHT >= pipes.get(0).getGaps()[0] + Values.PIPE_GAP) {
 				gameOver = true;
 			}
 		}

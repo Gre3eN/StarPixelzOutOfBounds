@@ -8,7 +8,7 @@ public class PipeManagement {
 	private int pipeScore = 0;
 
 	public PipeManagement() {
-		pipes.add(new Pipe());
+		pipes.add(new NormalPipe());
 	}
 
 	public void update() {
@@ -16,11 +16,7 @@ public class PipeManagement {
 			pipes.get(i).moveLeft();
 		}
 		spawnPipe();
-		deletePipe();	
-	}
-	
-	public ArrayList<Pipe> getPipes() {
-		return pipes;
+		deletePipe();
 	}
 	
 	public void flappyCharge() {
@@ -31,12 +27,12 @@ public class PipeManagement {
 
 	private void spawnPipe() {
 		if (pipes.get(pipes.size() - 1).getX() <= Values.FRAME_WIDTH - Values.PIPE_SPAWN_GAP) {
-			pipes.add(new Pipe());
+			pipes.add(new NormalPipe());
 		}
 	}
 
 	private void deletePipe() {
-		if (pipes.get(0).getX() < -pipes.get(0).getWidth()) {
+		if (pipes.get(0).getX() < -Values.PIPE_WIDTH) {
 			pipes.remove(0);
 			pipeScore++;
 			Sound.playClip("Resources/powerup4.wav");
@@ -45,8 +41,12 @@ public class PipeManagement {
 
 	public void reset() {
 		pipes.clear();
-		pipes.add(new Pipe());
+		pipes.add(new NormalPipe());
 		pipeScore=0;
+	}
+	
+	public ArrayList<Pipe> getPipes(){
+		return pipes;
 	}
 	
 	public int getScore() {
