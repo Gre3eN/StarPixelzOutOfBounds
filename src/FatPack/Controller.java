@@ -43,6 +43,12 @@ public class Controller implements Observer {
 
 	public void timerAction() {
 		if (gamePanel.getPlay()) {
+			
+			if (gameOver()) {
+				timer.stop();
+				Sound.playClip("Resources/gameOverSound.wav");
+				timer2.start();
+			}
 
 			gamePanel.updateSpecialColor(colorManager.getRGB());
 			pipeManagement.update();
@@ -53,7 +59,8 @@ public class Controller implements Observer {
 
 			gamePanel.updateCollectable(collectableManager.getCollectables());
 			gamePanel.updateFlappy(flappy.getY());
-			flappy.fall();
+			if (!gameFrame.isUpTyped() || !gameFrame.isDownTyped())
+				flappy.fall();
 			animationManager.update();
 			gamePanel.updateCharge(animationManager.getCharge());
 			gameFrame.setScore(pipeManagement.getScore());
@@ -72,11 +79,6 @@ public class Controller implements Observer {
 
 			gamePanel.updatePanel();
 
-			if (gameOver()) {
-				timer.stop();
-				Sound.playClip("Resources/gameOverSound.wav");
-				timer2.start();
-			}
 		}
 	}
 
