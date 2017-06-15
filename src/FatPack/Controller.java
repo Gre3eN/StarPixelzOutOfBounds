@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
 public class Controller implements Observer {
@@ -18,6 +19,7 @@ public class Controller implements Observer {
 	private Flappy flappy;
 	private AnimationManager animationManager;
 	private ColorManager colorManager;
+	private HighScore highScore;
 	private Timer timer, timer2;
 	private int ovalJumpReduct = 0;
 	private boolean gameOver = false;
@@ -32,11 +34,13 @@ public class Controller implements Observer {
 		flappy = new Flappy();
 		animationManager = new AnimationManager();
 		colorManager = new ColorManager();
-		gamePanel.updateSpecialColor(colorManager.getRGB());
+		highScore = new HighScore();
 
 		timer = new Timer(Values.TIMER_DELAY, listener -> timerAction());
 		timer2 = new Timer(Values.TIMER_DELAY / 10, listener -> timer2Action());
 		timer.start();
+		gamePanel.updatePlayer(highScore.getPlayers());
+		gamePanel.updateSpecialColor(colorManager.getRGB());
 		gamePanel.updatePanel();
 		Sound.playClip("Resources/through_space.wav");
 	}
@@ -48,6 +52,7 @@ public class Controller implements Observer {
 				timer.stop();
 				Sound.playClip("Resources/gameOverSound.wav");
 				timer2.start();
+				highScoreCheck();
 			}
 
 			gamePanel.updateSpecialColor(colorManager.getRGB());
@@ -141,6 +146,16 @@ public class Controller implements Observer {
 		gamePanel.setGameOver(gameOver);
 		return gameOver;
 	}
+	
+	public void highScoreCheck() {
+		ArrayList<Player> players = highScore.getPlayers();
+		if (pipeManagement.getScore() > 0) {
+			if (players.size() < 10 || players.get(9).getScore() < pipeManagement.getScore()) {
+				String name = JOptionPane.showInputDialog(gameFrame,"Enter your name","New Highscore!",JOptionPane.PLAIN_MESSAGE);
+				highScore.newPlayer(pipeManagement.getScore(), name);
+			}
+		}
+	}	
 
 	@Override
 	public void update(Observable o, Object arg) {

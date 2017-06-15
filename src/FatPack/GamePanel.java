@@ -2,6 +2,7 @@ package FatPack;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Shape;
@@ -14,8 +15,9 @@ public class GamePanel extends JPanel {
 	private ArrayList<Oval> ovals = new ArrayList<Oval>();
 	private ArrayList<int[]> backGroundStars = new ArrayList<>();
 	private ArrayList<Collectable> collectables = new ArrayList<>();
-	private int[] xywht;
+	private ArrayList<Player> players = new ArrayList<Player>();
 	private ArrayList<ChargeAnimation> charge = new ArrayList<>();
+	private int[] xywht;
 	private int flappyY = Values.FLAPPY_Y;
 	private int[] specialColor;
 	private boolean gameOver = false;
@@ -41,6 +43,8 @@ public class GamePanel extends JPanel {
 			g.setColor(Values.FAIL_COLOR);
 			g.setFont(new Font("Harrington", Font.BOLD, 150));
 			g.drawString("Press 'S' to start", Values.FRAME_WIDTH / 11, Values.FRAME_HEIGHT / 2);
+			
+			drawHighScoreList(g);
 		}
 	}
 
@@ -60,6 +64,8 @@ public class GamePanel extends JPanel {
 
 			g.setFont(new Font("Harrington", Font.PLAIN, 50));
 			g.drawString("press R", Values.FLAPPY_X + 230, Values.FRAME_HEIGHT / 2 + 100);
+			
+			drawHighScoreList(g);	
 		}
 	}
 
@@ -114,6 +120,26 @@ public class GamePanel extends JPanel {
 			}
 		}
 	}
+	
+	private void drawHighScoreList(Graphics g) {
+		g.setFont(new Font("Harrington", Font.BOLD, 50));
+		FontMetrics fontMetrics = g.getFontMetrics();
+			
+		for (int i=0;i<10;i++) {		
+			int y = Values.FRAME_HEIGHT - 610 + fontMetrics.getHeight() * i;
+			if (i < players.size()) {
+				String name = players.get(i).getName();
+				String score = Integer.toString(players.get(i).getScore());
+				int x1 = Values.FRAME_WIDTH - 140 - fontMetrics.stringWidth(name);
+				int x2 = Values.FRAME_WIDTH - 20 - fontMetrics.stringWidth(score);
+				g.drawString(name, x1, y);
+				g.drawString(score, x2, y);
+			} else {
+				g.drawString("-", Values.FRAME_WIDTH - 20 - fontMetrics.stringWidth("-"), y);
+				g.drawString("-", Values.FRAME_WIDTH - 140 - fontMetrics.stringWidth("-"), y);
+			}
+		}	
+	}
 
 	public void updatePanel() {
 		repaint();
@@ -145,6 +171,10 @@ public class GamePanel extends JPanel {
 
 	public void updateCharge(ArrayList<ChargeAnimation> charge) {
 		this.charge = charge;
+	}
+	
+	public void updatePlayer(ArrayList<Player> players) {
+		this.players = players;
 	}
 
 	public void reset() {
