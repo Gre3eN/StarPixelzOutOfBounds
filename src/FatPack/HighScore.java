@@ -10,7 +10,7 @@ import java.util.Collections;
 
 public class HighScore{
 	
-	private ArrayList<Player> players;
+	private ArrayList<PlayerAttempt> players;
 	
 	public HighScore() {
 		readFile();
@@ -18,13 +18,13 @@ public class HighScore{
 	}
 	
 	private void readFile() {
-		players = new ArrayList<Player>();	
+		players = new ArrayList<PlayerAttempt>();	
 		try	{
 			BufferedReader reader = new BufferedReader(new FileReader("Resources/highscores.txt"));
 			String currentLine;
 			while((currentLine = reader.readLine()) != null) {
 				String[] temp = currentLine.split(":");
-				players.add(new Player(temp[0],Integer.valueOf(temp[1])));
+				players.add(new PlayerAttempt(temp[0],Integer.valueOf(temp[1])));
 			}
 			reader.close();
 			
@@ -51,12 +51,12 @@ public class HighScore{
 	}
 	
 	public void newPlayer(int score, String name) {
-		players.add(new Player(name,score));
+		players.add(new PlayerAttempt(name,score));
 		sort();
 		writeFile();
 	}
 	
-	public ArrayList<Player> getPlayers() {
+	public ArrayList<PlayerAttempt> getPlayers() {
 		return players;
 	}
 }
