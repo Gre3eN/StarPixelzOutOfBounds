@@ -44,13 +44,16 @@ public class Controller implements Observer {
 		animationManager = new AnimationManager();
 		colorManager = new ColorManager();
 		highScore = new HighScore();
+		
+		gamePanel.updatePlayer(highScore.getPlayers());
+		gamePanel.updateSpecialColor(colorManager.getRGB());
+		gamePanel.updateBackGroundStars(backGroundStarManagement.getBackGroundStars());
+		gamePanel.updatePanel();
 
 		timer = new Timer(Values.TIMER_DELAY, listener -> timerAction());
 		timer2 = new Timer(Values.TIMER_DELAY / 10, listener -> timer2Action());
 		timer.start();
-		gamePanel.updatePlayer(highScore.getPlayers());
-		gamePanel.updateSpecialColor(colorManager.getRGB());
-		gamePanel.updatePanel();
+		
 		Sound.playClip("Resources/through_space.wav");
 	}
 
@@ -128,7 +131,6 @@ public class Controller implements Observer {
 		if (gameFrame.getRestartNow()) {
 			pipeManagement.reset();
 			ovalManagement.reset();
-			backGroundStarManagement.reset();
 			collectableManager.reset();
 			gamePanel.reset();
 			gameFrame.reset();

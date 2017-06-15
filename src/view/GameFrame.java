@@ -40,6 +40,7 @@ public class GameFrame extends JFrame {
 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(Values.FRAME_WIDTH, Values.FRAME_HEIGHT);
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setVisible(true);
 
 		addKeyListener(new KeyListener() {
@@ -62,8 +63,10 @@ public class GameFrame extends JFrame {
 				}
 				
 				if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-					isSpaceTyped = true;
-					Sound.playClip("Resources/jump42.wav");
+					if (!gamePanel.getGameOver()) {
+						isSpaceTyped = true;
+						Sound.playClip("Resources/jump42.wav");
+					}
 				}
 				
 				if (e.getKeyCode() == KeyEvent.VK_S) {
