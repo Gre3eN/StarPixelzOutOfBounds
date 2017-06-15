@@ -5,8 +5,6 @@ import java.awt.geom.AffineTransform;
 import java.awt.Rectangle;
 import java.util.Observable;
 import java.util.Random;
-
-import FatPack.CollectableValues;
 import FatPack.Values;
 
 public class Collectable extends Observable {
@@ -25,7 +23,7 @@ public class Collectable extends Observable {
 
 		x = Values.FRAME_WIDTH;
 		y = randy.nextInt(Values.FRAME_HEIGHT - 200) + 50;
-		hitBox = new Rectangle(x, y, CollectableValues.WIDTH, CollectableValues.HEIGHT);
+		hitBox = new Rectangle(x, y, Values.C_WIDTH, Values.C_HEIGHT);
 
 		rotatingCore = (Shape) hitBox;
 		rotatingCoreHolder = (Shape) hitBox;
@@ -43,12 +41,12 @@ public class Collectable extends Observable {
 	}
 
 	private void moveLeft() {
-		transform.setToTranslation(-CollectableValues.SPEED, 0);
+		transform.setToTranslation(-Values.C_SPEED, 0);
 		rotatingCore = transform.createTransformedShape(rotatingCoreHolder);
 		rotatingCoreHolder = rotatingCore;
 
-		hitBox.x -= CollectableValues.SPEED;
-		anchorx -= CollectableValues.SPEED;
+		hitBox.x -= Values.C_SPEED;
+		anchorx -= Values.C_SPEED;
 	}
 
 	private void rotate() {

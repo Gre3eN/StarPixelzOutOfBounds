@@ -2,8 +2,6 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.Random;
-
-import FatPack.StarValues;
 import FatPack.Values;
 import model.BackGroundStar;
 
@@ -15,7 +13,7 @@ public class BackGroundStarManagement {
 	int[] starData;
 
 	public BackGroundStarManagement() {
-		for (int i = 0; i < StarValues.INITIAL_COUNT; i++) {
+		for (int i = 0; i < Values.S_INITIAL_COUNT; i++) {
 			random = randy.nextInt(8) + 2;
 			backGroundStars.addAll(new BackGroundStar(0, random).getBackGroundStar());
 		}
@@ -24,7 +22,7 @@ public class BackGroundStarManagement {
 	public void update() {
 		for (int i = 0; i < backGroundStars.size(); i++) {
 			starData = backGroundStars.get(i);
-			starData[0] -= (StarValues.SPEED +starData[4]);
+			starData[0] -= (Values.S_SPEED +starData[4]);
 			backGroundStars.set(i, starData);
 		}
 		delete();
@@ -40,7 +38,7 @@ public class BackGroundStarManagement {
 	}
 
 	private void spawn() {
-		if (backGroundStars.size() < StarValues.MAX_COUNT) {
+		if (backGroundStars.size() < Values.S_MAX_COUNT) {
 			random = randy.nextInt(8) + 2;
 			backGroundStars.addAll(new BackGroundStar(1, random).getBackGroundStar());
 		}
@@ -56,7 +54,7 @@ public class BackGroundStarManagement {
 
 	public void reset() {
 		backGroundStars.clear();
-		for (int i = 0; i < StarValues.INITIAL_COUNT; i++) {
+		for (int i = 0; i < Values.S_INITIAL_COUNT; i++) {
 			random = randy.nextInt(7) + 1;
 			backGroundStars.addAll(new BackGroundStar(0, random).getBackGroundStar());
 		}

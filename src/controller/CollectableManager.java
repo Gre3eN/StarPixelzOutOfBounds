@@ -1,8 +1,7 @@
 package controller;
 
 import java.util.ArrayList;
-
-import FatPack.CollectableValues;
+import FatPack.Values;
 import model.Collectable;
 
 public class CollectableManager {
@@ -24,7 +23,7 @@ public class CollectableManager {
 	}
 
 	public void update(int score) {
-		if (score % CollectableValues.PIPES_TO_SPAWN == 0 && score != lastSpawnAt) {
+		if (score % Values.C_PIPES_TO_SPAWN == 0 && score != lastSpawnAt) {
 			lastSpawnAt = score;
 			spawnCollectable();
 		}
