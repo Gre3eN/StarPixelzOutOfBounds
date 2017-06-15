@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class HighScore {
+public class HighScore{
 	
 	private ArrayList<Player> players;
 	
@@ -47,7 +47,7 @@ public class HighScore {
 	}
 	
 	private void sort() {
-		Collections.sort(players, new PlayerComparator());
+		Collections.sort(players);
 	}
 	
 	public void newPlayer(int score, String name) {

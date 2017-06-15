@@ -1,6 +1,6 @@
 package FatPack;
 
-public class Player {
+public class Player implements Comparable<Player> {
 	
 	private int score;
 	private String name;
@@ -16,5 +16,14 @@ public class Player {
 	
 	public String getName() {
 		return name;
+	}
+
+	@Override
+	public int compareTo(Player p) {
+		if (score > p.score)
+			return -1;
+		else if (score < p.score)
+			return 1;
+		return name.compareTo(p.name);
 	}	
 }
