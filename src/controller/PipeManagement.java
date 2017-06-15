@@ -1,6 +1,11 @@
-package FatPack;
+package controller;
 
 import java.util.ArrayList;
+
+import FatPack.Sound;
+import FatPack.Values;
+import model.NormalPipe;
+import model.Pipe;
 
 public class PipeManagement {
 

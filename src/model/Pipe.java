@@ -1,7 +1,10 @@
-package FatPack;
+package model;
 
 import java.util.ArrayList;
 import java.util.Random;
+
+import FatPack.Values;
+
 import java.awt.Shape;
 import java.awt.geom.Area;
 import java.awt.geom.Rectangle2D;
@@ -31,7 +34,7 @@ public class Pipe {
 		return gaps;
 	}
 	
-	protected Shape pipeShape(){
+	public Shape pipeShape(){
 		Area area = new Area(fullPipeShape());
 		for (Shape s : gapShape())
 			area.subtract(new Area(s));

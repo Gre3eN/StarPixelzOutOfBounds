@@ -1,4 +1,4 @@
-package FatPack;
+package view;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -8,6 +8,13 @@ import java.awt.Graphics2D;
 import java.awt.Shape;
 import java.util.ArrayList;
 import javax.swing.JPanel;
+
+import FatPack.Values;
+import model.ChargeAnimation;
+import model.Collectable;
+import model.Oval;
+import model.Pipe;
+import model.PlayerAttempt;
 
 public class GamePanel extends JPanel {
 

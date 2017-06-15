@@ -1,4 +1,4 @@
-package FatPack;
+package controller;
 
 import java.awt.Rectangle;
 import java.util.ArrayList;
@@ -7,6 +7,15 @@ import java.util.Observer;
 
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
+
+import FatPack.Sound;
+import FatPack.Values;
+import model.Collectable;
+import model.Flappy;
+import model.Pipe;
+import model.PlayerAttempt;
+import view.GameFrame;
+import view.GamePanel;
 
 public class Controller implements Observer {
 

@@ -1,7 +1,9 @@
-package FatPack;
+package model;
 
 import java.util.ArrayList;
 import java.util.Random;
+
+import FatPack.Values;
 
 public class BackGroundStar {
 

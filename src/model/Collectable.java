@@ -1,10 +1,13 @@
-package FatPack;
+package model;
 
 import java.awt.Shape;
 import java.awt.geom.AffineTransform;
 import java.awt.Rectangle;
 import java.util.Observable;
 import java.util.Random;
+
+import FatPack.CollectableValues;
+import FatPack.Values;
 
 public class Collectable extends Observable {
 

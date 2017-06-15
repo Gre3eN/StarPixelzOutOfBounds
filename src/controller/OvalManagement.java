@@ -1,6 +1,12 @@
-package FatPack;
+package controller;
 
 import java.util.ArrayList;
+
+import FatPack.Values;
+import model.InnerOval;
+import model.MidOval;
+import model.OuterOval;
+import model.Oval;
 
 public class OvalManagement {
 

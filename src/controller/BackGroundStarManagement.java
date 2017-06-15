@@ -1,7 +1,11 @@
-package FatPack;
+package controller;
 
 import java.util.ArrayList;
 import java.util.Random;
+
+import FatPack.StarValues;
+import FatPack.Values;
+import model.BackGroundStar;
 
 public class BackGroundStarManagement {
 

@@ -1,6 +1,8 @@
-package FatPack;
+package model;
 
 import java.awt.Rectangle;
+
+import FatPack.Values;
 
 public class Flappy {
 	// TODO Flappy Sturzflug

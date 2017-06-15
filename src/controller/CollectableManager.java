@@ -1,6 +1,9 @@
-package FatPack;
+package controller;
 
 import java.util.ArrayList;
+
+import FatPack.CollectableValues;
+import model.Collectable;
 
 public class CollectableManager {
 

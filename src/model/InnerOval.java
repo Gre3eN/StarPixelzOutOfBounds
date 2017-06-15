@@ -1,4 +1,6 @@
-package FatPack;
+package model;
+
+import FatPack.Values;
 
 public class InnerOval extends Oval{
 

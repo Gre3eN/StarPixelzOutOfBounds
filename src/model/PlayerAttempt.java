@@ -1,4 +1,4 @@
-package FatPack;
+package model;
 
 public class PlayerAttempt implements Comparable<PlayerAttempt> {
 	

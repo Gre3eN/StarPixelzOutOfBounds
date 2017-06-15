@@ -11,17 +11,17 @@ public class Values {
 
 	static GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
 	
-	protected static int FRAME_WIDTH = gd.getDisplayMode().getWidth();
-	protected static int FRAME_HEIGHT = gd.getDisplayMode().getHeight() ;
+	public static int FRAME_WIDTH = gd.getDisplayMode().getWidth();
+	public static int FRAME_HEIGHT = gd.getDisplayMode().getHeight() ;
 
-	protected static int FLOOR_HEIGHT = FRAME_HEIGHT/10;
-	protected static int MIN_PIPE_HEIGHT = 150;
+	public static int FLOOR_HEIGHT = FRAME_HEIGHT/10;
+	public static int MIN_PIPE_HEIGHT = 150;
 
-	protected static int PIPE_WIDTH = 50;
-	protected static int PIPE_GAP = 140;
-	protected static int PIPE_SPEED = 10;
+	public static int PIPE_WIDTH = 50;
+	public static int PIPE_GAP = 140;
+	public static int PIPE_SPEED = 10;
 
-	protected static int PIPE_SPAWN_GAP = FRAME_WIDTH/3 + FRAME_WIDTH/6;
+	public static int PIPE_SPAWN_GAP = FRAME_WIDTH/3 + FRAME_WIDTH/6;
 	
 	public static int TIMER_DELAY = 50;
 	
@@ -31,45 +31,45 @@ public class Values {
 	public static int FLAPPY_HEIGHT = 50;
 	public static int FLAPPY_X2 = FLAPPY_X + FLAPPY_WIDTH;
 	
-	protected static int FLAPPY_JUMP_HEIGHT = 40;
-	protected static int FLAPPY_JUMP_DOWN_HEIGHT = 20;
-	protected static int FLAPPY_FALL_HEIGHT = FRAME_HEIGHT/110;
-	protected static int FLAPPY_CHARGE_SPEED = 80;
+	public static int FLAPPY_JUMP_HEIGHT = 40;
+	public static int FLAPPY_JUMP_DOWN_HEIGHT = 20;
+	public static int FLAPPY_FALL_HEIGHT = FRAME_HEIGHT/110;
+	public static int FLAPPY_CHARGE_SPEED = 80;
 	
-	protected static int FLAPPY_ANIMATION_COUNT = 3;
-	protected static int FLAPPY_ANIMATION_RANGE_RATE = FLAPPY_CHARGE_SPEED / FLAPPY_ANIMATION_COUNT - FLAPPY_CHARGE_SPEED / 20;
-	protected static int FLAPPY_ANIMATION_TIME = 3; 	//timer actions
-	protected static int FLAPPY_ANIMATION_START_TRANSPARENCY = 100;
-	protected static int FLAPPY_ANIMATION_TRANSPARENCY_LOSS = FLAPPY_ANIMATION_START_TRANSPARENCY / FLAPPY_ANIMATION_TIME;
+	public static int FLAPPY_ANIMATION_COUNT = 3;
+	public static int FLAPPY_ANIMATION_RANGE_RATE = FLAPPY_CHARGE_SPEED / FLAPPY_ANIMATION_COUNT - FLAPPY_CHARGE_SPEED / 20;
+	public static int FLAPPY_ANIMATION_TIME = 3; 	//timer actions
+	public static int FLAPPY_ANIMATION_START_TRANSPARENCY = 100;
+	public static int FLAPPY_ANIMATION_TRANSPARENCY_LOSS = FLAPPY_ANIMATION_START_TRANSPARENCY / FLAPPY_ANIMATION_TIME;
 	
-	protected static int OVAL_HEIGHT = FLAPPY_HEIGHT;
-	protected static int OVAL_WIDTH = FLAPPY_WIDTH;
+	public static int OVAL_HEIGHT = FLAPPY_HEIGHT;
+	public static int OVAL_WIDTH = FLAPPY_WIDTH;
 	
-	protected static int FIRST_OVAL_EXPAND_RATE = 80;
-	protected static int SECOND_OVAL_EXPAND_RATE = 60;
-	protected static int FOURTH_OVAL_EXPAND_RATE = 50;
+	public static int FIRST_OVAL_EXPAND_RATE = 80;
+	public static int SECOND_OVAL_EXPAND_RATE = 60;
+	public static int FOURTH_OVAL_EXPAND_RATE = 50;
 	
-	protected static int OVAL_EXPAND_TIME = 12;
+	public static int OVAL_EXPAND_TIME = 12;
 	
-	protected static int OVAL_COUNT = 5;
+	public static int OVAL_COUNT = 5;
 	
-	protected static int FIRST_OVAL_START_TRANSPERENCY = 127;
-	protected static int SECOND_OVAL_START_TRANSPERENCY = 255;
-	protected static int FOURTH_OVAL_START_TRANSPERENCY = 127;
+	public static int FIRST_OVAL_START_TRANSPERENCY = 127;
+	public static int SECOND_OVAL_START_TRANSPERENCY = 255;
+	public static int FOURTH_OVAL_START_TRANSPERENCY = 127;
 	
-	protected static int OVAL_COLOR_CHANGE_RATE = 15; //can only be 5 or 15 because 255 % x has to be 0 or the code in the ColorManager.changeColor() needs to be changed
+	public static int OVAL_COLOR_CHANGE_RATE = 15; //can only be 5 or 15 because 255 % x has to be 0 or the code in the ColorManager.changeColor() needs to be changed
 	
-	protected static int OUTER_OVAL_TRANSPERENCY_LOSS = 5;
-	protected static int INNER_OVAL_TRANSPERENCY_LOSS = 2 * OUTER_OVAL_TRANSPERENCY_LOSS;
+	public static int OUTER_OVAL_TRANSPERENCY_LOSS = 5;
+	public static int INNER_OVAL_TRANSPERENCY_LOSS = 2 * OUTER_OVAL_TRANSPERENCY_LOSS;
 	
-	protected static int OVALS_CAP = 15;
+	public static int OVALS_CAP = 15;
 	
-	protected static Color BACKGROUND_COLOR = new Color(0, 0, 0);
-	protected static Color FLOOR_COLOR = new Color(40, 40, 40);
-	protected static Color PIPE_COLOR = new Color(0, 0, 0);
-	protected static Color FAIL_COLOR = new Color(255, 255, 255, 200);
+	public static Color BACKGROUND_COLOR = new Color(0, 0, 0);
+	public static Color FLOOR_COLOR = new Color(40, 40, 40);
+	public static Color PIPE_COLOR = new Color(0, 0, 0);
+	public static Color FAIL_COLOR = new Color(255, 255, 255, 200);
 	
-	protected static Shape createRingShape(double x, double y, double size) {
+	public static Shape createRingShape(double x, double y, double size) {
 		Ellipse2D outer = new Ellipse2D.Double(x, y, size, size);
 		Ellipse2D inner = new Ellipse2D.Double(x + size * 0.15, y + size * 0.15, size * 0.7, size * 0.7);
 		Area area = new Area(outer);

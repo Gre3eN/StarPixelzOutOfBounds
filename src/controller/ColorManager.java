@@ -1,6 +1,8 @@
-package FatPack;
+package controller;
 
 import java.awt.Color;
+
+import FatPack.Values;
 
 public class ColorManager {
 	

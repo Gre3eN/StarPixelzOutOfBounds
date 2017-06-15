@@ -1,6 +1,9 @@
-package FatPack;
+package controller;
 
 import java.util.ArrayList;
+
+import FatPack.Values;
+import model.ChargeAnimation;
 
 public class AnimationManager {
 	
