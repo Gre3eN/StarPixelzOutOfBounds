@@ -148,7 +148,7 @@ public class Controller implements Observer {
 	}
 	
 	public void highScoreCheck() {
-		ArrayList<Player> players = highScore.getPlayers();
+		ArrayList<PlayerAttempt> players = highScore.getPlayers();
 		if (pipeManagement.getScore() > 0) {
 			if (players.size() < 10 || players.get(9).getScore() < pipeManagement.getScore()) {
 				String name = JOptionPane.showInputDialog(gameFrame,"Enter your name","New Highscore!",JOptionPane.PLAIN_MESSAGE);

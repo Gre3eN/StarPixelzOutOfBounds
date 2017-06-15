@@ -15,7 +15,7 @@ public class GamePanel extends JPanel {
 	private ArrayList<Oval> ovals = new ArrayList<Oval>();
 	private ArrayList<int[]> backGroundStars = new ArrayList<>();
 	private ArrayList<Collectable> collectables = new ArrayList<>();
-	private ArrayList<Player> players = new ArrayList<Player>();
+	private ArrayList<PlayerAttempt> players = new ArrayList<PlayerAttempt>();
 	private ArrayList<ChargeAnimation> charge = new ArrayList<>();
 	private int[] xywht;
 	private int flappyY = Values.FLAPPY_Y;
@@ -173,7 +173,7 @@ public class GamePanel extends JPanel {
 		this.charge = charge;
 	}
 	
-	public void updatePlayer(ArrayList<Player> players) {
+	public void updatePlayer(ArrayList<PlayerAttempt> players) {
 		this.players = players;
 	}
 
