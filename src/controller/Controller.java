@@ -1,6 +1,8 @@
 package controller;
 
 import java.awt.Rectangle;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -31,11 +33,65 @@ public class Controller implements Observer {
 	private HighScore highScore;
 	private Timer timer, timer2;
 	private int ovalJumpReduct = 0;
+	// for KeyListener and smooth controls
 	private boolean gameOver = false;
+	private boolean restartNow = false;
+	private boolean isUpTyped = false;
+	private boolean isSpaceTyped = false;
+	private boolean isDownTyped = false;
 
 	public Controller() {
 		gamePanel = new GamePanel();
 		gameFrame = new GameFrame(gamePanel);
+		gameFrame.addKeyListener(new KeyListener() {
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_UP) {
+					if (!gamePanel.getGameOver()) {
+						isUpTyped = true;
+						Sound.playClip("Resources/jump42.wav");
+					}
+				}
+
+				if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+					if (!gamePanel.getGameOver()) {
+						isDownTyped = true;
+						Sound.playClip("Resources/jump22.wav");
+					}
+				}
+
+				if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+					if (!gamePanel.getGameOver()) {
+						isSpaceTyped = true;
+						Sound.playClip("Resources/jump23.wav");
+					}
+				}
+
+				if (e.getKeyCode() == KeyEvent.VK_S) {
+					gamePanel.setPlay(true);
+				}
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_UP)
+					isUpTyped = false;
+
+				if (e.getKeyCode() == KeyEvent.VK_DOWN)
+					isDownTyped = false;
+
+				if (e.getKeyCode() == KeyEvent.VK_R) {
+					if (gameOver) {
+						restartNow = true;
+					}
+				}
+			}
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+			}
+		});
 		pipeManagement = new PipeManagement();
 		ovalManagement = new OvalManagement();
 		backGroundStarManagement = new BackGroundStarManagement();
@@ -44,7 +100,7 @@ public class Controller implements Observer {
 		animationManager = new AnimationManager();
 		colorManager = new ColorManager();
 		highScore = new HighScore();
-		
+
 		gamePanel.updatePlayer(highScore.getPlayers());
 		gamePanel.updateSpecialColor(colorManager.getRGB());
 		gamePanel.updateBackGroundStars(backGroundStarManagement.getBackGroundStars());
@@ -53,13 +109,13 @@ public class Controller implements Observer {
 		timer = new Timer(Values.TIMER_DELAY, listener -> timerAction());
 		timer2 = new Timer(Values.TIMER_DELAY / 10, listener -> timer2Action());
 		timer.start();
-		
+
 		Sound.playClip("Resources/through_space.wav");
 	}
 
 	public void timerAction() {
 		if (gamePanel.getPlay()) {
-			
+
 			if (gameOver()) {
 				timer.stop();
 				Sound.playClip("Resources/gameOverSound.wav");
@@ -76,7 +132,7 @@ public class Controller implements Observer {
 
 			gamePanel.updateCollectable(collectableManager.getCollectables());
 			gamePanel.updateFlappy(flappy.getY());
-			if (!gameFrame.isUpTyped() || !gameFrame.isDownTyped())
+			if (isUpTyped || !isDownTyped)
 				flappy.fall();
 			animationManager.update();
 			gamePanel.updateCharge(animationManager.getCharge());
@@ -99,36 +155,8 @@ public class Controller implements Observer {
 		}
 	}
 
-	private void keyAction() {
-		if (ovalJumpReduct >= 2)
-			ovalJumpReduct = 0;
-
-		if (gameFrame.isUpTyped()) {
-			colorManager.changeColor();
-			flappy.jump();
-			ovalManagement.spawnOval(flappy.getY());
-			ovalJumpReduct++;
-		}
-
-		if (gameFrame.isDownTyped()) {
-			colorManager.changeColor();
-			flappy.jumpDown();
-			ovalManagement.spawnOval(flappy.getY());
-			ovalJumpReduct++;
-		}
-
-		if (gameFrame.isSpaceTyped()) {
-			pipeManagement.flappyCharge();
-			ovalManagement.flappyCharge();
-			backGroundStarManagement.charge();
-			collectableManager.charge();
-			animationManager.spawnCharge();
-			gameFrame.setSpaceTyped(false);
-		}
-	}
-
 	public void timer2Action() {
-		if (gameFrame.getRestartNow()) {
+		if (restartNow) {
 			pipeManagement.reset();
 			ovalManagement.reset();
 			collectableManager.reset();
@@ -137,8 +165,37 @@ public class Controller implements Observer {
 			flappy.reset();
 			animationManager.reset();
 			gameOver = false;
+			restartNow = false;
 			timer.start();
 			timer2.stop();
+		}
+	}
+
+	private void keyAction() {
+		if (ovalJumpReduct >= 2)
+			ovalJumpReduct = 0;
+
+		if (isUpTyped) {
+			colorManager.changeColor();
+			flappy.jump();
+			ovalManagement.spawnOval(flappy.getY());
+			ovalJumpReduct++;
+		}
+
+		if (isDownTyped) {
+			colorManager.changeColor();
+			flappy.jumpDown();
+			ovalManagement.spawnOval(flappy.getY());
+			ovalJumpReduct++;
+		}
+
+		if (isSpaceTyped) {
+			pipeManagement.flappyCharge();
+			ovalManagement.flappyCharge();
+			backGroundStarManagement.charge();
+			collectableManager.charge();
+			animationManager.spawnCharge();
+			isSpaceTyped = false;
 		}
 	}
 
@@ -157,17 +214,19 @@ public class Controller implements Observer {
 		gamePanel.setGameOver(gameOver);
 		return gameOver;
 	}
-	
+
 	public void highScoreCheck() {
 		ArrayList<PlayerAttempt> players = highScore.getPlayers();
 		if (pipeManagement.getScore() > 0) {
 			if (players.size() < 10 || players.get(9).getScore() < pipeManagement.getScore()) {
-				String name = JOptionPane.showInputDialog(gameFrame,"Enter your name","New Highscore!",JOptionPane.PLAIN_MESSAGE);
+				String name = JOptionPane.showInputDialog(gameFrame, "Enter your name", "New Highscore!",
+						JOptionPane.PLAIN_MESSAGE);
 				highScore.newPlayer(pipeManagement.getScore(), name);
 			}
 		}
-	}	
+	}
 
+	// Collectables notify this and gives hitBox - so collision can be checked
 	@Override
 	public void update(Observable o, Object arg) {
 
