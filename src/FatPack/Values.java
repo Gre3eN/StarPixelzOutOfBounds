@@ -52,14 +52,14 @@ public class Values {
 	// Ovals
 	public static int OVAL_HEIGHT = FLAPPY_HEIGHT;
 	public static int OVAL_WIDTH = FLAPPY_WIDTH;
-	public static int FIRST_OVAL_EXPAND_RATE = 80;
-	public static int SECOND_OVAL_EXPAND_RATE = 60;
-	public static int FOURTH_OVAL_EXPAND_RATE = 50;
+	public static int OUTER_OVAL_EXPAND_RATE = 80;
+	public static int MID_OVAL_EXPAND_RATE = 60;
+	public static int INNER_OVAL_EXPAND_RATE = 50;
 	public static int OVAL_EXPAND_TIME = 12;
 	public static int OVAL_COUNT = 5;
-	public static int FIRST_OVAL_START_TRANSPERENCY = 127;
-	public static int SECOND_OVAL_START_TRANSPERENCY = 255;
-	public static int FOURTH_OVAL_START_TRANSPERENCY = 127;
+	public static int OUTER_OVAL_START_TRANSPERENCY = 127;
+	public static int MID_OVAL_START_TRANSPERENCY = 255;
+	public static int INNER_OVAL_START_TRANSPERENCY = 127;
 	public static int OVAL_COLOR_CHANGE_RATE = 15; // nur teiler von 255
 	public static int OUTER_OVAL_TRANSPERENCY_LOSS = 5;
 	public static int INNER_OVAL_TRANSPERENCY_LOSS = 2 * OUTER_OVAL_TRANSPERENCY_LOSS;
