@@ -1,13 +1,9 @@
 package view;
 
 import java.awt.BorderLayout;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
-import FatPack.Sound;
 import FatPack.Values;
 
 public class GameFrame extends JFrame {

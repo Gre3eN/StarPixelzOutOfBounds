@@ -6,10 +6,8 @@ import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
-
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
-
 import FatPack.Sound;
 import FatPack.Values;
 import model.Collectable;
