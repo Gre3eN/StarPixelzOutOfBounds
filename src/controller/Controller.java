@@ -176,8 +176,8 @@ public class Controller implements Observer {
 			Rectangle flappyRec = flappy.getRect();
 
 			if (core.intersects(flappyRec)) {
-				// TODO Sound.playReallyCoolClip(Tim);
 				collectableManager.gotCaught();
+				Sound.playClip("Resources/pickup.wav");
 
 			}
 		}

@@ -36,7 +36,7 @@ public class Values {
 	public static int FLAPPY_FALL_HEIGHT = FRAME_HEIGHT / 110;
 	public static int FLAPPY_CHARGE_SPEED = 80;
 
-	public static int FLAPPY_ANIMATION_COUNT = 3;
+	public static int FLAPPY_ANIMATION_COUNT = 8;
 	public static int FLAPPY_ANIMATION_RANGE_RATE = FLAPPY_CHARGE_SPEED / FLAPPY_ANIMATION_COUNT
 			- FLAPPY_CHARGE_SPEED / 20;
 	public static int FLAPPY_ANIMATION_TIME = 3; // timer actions
