@@ -27,6 +27,7 @@ public class GamePanel extends JPanel {
 	private int[] xywht;
 	private int flappyY = Values.FLAPPY_Y;
 	private int[] specialColor;
+	private FontMetrics fontMetrics;
 	private boolean gameOver = false;
 	private boolean play = false;
 
@@ -48,9 +49,18 @@ public class GamePanel extends JPanel {
 	private void drawStartScreen(Graphics g) {
 		if (!play) {
 			g.setColor(Values.FAIL_COLOR);
-			g.setFont(new Font("Harrington", Font.BOLD, 150));
-			g.drawString("Press 'S' to start", Values.FRAME_WIDTH / 11, Values.FRAME_HEIGHT / 2);
+				
+			g.setFont(new Font("Harrington", Font.BOLD, 80));
+			fontMetrics = g.getFontMetrics();
+			String starP = "StarPixelz";
+			g.drawString(starP, (Values.FRAME_WIDTH-fontMetrics.stringWidth(starP))/2, fontMetrics.getHeight());
 			
+			g.setFont(new Font("Harrington", Font.BOLD, 50));
+			fontMetrics = g.getFontMetrics();
+			String start = "Press 'S' to start";
+			g.drawString(start, (Values.FRAME_WIDTH-fontMetrics.stringWidth(start))/2, fontMetrics.getHeight() + 100);
+			
+			drawControls(g);
 			drawHighScoreList(g);
 		}
 	}
@@ -66,12 +76,18 @@ public class GamePanel extends JPanel {
 	private void drawFail(Graphics g) {
 		if (gameOver) {
 			g.setColor(Values.FAIL_COLOR);
-			g.setFont(new Font("Harrington", Font.BOLD, 150));
-			g.drawString("FAIL", Values.FLAPPY_X + 160, Values.FRAME_HEIGHT / 2);
-
-			g.setFont(new Font("Harrington", Font.PLAIN, 50));
-			g.drawString("press R", Values.FLAPPY_X + 230, Values.FRAME_HEIGHT / 2 + 100);
 			
+			g.setFont(new Font("Harrington", Font.BOLD, 80));
+			fontMetrics = g.getFontMetrics();
+			String fail = "FAIL";
+			g.drawString(fail, (Values.FRAME_WIDTH-fontMetrics.stringWidth(fail))/2, fontMetrics.getHeight());
+				
+			g.setFont(new Font("Harrington", Font.PLAIN, 50));
+			fontMetrics = g.getFontMetrics();
+			String restart = "Press 'R' to restart";
+			g.drawString(restart, (Values.FRAME_WIDTH-fontMetrics.stringWidth(restart))/2, fontMetrics.getHeight() + 100);
+			
+			drawControls(g);
 			drawHighScoreList(g);	
 		}
 	}
@@ -130,22 +146,30 @@ public class GamePanel extends JPanel {
 	
 	private void drawHighScoreList(Graphics g) {
 		g.setFont(new Font("Harrington", Font.BOLD, 50));
-		FontMetrics fontMetrics = g.getFontMetrics();
+		fontMetrics = g.getFontMetrics();
 			
 		for (int i=0;i<10;i++) {		
-			int y = Values.FRAME_HEIGHT - 610 + fontMetrics.getHeight() * i;
+			int y = Values.HIGHSCORE_HEIGHT + fontMetrics.getHeight() * i;
 			if (i < players.size()) {
 				String name = players.get(i).getName();
 				String score = Integer.toString(players.get(i).getScore());
-				int x1 = Values.FRAME_WIDTH - 140 - fontMetrics.stringWidth(name);
-				int x2 = Values.FRAME_WIDTH - 20 - fontMetrics.stringWidth(score);
+				int x1 = Values.FIRST_HIGHSCORE_WIDTH - fontMetrics.stringWidth(name);
+				int x2 = Values.SECOND_HIGHSCORE_WIDTH - fontMetrics.stringWidth(score);
 				g.drawString(name, x1, y);
 				g.drawString(score, x2, y);
 			} else {
-				g.drawString("-", Values.FRAME_WIDTH - 20 - fontMetrics.stringWidth("-"), y);
-				g.drawString("-", Values.FRAME_WIDTH - 140 - fontMetrics.stringWidth("-"), y);
+				g.drawString("-", Values.FIRST_HIGHSCORE_WIDTH - fontMetrics.stringWidth("-"), y);
+				g.drawString("-", Values.SECOND_HIGHSCORE_WIDTH - fontMetrics.stringWidth("-"), y);
 			}
 		}	
+	}
+	
+	private void drawControls(Graphics g) {
+		g.setFont(new Font("Harrington", Font.BOLD, 50));
+		fontMetrics = g.getFontMetrics();
+		g.drawString("Controls:", 10, Values.CONTROL_TEXT_HEIGHT - fontMetrics.getHeight()*3);
+		g.drawString("SPACE = Dash", 10, Values.CONTROL_TEXT_HEIGHT - fontMetrics.getHeight()*2);
+		g.drawString("UP/DOWN = Movement", 10, Values.CONTROL_TEXT_HEIGHT - fontMetrics.getHeight());
 	}
 
 	public void updatePanel() {

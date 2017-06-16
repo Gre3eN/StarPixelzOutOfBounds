@@ -36,7 +36,7 @@ public class Values {
 	public static int FLAPPY_FALL_HEIGHT = FRAME_HEIGHT / 110;
 	public static int FLAPPY_CHARGE_SPEED = 80;
 
-	public static int FLAPPY_ANIMATION_COUNT = 3;
+	public static int FLAPPY_ANIMATION_COUNT = 8;
 	public static int FLAPPY_ANIMATION_RANGE_RATE = FLAPPY_CHARGE_SPEED / FLAPPY_ANIMATION_COUNT
 			- FLAPPY_CHARGE_SPEED / 20;
 	public static int FLAPPY_ANIMATION_TIME = 3; // timer actions
@@ -77,6 +77,12 @@ public class Values {
 	public static int C_SPEED = 20;
 	public static int C_PIPES_TO_SPAWN = 2;
 
+	// Startscreen
+	public static int CONTROL_TEXT_HEIGHT = FRAME_HEIGHT - 10;
+	public static int HIGHSCORE_HEIGHT = FRAME_HEIGHT - 610;
+	public static int FIRST_HIGHSCORE_WIDTH = FRAME_WIDTH - 140;
+	public static int SECOND_HIGHSCORE_WIDTH = FRAME_WIDTH - 20;
+	
 	// TODO Mirko
 	public static Shape createRingShape(double x, double y, double size) {
 		Ellipse2D outer = new Ellipse2D.Double(x, y, size, size);

@@ -52,14 +52,6 @@ public class BackGroundStarManagement {
 		}
 	}
 
-	public void reset() {
-		backGroundStars.clear();
-		for (int i = 0; i < Values.S_INITIAL_COUNT; i++) {
-			random = randy.nextInt(7) + 1;
-			backGroundStars.addAll(new BackGroundStar(0, random).getBackGroundStar());
-		}
-	}
-
 	public ArrayList<int[]> getBackGroundStars() {
 		return backGroundStars;
 	}

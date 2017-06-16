@@ -14,8 +14,7 @@ public class GameFrame extends JFrame {
 
 
 	private JPanel scorePanel;
-	private JLabel jumpLabel, scoreLabel;
-	private int jumps = 0;
+	private JLabel scoreLabel;
 	private int score = 0;
 
 	private boolean restartNow = false;
@@ -29,17 +28,15 @@ public class GameFrame extends JFrame {
 		scorePanel.setLayout(new BorderLayout());
 
 		scoreLabel = new JLabel("Score: " + score + "    ");
-		jumpLabel = new JLabel("Jumps: " + jumps);
 
 		scorePanel.add(scoreLabel, BorderLayout.EAST);
-		scorePanel.add(jumpLabel, BorderLayout.WEST);
-
 		setLayout(new BorderLayout());
 		add(gamePanel);
 		add(scorePanel, BorderLayout.NORTH);
 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(Values.FRAME_WIDTH, Values.FRAME_HEIGHT);
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setVisible(true);
 
 		addKeyListener(new KeyListener() {
@@ -49,25 +46,26 @@ public class GameFrame extends JFrame {
 				if (e.getKeyCode() == KeyEvent.VK_UP){
 					if (!gamePanel.getGameOver()) {
 						isUpTyped = true;
-						jumps++;
-						jumpLabel.setText("Jumps: " + jumps);
-						Sound.playClip("Resources/jump22.wav");
+						Sound.playClip("Resources/jump42.wav");
 					}
 				}
 				
 				if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 					if (!gamePanel.getGameOver()) {
 						isDownTyped = true;
+						Sound.playClip("Resources/jump22.wav");
 					}
 				}
 				
 				if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-					isSpaceTyped = true;
-					Sound.playClip("Resources/jump42.wav");
+					if (!gamePanel.getGameOver()) {
+						isSpaceTyped = true;
+						Sound.playClip("Resources/jump23.wav");
+					}
 				}
 				
 				if (e.getKeyCode() == KeyEvent.VK_S) {
-					gamePanel.setPlay(true);
+					gamePanel.setPlay(true);		
 				}
 			}
 				
@@ -97,8 +95,6 @@ public class GameFrame extends JFrame {
 
 	public void reset() {
 		restartNow = false;
-		jumps = 0;
-		jumpLabel.setText("Jumps: " + jumps);
 		score = 0;
 		scoreLabel.setText("Score: " + score + "    ");
 	}
