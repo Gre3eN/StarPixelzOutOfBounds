@@ -146,7 +146,7 @@ public class Controller implements Observer {
 		Pipe firstPipe = pipeManagement.getPipes().get(0);
 		int flappyY = flappy.getY();
 
-		if (Values.FLAPPY_X + Values.FLAPPY_WIDTH >= firstPipe.getX()
+		if (Values.FLAPPY_X2 >= firstPipe.getX()
 				&& Values.FLAPPY_X <= firstPipe.getX() + Values.PIPE_WIDTH) {
 			if (flappyY <= firstPipe.getGaps()[0]
 					|| flappyY + Values.FLAPPY_HEIGHT >= firstPipe.getGaps()[0] + firstPipe.getGapHeight()[0]) {

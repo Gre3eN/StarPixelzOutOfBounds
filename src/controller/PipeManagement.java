@@ -61,7 +61,7 @@ public class PipeManagement {
 		pipes.clear();
 		pipes.add(new NormalPipe());
 		pipeScore = 0;
-		pipeCount = 0;
+		pipeCount = 1;
 	}
 	
 	public ArrayList<Pipe> getPipes(){
