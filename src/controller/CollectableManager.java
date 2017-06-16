@@ -28,7 +28,7 @@ public class CollectableManager {
 			spawnCollectable();
 		}
 
-		for(int i=0; i<collectables.size();i++ ) {
+		for (int i = 0; i < collectables.size(); i++) {
 			collectables.get(i).update();
 		}
 
@@ -66,6 +66,7 @@ public class CollectableManager {
 			}
 		}
 	}
+
 	public void gotCaught() {
 		collectables.remove(0);
 	}

@@ -82,7 +82,7 @@ public class Values {
 	public static int HIGHSCORE_HEIGHT = FRAME_HEIGHT - 610;
 	public static int FIRST_HIGHSCORE_WIDTH = FRAME_WIDTH - 140;
 	public static int SECOND_HIGHSCORE_WIDTH = FRAME_WIDTH - 20;
-	
+
 	// TODO Mirko
 	public static Shape createRingShape(double x, double y, double size) {
 		Ellipse2D outer = new Ellipse2D.Double(x, y, size, size);

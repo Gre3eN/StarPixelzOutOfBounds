@@ -7,6 +7,23 @@ import java.util.Observable;
 import java.util.Random;
 import FatPack.Values;
 
+/**
+ * This class Represents a rotating Rectangular Shape. <br>
+ * <br>
+ * With main attributes: <br>
+ * "Rectangle : hitbox" and <br>
+ * "Shape : rotatingCore".
+ * 
+ * <br>
+ * <br>
+ * AffineTransform with setToTranslation() and setToRotation is used.
+ *
+ * @see Values
+ * @see CollectableManager
+ * @see AffineTransform
+ *
+ * @author philippsteinke
+ */
 public class Collectable extends Observable {
 
 	private Random randy;
@@ -14,9 +31,19 @@ public class Collectable extends Observable {
 
 	private Rectangle hitBox;
 	private Shape rotatingCore, rotatingCoreHolder;
-	private int x, y, core_X2,anchorx, anchory;
-	private boolean isInDangerZone;
+	private int x, y, core_X2, anchorx, anchory;
 
+	/**
+	 * A Collectable will be created at the very right side of the screen with
+	 * Random y value and static width/height.
+	 * 
+	 * <br>
+	 * A Rectangle as hitBox/Collider will be created. <br>
+	 * Anchors x&y will be created to Transform the Shape to origin, before
+	 * rotating
+	 * 
+	 * 
+	 */
 	public Collectable() {
 		randy = new Random();
 		transform = new AffineTransform();
@@ -30,10 +57,18 @@ public class Collectable extends Observable {
 
 		anchorx = hitBox.x + hitBox.width / 2;
 		anchory = hitBox.y + hitBox.height / 2;
-
-		isInDangerZone = false;
 	}
 
+	/**
+	 * Updates the Collectable -> calls private Methods: <br>
+	 * moveLeft() which translates the Shape for a static Value and also moves
+	 * the Hitbox. <br>
+	 * rotate() which rotates the Shape by 45° counterClockWise . <br>
+	 * inDangerZone() which checks if the HitBox is in "Flappy´s x-Range" and if
+	 * so: notifyes Observer, to handle Collision further.
+	 * 
+	 * @see Values
+	 */
 	public void update() {
 		moveLeft();
 		rotate();
@@ -55,6 +90,11 @@ public class Collectable extends Observable {
 		rotatingCoreHolder = rotatingCore;
 	}
 
+	/**
+	 * Charges the Collectable for a static Value to the left.
+	 * 
+	 * @see Values
+	 */
 	public void charge() {
 		transform.setToTranslation(-Values.FLAPPY_CHARGE_SPEED, 0);
 		rotatingCore = transform.createTransformedShape(rotatingCoreHolder);
@@ -67,7 +107,7 @@ public class Collectable extends Observable {
 	private void inDangerZone() {
 		if (hitBox.x <= Values.FLAPPY_X2) {
 			core_X2 = hitBox.x + hitBox.width;
-			
+
 			if (core_X2 >= Values.FLAPPY_X) {
 				setChanged();
 				notifyObservers(hitBox);
@@ -87,7 +127,4 @@ public class Collectable extends Observable {
 		return this;
 	}
 
-	public boolean getDanger() {
-		return isInDangerZone;
-	}
 }

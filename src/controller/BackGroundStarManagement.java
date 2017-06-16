@@ -15,14 +15,14 @@ public class BackGroundStarManagement {
 	public BackGroundStarManagement() {
 		for (int i = 0; i < Values.S_INITIAL_COUNT; i++) {
 			random = randy.nextInt(8) + 2;
-			backGroundStars.addAll(new BackGroundStar(0, random).getBackGroundStar());
+			backGroundStars.add(new BackGroundStar(0, random).getBackGroundStar());
 		}
 	}
 
 	public void update() {
 		for (int i = 0; i < backGroundStars.size(); i++) {
 			starData = backGroundStars.get(i);
-			starData[0] -= (Values.S_SPEED +starData[4]);
+			starData[0] -= (Values.S_SPEED + starData[4]);
 			backGroundStars.set(i, starData);
 		}
 		delete();
@@ -40,7 +40,7 @@ public class BackGroundStarManagement {
 	private void spawn() {
 		if (backGroundStars.size() < Values.S_MAX_COUNT) {
 			random = randy.nextInt(8) + 2;
-			backGroundStars.addAll(new BackGroundStar(1, random).getBackGroundStar());
+			backGroundStars.add(new BackGroundStar(1, random).getBackGroundStar());
 		}
 	}
 
