@@ -44,6 +44,8 @@ public class Pipe {
 	public void moveLeft() {
 		x -= Values.PIPE_SPEED;
 	}
+	
+	public void hammerAnimation(){}
 
 	public void flappyCharge() {
 		x -= Values.FLAPPY_CHARGE_SPEED;
@@ -55,6 +57,10 @@ public class Pipe {
 
 	public int[] getGaps() {
 		return gap;
+	}
+	
+	public int[] getGapHeight() {
+		return gapHeight;
 	}
 
 	public int getGapCount() {

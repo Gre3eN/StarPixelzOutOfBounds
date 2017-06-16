@@ -23,6 +23,12 @@ public class Values {
 	public static int PIPE_GAP = 140;
 	public static int PIPE_SPEED = 10;
 	public static int PIPE_SPAWN_GAP = FRAME_WIDTH / 3 + FRAME_WIDTH / 6;
+	
+	// Hammer Pipes
+	public static int HAMMERPIPE_START_GAP = 200;
+	public static int HAMMERPIPE_MOVE_TOGETHER = 10;
+	public static int HAMMERPIPE_MOVE_APART = HAMMERPIPE_MOVE_TOGETHER / 2;
+	public static int HAMMERPIPE_SPAWN_INTERVALL = 4;
 
 	// Flappy
 	public static int FLAPPY_X = 230;

@@ -143,13 +143,13 @@ public class Controller implements Observer {
 	}
 
 	public boolean gameOver() {
-		ArrayList<Pipe> pipes = pipeManagement.getPipes();
+		Pipe firstPipe = pipeManagement.getPipes().get(0);
 		int flappyY = flappy.getY();
 
-		if (Values.FLAPPY_X + Values.FLAPPY_WIDTH >= pipes.get(0).getX()
-				&& Values.FLAPPY_X <= pipes.get(0).getX() + Values.PIPE_WIDTH) {
-			if (flappyY <= pipes.get(0).getGaps()[0]
-					|| flappyY + Values.FLAPPY_HEIGHT >= pipes.get(0).getGaps()[0] + Values.PIPE_GAP) {
+		if (Values.FLAPPY_X + Values.FLAPPY_WIDTH >= firstPipe.getX()
+				&& Values.FLAPPY_X <= firstPipe.getX() + Values.PIPE_WIDTH) {
+			if (flappyY <= firstPipe.getGaps()[0]
+					|| flappyY + Values.FLAPPY_HEIGHT >= firstPipe.getGaps()[0] + firstPipe.getGapHeight()[0]) {
 				gameOver = true;
 			}
 		}
