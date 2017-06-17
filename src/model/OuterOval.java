@@ -7,6 +7,8 @@ public class OuterOval extends Oval{
 	public OuterOval(int y) {
 		this.y = y;
 		transparency = Values.OUTER_OVAL_START_TRANSPERENCY;
+		x = Values.FLAPPY_X;
+		size = Values.OVAL_HEIGHT;
 	}
 	
 	public void expand() {

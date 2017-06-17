@@ -7,6 +7,8 @@ public class MidOval extends Oval{
 	public MidOval(int y) {
 		this.y = y;
 		transparency = Values.MID_OVAL_START_TRANSPERENCY;
+		x = Values.FLAPPY_X;
+		size = Values.OVAL_HEIGHT;
 	}
 	
 	public void expand() {

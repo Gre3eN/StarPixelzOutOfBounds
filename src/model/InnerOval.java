@@ -7,6 +7,8 @@ public class InnerOval extends Oval{
 	public InnerOval(int y) {
 		this.y = y;
 		transparency = Values.INNER_OVAL_START_TRANSPERENCY;
+		x = Values.FLAPPY_X;
+		size = Values.OVAL_HEIGHT;
 	}
 	
 	public void expand() {

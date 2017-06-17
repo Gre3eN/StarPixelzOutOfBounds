@@ -4,9 +4,7 @@ import FatPack.Values;
 
 public class Oval {
 	
-	protected int transparency, y;
-	protected int x = Values.FLAPPY_X;
-	protected int size = Values.OVAL_HEIGHT;
+	protected int transparency, y, x, size;
 	
 	public void flappyCharge(){
 		x -= Values.FLAPPY_CHARGE_SPEED;

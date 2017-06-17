@@ -6,12 +6,15 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Shape;
+import java.awt.geom.Area;
+import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 
 import FatPack.Values;
 import model.ChargeAnimation;
 import model.Collectable;
+import model.CometTail;
 import model.Oval;
 import model.Pipe;
 import model.PlayerAttempt;
@@ -24,6 +27,7 @@ public class GamePanel extends JPanel {
 	private ArrayList<Collectable> collectables = new ArrayList<>();
 	private ArrayList<PlayerAttempt> players = new ArrayList<PlayerAttempt>();
 	private ArrayList<ChargeAnimation> charge = new ArrayList<>();
+	private ArrayList<CometTail> cometTail = new ArrayList<>();
 	private int[] xywht;
 	private int flappyY = Values.FLAPPY_Y;
 	private int[] specialColor;
@@ -36,6 +40,7 @@ public class GamePanel extends JPanel {
 		Graphics2D g2 = (Graphics2D) g;
 		drawBackground(g);
 		drawBackGroundStars(g);
+		drawCometTail(g2);
 		drawCollectable(g2);
 		drawOvals(g2);
 		drawPipes(g2);
@@ -119,7 +124,7 @@ public class GamePanel extends JPanel {
 		Shape ring;
 		for (Oval o : ovals) {
 			g.setColor(new Color(specialColor[0], specialColor[1], specialColor[2], o.getTransparency()));
-			ring = Values.createRingShape(o.getX(), o.getY(), o.getSize());
+			ring = Values.createRingShape(o.getX(), o.getY(), o.getSize(), Values.OVAL_CIRCLE_RELATION);
 			g.fill(ring);
 		}
 	}
@@ -142,6 +147,15 @@ public class GamePanel extends JPanel {
 			g.setColor(new Color(specialColor[0], specialColor[1], specialColor[2]));
 			for (Collectable c : collectables) {
 				g.fill(c.getRotatingCore());
+			}
+		}
+	}
+	
+	private void drawCometTail(Graphics2D g){
+		if (cometTail.size() > 0){
+			for (CometTail t : cometTail) {
+				g.setColor(new Color(specialColor[0], specialColor[1], specialColor[2], t.getTransparency()));
+				g.fill(new Ellipse2D.Double(t.getX(), t.getY(), t.getSize(), t.getSize()));
 			}
 		}
 	}
@@ -196,6 +210,10 @@ public class GamePanel extends JPanel {
 
 	public void updateCollectable(ArrayList<Collectable> collectables) {
 		this.collectables = collectables;
+	}
+	
+	public void updateCometTail(ArrayList<CometTail> tail){
+		cometTail = tail;
 	}
 
 	public void updateFlappy(int flappyY) {

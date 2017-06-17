@@ -28,7 +28,7 @@ public class Values {
 	public static int HAMMERPIPE_START_GAP = 200;
 	public static int HAMMERPIPE_MOVE_TOGETHER = 10;
 	public static int HAMMERPIPE_MOVE_APART = HAMMERPIPE_MOVE_TOGETHER / 2;
-	public static int HAMMERPIPE_SPAWN_INTERVALL = 4;
+	public static int HAMMERPIPE_SPAWN_INTERVALL = 4; // hammer pipe spawn every 5th pipe
 
 	// Flappy
 	public static int FLAPPY_X = 230;
@@ -64,6 +64,7 @@ public class Values {
 	public static int OUTER_OVAL_TRANSPERENCY_LOSS = 5;
 	public static int INNER_OVAL_TRANSPERENCY_LOSS = 2 * OUTER_OVAL_TRANSPERENCY_LOSS;
 	public static int OVALS_CAP = 15;
+	public static double OVAL_CIRCLE_RELATION = 0.7;
 
 	// Colores
 	public static Color BACKGROUND_COLOR = new Color(0, 0, 0);
@@ -79,20 +80,27 @@ public class Values {
 	// Collectables
 	public static int C_WIDTH = 25;
 	public static int C_HEIGHT = 25;
-
 	public static int C_SPEED = 20;
 	public static int C_PIPES_TO_SPAWN = 2;
-
+	
+	//CometTail
+	public static int COMETTAIL_TRANSPARENCY_LOSS = 20;
+	public static int COMETTAIL_START_TRANSPARENCY = 140;
+	public static int COMETTAIL_EXPAND_RATE = 5; //minimum 2
+	public static int COMETTAIL_LENGTH = 5;
+	public static double COMETTAIL_CIRCLE_RELATION = 0.3;
+	
 	// Startscreen
 	public static int CONTROL_TEXT_HEIGHT = FRAME_HEIGHT - 10;
 	public static int HIGHSCORE_HEIGHT = FRAME_HEIGHT - 610;
 	public static int FIRST_HIGHSCORE_WIDTH = FRAME_WIDTH - 140;
 	public static int SECOND_HIGHSCORE_WIDTH = FRAME_WIDTH - 20;
 
-	// TODO Mirko
-	public static Shape createRingShape(double x, double y, double size) {
+	// Ring shape creator
+	public static Shape createRingShape(double x, double y, double size, double relation1) {
+		double relation2 = (1.0 - relation1) / 2;
 		Ellipse2D outer = new Ellipse2D.Double(x, y, size, size);
-		Ellipse2D inner = new Ellipse2D.Double(x + size * 0.15, y + size * 0.15, size * 0.7, size * 0.7);
+		Ellipse2D inner = new Ellipse2D.Double(x + size * relation2, y + size * relation2, size * relation1, size * relation1);
 		Area area = new Area(outer);
 		area.subtract(new Area(inner));
 		return area;

@@ -68,18 +68,24 @@ public class Controller implements Observer {
 			}
 
 			gamePanel.updateSpecialColor(colorManager.getRGB());
+			
 			pipeManagement.update();
 			gamePanel.updatePipes(pipeManagement.getPipes());
+			
 			backGroundStarManagement.update();
 			gamePanel.updateBackGroundStars(backGroundStarManagement.getBackGroundStars());
+			
 			collectableManager.update(pipeManagement.getScore());
-
 			gamePanel.updateCollectable(collectableManager.getCollectables());
+			gamePanel.updateCometTail(collectableManager.getCometTail());
+			
 			gamePanel.updateFlappy(flappy.getY());
 			if (!gameFrame.isUpTyped() || !gameFrame.isDownTyped())
 				flappy.fall();
+			
 			animationManager.update();
 			gamePanel.updateCharge(animationManager.getCharge());
+			
 			gameFrame.setScore(pipeManagement.getScore());
 
 			if (ovalManagement.getOvals().size() > 0)
@@ -88,11 +94,7 @@ public class Controller implements Observer {
 
 			keyAction();
 
-			if (flappy.getY() + Values.FLAPPY_HEIGHT <= 0)
-				flappy.teleDown();
-
-			if (flappy.getY() >= Values.FRAME_HEIGHT)
-				flappy.teleUp();
+			flappy.teleport();
 
 			gamePanel.updatePanel();
 

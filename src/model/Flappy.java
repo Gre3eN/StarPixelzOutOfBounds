@@ -24,11 +24,19 @@ public class Flappy {
 		y+=Values.FLAPPY_JUMP_DOWN_HEIGHT;
 	}
 	
-	public void teleUp() {
+	public void teleport() {
+		if (y + Values.FLAPPY_HEIGHT <= 0)
+			teleDown();
+
+		if (y >= Values.FRAME_HEIGHT)
+			teleUp();
+	}
+	
+	private void teleUp() {
 		y=-Values.FLAPPY_HEIGHT/2;
 	}
 	
-	public void teleDown() {
+	private void teleDown() {
 		y=Values.FRAME_HEIGHT - Values.FLAPPY_HEIGHT/2;
 	}
 	

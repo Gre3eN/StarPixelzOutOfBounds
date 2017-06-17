@@ -4,17 +4,19 @@ import java.util.ArrayList;
 
 import FatPack.Values;
 import model.ChargeAnimation;
+import model.Oval;
 
 public class AnimationManager {
 	
 	ArrayList<ChargeAnimation> charge = new ArrayList<>();
+	ArrayList<Oval> cometTail = new ArrayList<>();
 	
 	public void spawnCharge(){
 		for(int i = 1; i <= Values.FLAPPY_ANIMATION_COUNT; i++)
 			charge.add(new ChargeAnimation(i));
 	}
 	
-	public void deleteCharge(){
+	private void deleteCharge(){
 		int k = 0;
 		for(int i = 0; i < Values.FLAPPY_ANIMATION_TIME; i++)
 			k++;
