@@ -5,7 +5,7 @@ import FatPack.Values;
 
 public class HammerPipe extends Pipe{
 	
-	boolean open;
+	private boolean open;
 
 	public HammerPipe() {
 		x = Values.FRAME_WIDTH;
@@ -19,7 +19,7 @@ public class HammerPipe extends Pipe{
 		open = true;
 	}
 	
-	public void hammerAnimation(){
+	public void animation(){
 		if (open){
 			gap[0] += Values.HAMMERPIPE_MOVE_TOGETHER;
 			gapHeight[0] -= 2 * Values.HAMMERPIPE_MOVE_TOGETHER;

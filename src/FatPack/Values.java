@@ -23,12 +23,17 @@ public class Values {
 	public static int PIPE_GAP = 140;
 	public static int PIPE_SPEED = 10;
 	public static int PIPE_SPAWN_GAP = FRAME_WIDTH / 3 + FRAME_WIDTH / 6;
+	public static int SPECIALPIPES_SPAWN_INTERVALL = 4; // special pipes spawn every x+1-th pipe
 	
 	// Hammer Pipes
 	public static int HAMMERPIPE_START_GAP = 200;
 	public static int HAMMERPIPE_MOVE_TOGETHER = 10;
 	public static int HAMMERPIPE_MOVE_APART = HAMMERPIPE_MOVE_TOGETHER / 2;
-	public static int HAMMERPIPE_SPAWN_INTERVALL = 4; // hammer pipe spawn every 5th pipe
+	
+	// Confusing Pipes
+	public static double CONFUSPIPES_START_SPEED = 1; 
+	public static double CONFUSPIPES_CLOSING_SPEED = 0.4;
+	public static int CONFUSPIPES_GAP = 220; 
 
 	// Flappy
 	public static int FLAPPY_X = 230;

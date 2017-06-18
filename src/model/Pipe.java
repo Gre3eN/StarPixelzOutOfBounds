@@ -45,7 +45,7 @@ public class Pipe {
 		x -= Values.PIPE_SPEED;
 	}
 	
-	public void hammerAnimation(){}
+	public void animation(){}
 
 	public void flappyCharge() {
 		x -= Values.FLAPPY_CHARGE_SPEED;

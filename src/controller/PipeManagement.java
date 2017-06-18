@@ -1,9 +1,11 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import FatPack.Sound;
 import FatPack.Values;
+import model.ConfusingPipe;
 import model.HammerPipe;
 import model.NormalPipe;
 import model.Pipe;
@@ -13,16 +15,17 @@ public class PipeManagement {
 	private ArrayList<Pipe> pipes = new ArrayList<>();
 	private int pipeScore = 0;
 	private int pipeCount;
+	private Random randy = new Random();
 
 	public PipeManagement() {
-		pipes.add(new NormalPipe());
+		pipes.add(new ConfusingPipe()); //TODO just for testing confusing pipe. Should normally be .add(new NormalPipe())
 		pipeCount = 1;
 	}
 
 	public void update() {
 		for (int i = 0; i < pipes.size(); i++) {
 			pipes.get(i).moveLeft();
-			pipes.get(i).hammerAnimation();
+			pipes.get(i).animation();
 		}
 		spawnPipe();
 		deletePipe();
@@ -36,16 +39,17 @@ public class PipeManagement {
 
 	private void spawnPipe() {
 		if (pipes.get(pipes.size() - 1).getX() <= Values.FRAME_WIDTH - Values.PIPE_SPAWN_GAP
-				&& pipeCount != Values.HAMMERPIPE_SPAWN_INTERVALL) {
+				&& pipeCount != Values.SPECIALPIPES_SPAWN_INTERVALL) {
 			pipes.add(new NormalPipe());
 			pipeCount ++;
 		}
 		if (pipes.get(pipes.size() - 1).getX() <= Values.FRAME_WIDTH - Values.PIPE_SPAWN_GAP
-				&& pipeCount == Values.HAMMERPIPE_SPAWN_INTERVALL){
-			pipes.add(new HammerPipe());
+				&& pipeCount == Values.SPECIALPIPES_SPAWN_INTERVALL){
+			if (randy.nextInt(2) == 0) pipes.add(new HammerPipe());
+			if (randy.nextInt(2) == 1) pipes.add(new ConfusingPipe());
 			pipeCount ++;
 		}
-		if (pipeCount > Values.HAMMERPIPE_SPAWN_INTERVALL)
+		if (pipeCount > Values.SPECIALPIPES_SPAWN_INTERVALL)
 			pipeCount = 0;
 	}
 
