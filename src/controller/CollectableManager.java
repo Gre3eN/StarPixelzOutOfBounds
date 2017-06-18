@@ -1,6 +1,8 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.Random;
+
 import FatPack.Values;
 import model.Collectable;
 import model.CometTail;
@@ -8,6 +10,7 @@ import model.CometTail;
 public class CollectableManager {
 
 	private int lastSpawnAt;
+	private Random randy = new Random();
 	private ArrayList<Collectable> collectables;
 	private ArrayList<CometTail> tail;
 	private Controller controller;

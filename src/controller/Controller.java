@@ -30,8 +30,9 @@ public class Controller implements Observer {
 	private ColorManager colorManager;
 	private HighScore highScore;
 	private Timer timer, timer2;
-	private int ovalJumpReduct = 0;
+	private ArrayList<Integer> lastScore;
 	private boolean gameOver = false;
+	private boolean godMode = false;
 
 	public Controller() {
 		gamePanel = new GamePanel();
@@ -44,6 +45,8 @@ public class Controller implements Observer {
 		animationManager = new AnimationManager();
 		colorManager = new ColorManager();
 		highScore = new HighScore();
+		lastScore = new ArrayList<>();
+		lastScore.add(pipeManagement.getScore());
 		
 		gamePanel.updatePlayer(highScore.getPlayers());
 		gamePanel.updateSpecialColor(colorManager.getRGB());
@@ -68,6 +71,7 @@ public class Controller implements Observer {
 			}
 
 			gamePanel.updateSpecialColor(colorManager.getRGB());
+			gamePanel.setGodMode(godMode);
 			
 			pipeManagement.update();
 			gamePanel.updatePipes(pipeManagement.getPipes());
@@ -93,6 +97,8 @@ public class Controller implements Observer {
 			gamePanel.updateOvals(ovalManagement.getOvals());
 
 			keyAction();
+			
+			updateGodMode();
 
 			flappy.teleport();
 
@@ -102,21 +108,16 @@ public class Controller implements Observer {
 	}
 
 	private void keyAction() {
-		if (ovalJumpReduct >= 2)
-			ovalJumpReduct = 0;
-
 		if (gameFrame.isUpTyped()) {
 			colorManager.changeColor();
 			flappy.jump();
 			ovalManagement.spawnOval(flappy.getY());
-			ovalJumpReduct++;
 		}
 
 		if (gameFrame.isDownTyped()) {
 			colorManager.changeColor();
 			flappy.jumpDown();
 			ovalManagement.spawnOval(flappy.getY());
-			ovalJumpReduct++;
 		}
 
 		if (gameFrame.isSpaceTyped()) {
@@ -144,20 +145,34 @@ public class Controller implements Observer {
 		}
 	}
 
-	public boolean gameOver() {
+	private boolean gameOver() {
 		Pipe firstPipe = pipeManagement.getPipes().get(0);
 		int flappyY = flappy.getY();
-
-		if (Values.FLAPPY_X2 >= firstPipe.getX()
-				&& Values.FLAPPY_X <= firstPipe.getX() + Values.PIPE_WIDTH) {
-			if (flappyY <= firstPipe.getGaps()[0]
-					|| flappyY + Values.FLAPPY_HEIGHT >= firstPipe.getGaps()[0] + firstPipe.getGapHeight()[0]) {
-				gameOver = true;
+		
+		if (!godMode){
+			if (Values.FLAPPY_X2 >= firstPipe.getX()
+					&& Values.FLAPPY_X <= firstPipe.getX() + Values.PIPE_WIDTH) {
+				if (flappyY <= firstPipe.getGaps()[0]
+						|| flappyY + Values.FLAPPY_HEIGHT >= firstPipe.getGaps()[0] + firstPipe.getGapHeight()[0]) {
+					gameOver = true;
+				}
 			}
 		}
 
 		gamePanel.setGameOver(gameOver);
 		return gameOver;
+	}
+	
+	private void updateGodMode(){
+		if (godMode){
+			if (pipeManagement.getScore() > lastScore.get(lastScore.size() - 1))
+				lastScore.add(pipeManagement.getScore());
+			
+			if (lastScore.get(0) + Values.GODMODE_LENGTH == lastScore.get(lastScore.size() -1)){
+				lastScore.clear();
+				godMode = false;
+			}
+		}
 	}
 	
 	public void highScoreCheck() {
@@ -179,6 +194,7 @@ public class Controller implements Observer {
 
 			if (core.intersects(flappyRec)) {
 				collectableManager.gotCaught();
+				godMode = true;
 				Sound.playClip("Resources/pickup.wav");
 
 			}

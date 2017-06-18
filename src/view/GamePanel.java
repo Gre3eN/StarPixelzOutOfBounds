@@ -34,6 +34,7 @@ public class GamePanel extends JPanel {
 	private FontMetrics fontMetrics;
 	private boolean gameOver = false;
 	private boolean play = false;
+	private boolean godMode = false;
 
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -48,6 +49,7 @@ public class GamePanel extends JPanel {
 		drawPlayer(g);
 		drawFail(g);
 		drawIdiot(g);
+		drawGodMode(g);
 		drawStartScreen(g);
 	}
 
@@ -78,6 +80,14 @@ public class GamePanel extends JPanel {
 			g.drawString("Idiot -.-", 100, 100);
 		}
 	}
+	
+	private void drawGodMode(Graphics g) {
+		if (godMode) {
+			g.setColor(Values.FAIL_COLOR);
+			g.setFont(new Font("Harrington", Font.BOLD, 50));
+			g.drawString("GOD MODE", Values.FRAME_WIDTH /2 -50, 100);
+		}
+	}
 
 	private void drawFail(Graphics g) {
 		if (gameOver) {
@@ -101,7 +111,11 @@ public class GamePanel extends JPanel {
 
 	private void drawPlayer(Graphics g) {
 		if (play) {
-			g.setColor(new Color(specialColor[0], specialColor[1], specialColor[2]));
+			if(!godMode)
+				g.setColor(new Color(specialColor[0], specialColor[1], specialColor[2]));
+			else
+				g.setColor(new Color(255, 255, 255));
+			
 			g.fillRect(Values.FLAPPY_X, flappyY, Values.FLAPPY_HEIGHT, Values.FLAPPY_WIDTH);
 		}
 	}
@@ -123,7 +137,11 @@ public class GamePanel extends JPanel {
 	private void drawOvals(Graphics2D g) {
 		Shape ring;
 		for (Oval o : ovals) {
-			g.setColor(new Color(specialColor[0], specialColor[1], specialColor[2], o.getTransparency()));
+			if (!godMode)
+				g.setColor(new Color(specialColor[0], specialColor[1], specialColor[2], o.getTransparency()));
+			else
+				g.setColor(new Color(255, 255, 255, o.getTransparency()));
+			
 			ring = Values.createRingShape(o.getX(), o.getY(), o.getSize(), Values.OVAL_CIRCLE_RELATION);
 			g.fill(ring);
 		}
@@ -235,6 +253,10 @@ public class GamePanel extends JPanel {
 
 	public void setGameOver(boolean gameOver) {
 		this.gameOver = gameOver;
+	}
+	
+	public void setGodMode(boolean godMode){
+		this.godMode = godMode;
 	}
 
 	public boolean getGameOver() {

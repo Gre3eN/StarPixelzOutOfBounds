@@ -83,18 +83,20 @@ public class Values {
 	public static int C_SPEED = 20;
 	public static int C_PIPES_TO_SPAWN = 2;
 	
-	//CometTail
-	public static int COMETTAIL_TRANSPARENCY_LOSS = 20;
-	public static int COMETTAIL_START_TRANSPARENCY = 140;
-	public static int COMETTAIL_EXPAND_RATE = 5; //minimum 2
+	// CometTail
+	public static int COMETTAIL_START_TRANSPARENCY = 160; 
+	public static int COMETTAIL_EXPAND_RATE = 7; //minimum 2
 	public static int COMETTAIL_LENGTH = 5;
-	public static double COMETTAIL_CIRCLE_RELATION = 0.3;
+	public static int COMETTAIL_TRANSPARENCY_LOSS = COMETTAIL_START_TRANSPARENCY / COMETTAIL_LENGTH;
 	
 	// Startscreen
 	public static int CONTROL_TEXT_HEIGHT = FRAME_HEIGHT - 10;
 	public static int HIGHSCORE_HEIGHT = FRAME_HEIGHT - 610;
 	public static int FIRST_HIGHSCORE_WIDTH = FRAME_WIDTH - 140;
 	public static int SECOND_HIGHSCORE_WIDTH = FRAME_WIDTH - 20;
+	
+	// GodMode
+	public static int GODMODE_LENGTH = 2; 
 
 	// Ring shape creator
 	public static Shape createRingShape(double x, double y, double size, double relation1) {
