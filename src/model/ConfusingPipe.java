@@ -23,12 +23,12 @@ public class ConfusingPipe extends Pipe{
 	public void animation(){
 		gapHeight[0] -= closingSpeed;
 		closingSpeed += Values.CONFUSPIPES_CLOSING_SPEED;
-		if (gapHeight[0] <= 0 && gap[0] == gapY0){
+		if (gapHeight[0] <= Values.FLAPPY_HEIGHT && gap[0] == gapY0){
 			gap[0] = gapY1;
 			gapHeight[0] = Values.CONFUSPIPES_GAP;
 			closingSpeed = Values.CONFUSPIPES_START_SPEED;
 		}
-		if (gapHeight[0] <= 0 && gap[0] == gapY1){
+		if (gapHeight[0] <= Values.FLAPPY_HEIGHT && gap[0] == gapY1){
 			gap[0] = gapY0;
 			gapHeight[0] = Values.CONFUSPIPES_GAP;
 			closingSpeed = Values.CONFUSPIPES_START_SPEED;
