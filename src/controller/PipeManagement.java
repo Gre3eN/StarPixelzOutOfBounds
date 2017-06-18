@@ -43,7 +43,7 @@ public class PipeManagement {
 			pipes.add(new NormalPipe());
 			pipeCount ++;
 		}
-		int temp = randy.nextInt();
+		int temp = randy.nextInt(2);
 		if (pipes.get(pipes.size() - 1).getX() <= Values.FRAME_WIDTH - Values.PIPE_SPAWN_GAP
 				&& pipeCount == Values.SPECIALPIPES_SPAWN_INTERVALL){
 			if (temp == 0) pipes.add(new HammerPipe());
