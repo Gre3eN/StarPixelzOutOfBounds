@@ -46,7 +46,6 @@ public class Controller implements Observer {
 		colorManager = new ColorManager();
 		highScore = new HighScore();
 		lastScore = new ArrayList<>();
-		lastScore.add(pipeManagement.getScore());
 		
 		gamePanel.updatePlayer(highScore.getPlayers());
 		gamePanel.updateSpecialColor(colorManager.getRGB());
@@ -165,6 +164,8 @@ public class Controller implements Observer {
 	
 	private void updateGodMode(){
 		if (godMode){
+			if (lastScore.size() < 1)
+				lastScore.add(pipeManagement.getScore());
 			if (pipeManagement.getScore() > lastScore.get(lastScore.size() - 1))
 				lastScore.add(pipeManagement.getScore());
 			
