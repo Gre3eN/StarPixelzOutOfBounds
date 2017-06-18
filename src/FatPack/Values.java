@@ -42,6 +42,7 @@ public class Values {
 	public static int FLAPPY_FALL_HEIGHT = FRAME_HEIGHT / 110;
 	public static int FLAPPY_CHARGE_SPEED = 80;
 
+	// Charge Animation
 	public static int FLAPPY_ANIMATION_COUNT = 8;
 	public static int FLAPPY_ANIMATION_RANGE_RATE = FLAPPY_CHARGE_SPEED / FLAPPY_ANIMATION_COUNT
 			- FLAPPY_CHARGE_SPEED / 20;
@@ -81,7 +82,7 @@ public class Values {
 	public static int C_WIDTH = 25;
 	public static int C_HEIGHT = 25;
 	public static int C_SPEED = 20;
-	public static int C_PIPES_TO_SPAWN = 2;
+	public static int C_PIPES_TO_SPAWN = 4;
 	
 	// CometTail
 	public static int COMETTAIL_START_TRANSPARENCY = 160; 

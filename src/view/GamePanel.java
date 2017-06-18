@@ -122,7 +122,11 @@ public class GamePanel extends JPanel {
 
 	private void drawChargeAnimation(Graphics g) {
 		for (ChargeAnimation c : charge) {
-			g.setColor(new Color(specialColor[0], specialColor[1], specialColor[2], c.getTransparency()));
+			if (!godMode)
+				g.setColor(new Color(specialColor[0], specialColor[1], specialColor[2], c.getTransparency()));
+			else
+				g.setColor(new Color(255, 255, 255, c.getTransparency()));
+			
 			g.fillRect(c.getX(), flappyY, Values.FLAPPY_WIDTH, Values.FLAPPY_HEIGHT);
 		}
 	}
