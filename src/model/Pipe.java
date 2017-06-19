@@ -17,8 +17,6 @@ public class Pipe {
 	protected int gapCount;
 	protected int[] gap;
 	protected int[] gapHeight;
-	protected boolean up = false;
-	protected boolean down = false;
 
 	public Pipe() {
 		randy = new Random();
@@ -49,10 +47,7 @@ public class Pipe {
 	
 	public void animation(){}
 	
-	public void setKeyActions(boolean up, boolean down){
-		this.up = up;
-		this.down = down;
-	}
+	public void setKeyActions(boolean a, boolean b){}
 
 	public void flappyCharge() {
 		x -= Values.FLAPPY_CHARGE_SPEED;

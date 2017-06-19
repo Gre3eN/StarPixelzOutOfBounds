@@ -73,7 +73,7 @@ public class Controller implements Observer {
 			gamePanel.updateSpecialColor(colorManager.getRGB());
 			gamePanel.setGodMode(godMode);
 			
-			pipeManagement.update();
+			pipeManagement.update(gameFrame.isUpTyped(), gameFrame.isDownTyped());
 			gamePanel.updatePipes(pipeManagement.getPipes());
 			
 			backGroundStarManagement.update();

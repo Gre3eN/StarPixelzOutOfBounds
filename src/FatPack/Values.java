@@ -47,6 +47,14 @@ public class Values {
 	public static int FLAPPY_JUMP_DOWN_HEIGHT = 20;
 	public static int FLAPPY_FALL_HEIGHT = FRAME_HEIGHT / 110;
 	public static int FLAPPY_CHARGE_SPEED = 80;
+	
+	// Knowing Pipe
+	public static int KNOWPIPES_START_GAP = 120;
+	public static int KNOWPIPES_MID_HEIGHT = 50;
+	public static int KNOWPIPES_START_GAP_Y = FRAME_HEIGHT / 2 - KNOWPIPES_MID_HEIGHT / 2 - KNOWPIPES_START_GAP;
+	public static int KNOWPIPES_UP_SPEED = FLAPPY_JUMP_HEIGHT / 3;
+	public static int KNOWPIPES_DOWN_SPEED = FLAPPY_JUMP_DOWN_HEIGHT / 3;
+	public static int KNOWPIPES_FALL_SPEED = FLAPPY_FALL_HEIGHT / 3;
 
 	// Charge Animation
 	public static int FLAPPY_ANIMATION_COUNT = 8;
