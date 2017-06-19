@@ -21,11 +21,14 @@ public class GameFrame extends JFrame {
 	private boolean isUpTyped = false;
 	private boolean isSpaceTyped = false;
 	private boolean isDownTyped = false;
+	private boolean fullScreen;
 
 	public GameFrame(GamePanel gamePanel) {
 	
 		scorePanel = new JPanel();
 		scorePanel.setLayout(new BorderLayout());
+		
+		fullScreen = false;
 
 		scoreLabel = new JLabel("Score: " + score + "    ");
 
@@ -43,6 +46,16 @@ public class GameFrame extends JFrame {
 
 			@Override
 			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode() == KeyEvent.VK_F){
+					if (fullScreen)
+						fullScreen = false;
+					else
+						fullScreen = true;
+					setFullScreen(fullScreen);
+				}
+				if(e.getKeyCode() == KeyEvent.VK_ESCAPE)
+					setFullScreen(false);
+				
 				if (e.getKeyCode() == KeyEvent.VK_UP){
 					if (!gamePanel.getGameOver()) {
 						isUpTyped = true;
@@ -87,6 +100,12 @@ public class GameFrame extends JFrame {
 			@Override
 			public void keyTyped(KeyEvent e) {}
 		});
+	}
+	
+	private void setFullScreen(boolean fullScreen) {
+	    dispose();
+	    setUndecorated(fullScreen);
+	    setVisible(true);
 	}
 
 	public boolean getRestartNow() {

@@ -205,9 +205,10 @@ public class GamePanel extends JPanel {
 	private void drawControls(Graphics g) {
 		g.setFont(new Font("Harrington", Font.BOLD, 50));
 		fontMetrics = g.getFontMetrics();
-		g.drawString("Controls:", 10, Values.CONTROL_TEXT_HEIGHT - fontMetrics.getHeight() * 3);
-		g.drawString("SPACE = Dash", 10, Values.CONTROL_TEXT_HEIGHT - fontMetrics.getHeight() * 2);
-		g.drawString("UP/DOWN = Movement", 10, Values.CONTROL_TEXT_HEIGHT - fontMetrics.getHeight());
+		g.drawString("Controls:", 10, Values.CONTROL_TEXT_HEIGHT - fontMetrics.getHeight() * 4);
+		g.drawString("SPACE = Dash", 10, Values.CONTROL_TEXT_HEIGHT - fontMetrics.getHeight() * 3);
+		g.drawString("UP/DOWN = Movement", 10, Values.CONTROL_TEXT_HEIGHT - fontMetrics.getHeight() * 2);
+		g.drawString("F = FullScreen", 10, Values.CONTROL_TEXT_HEIGHT - fontMetrics.getHeight());
 	}
 
 	public void updatePanel() {
