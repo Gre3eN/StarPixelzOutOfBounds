@@ -11,8 +11,8 @@ public class ConfusingPipe extends Pipe{
 		x = Values.FRAME_WIDTH;
 		closingSpeed = Values.CONFUSPIPES_START_SPEED;
 		
-		gapY0 = Values.FRAME_HEIGHT / 2 + Values.FRAME_HEIGHT / 5;
-		gapY1 = Values.FRAME_HEIGHT / 11;
+		gapY0 = Values.CONFUSPIPES_SCREEN_DISTANCE;
+		gapY1 = Values.FRAME_HEIGHT - Values.CONFUSPIPES_SCREEN_DISTANCE - Values.CONFUSPIPES_GAP;
 		gapCount = 1;
 		gap = new int[gapCount];
 		gapHeight = new int[gapCount];

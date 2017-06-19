@@ -34,6 +34,7 @@ public class Values {
 	public static double CONFUSPIPES_START_SPEED = 1; 
 	public static double CONFUSPIPES_CLOSING_SPEED = 0.4;
 	public static int CONFUSPIPES_GAP = 220; 
+	public static int CONFUSPIPES_SCREEN_DISTANCE = 20;
 
 	// Flappy
 	public static int FLAPPY_X = 230;

@@ -1,6 +1,7 @@
 package controller;
 
 import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -146,13 +147,12 @@ public class Controller implements Observer {
 
 	private boolean gameOver() {
 		Pipe firstPipe = pipeManagement.getPipes().get(0);
-		int flappyY = flappy.getY();
+		Rectangle2D hitBox = new Rectangle2D.Double(Values.FLAPPY_X, flappy.getY(), Values.FLAPPY_HEIGHT, Values.FLAPPY_WIDTH);
 		
 		if (!godMode){
 			if (Values.FLAPPY_X2 >= firstPipe.getX()
 					&& Values.FLAPPY_X <= firstPipe.getX() + Values.PIPE_WIDTH) {
-				if (flappyY <= firstPipe.getGaps()[0]
-						|| flappyY + Values.FLAPPY_HEIGHT >= firstPipe.getGaps()[0] + firstPipe.getGapHeight()[0]) {
+				if (firstPipe.pipeShape().intersects(hitBox)) {
 					gameOver = true;
 				}
 			}
