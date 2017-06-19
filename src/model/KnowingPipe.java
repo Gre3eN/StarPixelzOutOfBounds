@@ -20,7 +20,6 @@ public class KnowingPipe extends Pipe{
 		gapHeight[0] = Values.KNOWPIPES_START_GAP;
 		gap[1] = gapY1;
 		gapHeight[1] = Values.KNOWPIPES_START_GAP;
-		System.out.println(gap[1]);
 	}
 	
 	public void animation(){

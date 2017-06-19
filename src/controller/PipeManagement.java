@@ -19,7 +19,7 @@ public class PipeManagement {
 	private Random randy = new Random();
 
 	public PipeManagement() {
-		pipes.add(new KnowingPipe()); //TODO just for testing confusing pipe. Should normally be .add(new NormalPipe())
+		pipes.add(new ConfusingPipe()); //TODO just for testing confusing pipe. Should normally be .add(new NormalPipe())
 		pipeCount = 1;
 	}
 
@@ -67,7 +67,7 @@ public class PipeManagement {
 
 	public void reset() {
 		pipes.clear();
-		pipes.add(new KnowingPipe());
+		pipes.add(new ConfusingPipe());
 		pipeScore = 0;
 		pipeCount = 1;
 	}

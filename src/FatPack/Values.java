@@ -32,7 +32,7 @@ public class Values {
 	
 	// Confusing Pipes
 	public static double CONFUSPIPES_START_SPEED = 1; 
-	public static double CONFUSPIPES_CLOSING_SPEED = 0.4;
+	public static double CONFUSPIPES_CLOSING_SPEED = 0.38;
 	public static int CONFUSPIPES_GAP = 220; 
 	public static int CONFUSPIPES_SCREEN_DISTANCE = 20;
 
@@ -50,7 +50,7 @@ public class Values {
 	
 	// Knowing Pipe
 	public static int KNOWPIPES_START_GAP = 120;
-	public static int KNOWPIPES_MID_HEIGHT = 50;
+	public static int KNOWPIPES_MID_HEIGHT = 80;
 	public static int KNOWPIPES_START_GAP_Y = FRAME_HEIGHT / 2 - KNOWPIPES_MID_HEIGHT / 2 - KNOWPIPES_START_GAP;
 	public static int KNOWPIPES_UP_SPEED = FLAPPY_JUMP_HEIGHT / 3;
 	public static int KNOWPIPES_DOWN_SPEED = FLAPPY_JUMP_DOWN_HEIGHT / 3;

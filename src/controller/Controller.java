@@ -147,14 +147,14 @@ public class Controller implements Observer {
 
 	private boolean gameOver() {
 		Pipe firstPipe = pipeManagement.getPipes().get(0);
-		Rectangle2D hitBox = new Rectangle2D.Double(Values.FLAPPY_X, flappy.getY(), Values.FLAPPY_HEIGHT, Values.FLAPPY_WIDTH);
+		Rectangle2D hitBox = new Rectangle2D.Double(Values.FLAPPY_X, flappy.getY(), 
+													Values.FLAPPY_HEIGHT, Values.FLAPPY_WIDTH);
 		
 		if (!godMode){
 			if (Values.FLAPPY_X2 >= firstPipe.getX()
 					&& Values.FLAPPY_X <= firstPipe.getX() + Values.PIPE_WIDTH) {
-				if (firstPipe.pipeShape().intersects(hitBox)) {
+				if (firstPipe.pipeShape().intersects(hitBox)) 
 					gameOver = true;
-				}
 			}
 		}
 
