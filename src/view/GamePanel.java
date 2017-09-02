@@ -6,7 +6,6 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Shape;
-import java.awt.geom.Area;
 import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
 import javax.swing.JPanel;
@@ -67,7 +66,8 @@ public class GamePanel extends JPanel {
 			String start = "Press 'S' to start";
 			g.drawString(start, (Values.FRAME_WIDTH - fontMetrics.stringWidth(start)) / 2,
 					fontMetrics.getHeight() + 100);
-
+			
+			drawNames(g);
 			drawControls(g);
 			drawHighScoreList(g);
 		}
@@ -104,6 +104,7 @@ public class GamePanel extends JPanel {
 			g.drawString(restart, (Values.FRAME_WIDTH - fontMetrics.stringWidth(restart)) / 2,
 					fontMetrics.getHeight() + 100);
 
+			drawNames(g);
 			drawControls(g);
 			drawHighScoreList(g);
 		}
@@ -209,6 +210,14 @@ public class GamePanel extends JPanel {
 		g.drawString("SPACE = Dash", 10, Values.CONTROL_TEXT_HEIGHT - fontMetrics.getHeight() * 3);
 		g.drawString("UP/DOWN = Movement", 10, Values.CONTROL_TEXT_HEIGHT - fontMetrics.getHeight() * 2);
 		g.drawString("F = FullScreen", 10, Values.CONTROL_TEXT_HEIGHT - fontMetrics.getHeight());
+	}
+	
+	private void drawNames(Graphics g) {
+		g.setFont(new Font("Harrington", Font.PLAIN, 22));
+		fontMetrics = g.getFontMetrics();
+		g.drawString("Philipp Steinke", 10, fontMetrics.getHeight());
+		g.drawString("Mirko Brandt", 10, fontMetrics.getHeight()+25);
+		g.drawString("Tim Fock", 10, fontMetrics.getHeight()+50);
 	}
 
 	public void updatePanel() {
