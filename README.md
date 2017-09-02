@@ -1,5 +1,5 @@
 # StarPixelzOutOfBounds
 
-1. Download all of the repository to your desktop
-2. Import with Eclipse or whatever programm you are using for coding
-3. Start the main class
+1. Download 'StarPixelz.rar'
+2. Extract to desired location
+3. Run 'StarPixelz.jar'
